@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DigniVida - Acompañamiento para adultos mayores y personas con discapacidad</title>
+    <title>DigniVida</title>
+    <link rel="icon" type="image/png" href="/img/logo.png">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="estilos-auth.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
 </head>
 <body>
@@ -23,8 +25,8 @@
                 </ul>
             </nav>
             <div class="auth-buttons">
-                <a href="#" class="btn btn-outline">Iniciar Sesión</a>
-                <a href="#" class="btn btn-primary">Registrarse</a>
+                <a href="login.html" class="btn btn-outline">Iniciar Sesión</a>
+                <a href="#" class="btn btn-primary" id="btn-registro">Registrarse</a>
             </div>
         </div>
     </header>
@@ -36,7 +38,7 @@
                 <p>Conectamos adultos mayores y personas con discapacidad con voluntarios comprometidos que los acompañarán a citas médicas, trámites bancarios y más.</p>
                 <div class="hero-buttons">
                     <a href="#" class="btn btn-primary btn-large">Solicitar Acompañamiento</a>
-                    <a href="#" class="btn btn-secondary btn-large">Ser Voluntario</a>
+                    <a href="#" class="btn btn-secondary btn-large" id="btn-ser-voluntario">Ser Voluntario</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -51,28 +53,28 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="https://em-content.zobj.net/source/google/387/stethoscope_1fa7a.png" alt="Icono médico">
+                        <img src="https://cdn-icons-png.flaticon.com/128/9411/9411437.png" alt="Icono médico">
                     </div>
                     <h3>Citas Médicas</h3>
                     <p>Acompañamiento a consultas médicas, exámenes y recogida de medicamentos.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="https://em-content.zobj.net/source/microsoft-teams/364/bank_1f3e6.png" alt="Icono banco">
+                        <img src="https://cdn-icons-png.flaticon.com/128/5045/5045121.png" alt="Icono banco">
                     </div>
                     <h3>Trámites Bancarios</h3>
                     <p>Ayuda con gestiones bancarias, pagos y trámites financieros.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="https://images.emojiterra.com/microsoft/fluent-emoji/15.1/512px/1f6d2_flat.png" alt="Icono compras">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3394/3394009.png" alt="Icono compras">
                     </div>
                     <h3>Compras</h3>
                     <p>Asistencia para realizar compras en supermercados y tiendas.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <img src="https://images.emojiterra.com/google/android-12l/512px/1f3ad.png" alt="Icono social">
+                        <img src="https://cdn-icons-png.flaticon.com/128/860/860183.png" alt="Icono social">
                     </div>
                     <h3>Actividades Sociales</h3>
                     <p>Compañía para paseos, eventos culturales y actividades recreativas.</p>
@@ -118,7 +120,7 @@
                         <p>"Gracias a digniVida puedo ir a mis citas médicas sin preocuparme. Los voluntarios son amables y pacientes."</p>
                     </div>
                     <div class="testimonial-author">
-                        <img src="user1.jpg" alt="Foto de Carmen">
+                        <!-- <img src="user1.jpg" alt="Foto de Vania"> -->
                         <div>
                             <h4>Carmen Rodríguez</h4>
                             <p>78 años</p>
@@ -130,7 +132,7 @@
                         <p>"Ser voluntario en digniVida me ha permitido conocer personas maravillosas y sentir que realmente estoy haciendo una diferencia."</p>
                     </div>
                     <div class="testimonial-author">
-                        <img src="user2.jpg" alt="Foto de Miguel">
+                        <!-- <img src="user2.jpg" alt="Foto de Miguel"> -->
                         <div>
                             <h4>Miguel Sánchez</h4>
                             <p>Voluntario</p>
@@ -146,7 +148,7 @@
             <div class="volunteer-content">
                 <h2>Únete a Nuestro Equipo de Voluntarios</h2>
                 <p>Tu tiempo y compañía pueden hacer una gran diferencia en la vida de quienes más lo necesitan. Conviértete en voluntario y ayuda a crear una comunidad más solidaria.</p>
-                <a href="#" class="btn btn-primary">Ser Voluntario</a>
+                <a href="#" class="btn btn-primary" id="btn-ser-voluntario-2">Ser Voluntario</a>
             </div>
             <div class="volunteer-image">
                 <img src="/img/voluntarios.jpg" alt="Grupo de voluntarios sonrientes">
@@ -161,11 +163,11 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <h3>Dirección</h3>
-                        <p>Av. Principal 123, Ciudad</p>
+                        <p>Av. Principal 123, Santiago</p>
                     </div>
                     <div class="contact-item">
                         <h3>Teléfono</h3>
-                        <p>+1569 67850875</p>
+                        <p>+56944556677</p>
                     </div>
                     <div class="contact-item">
                         <h3>Email</h3>
@@ -196,6 +198,33 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal de selección de tipo de usuario -->
+    <div class="modal" id="modal-registro">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="auth-title">Elige tipo de registro</h2>
+            <p class="auth-subtitle">Selecciona el tipo de cuenta que deseas crear</p>
+            
+            <div class="user-type-selection">
+                <a href="registro-pasajero.html" class="user-type-card">
+                    <div class="user-type-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/128/7433/7433296.png" alt="Icono pasajero">
+                    </div>
+                    <h3>Beneficiario</h3>
+                    <p>Para adultos mayores o personas con movilidad reducida que necesitan acompañamiento</p>
+                </a>
+                
+                <a href="registro-voluntario.html" class="user-type-card">
+                    <div class="user-type-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/128/4148/4148613.png" alt="Icono voluntario">
+                    </div>
+                    <h3>Voluntario</h3>
+                    <p>Para personas que desean ofrecer su tiempo y ayuda a quienes lo necesitan</p>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
@@ -236,5 +265,7 @@
             </div>
         </div>
     </footer>
+
+    <script src="index.js"></script>
 </body>
 </html>
