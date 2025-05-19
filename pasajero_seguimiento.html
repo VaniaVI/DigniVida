@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguimiento - DigniVida</title>
+    <link rel="icon" type="image/png" href="/img/logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="estilos-auth.css">
+    <link rel="stylesheet" href="estilos-pasajero.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+    <header class="header-logged">
+        <div class="container">
+            <div class="logo">
+                <h1>Digni<span>Vida</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="pasajero-dashboard.html">Inicio</a></li>
+                    <li><a href="pasajero-solicitud.html">Solicitar Acompañamiento</a></li>
+                    <li><a href="pasajero-historial.html">Mi Historial</a></li>
+                    <li><a href="pasajero-perfil.html">Mi Perfil</a></li>
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <div class="user-info">
+                    <span class="user-name">Vania Vargas</span>
+                    <img src="/placeholder.svg?height=40&width=40" alt="Foto de perfil" class="user-avatar">
+                </div>
+                <div class="dropdown-menu">
+                    <a href="pasajero-perfil.html">Mi Perfil</a>
+                    <a href="index.html">Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="tracking-section">
+        <div class="tracking-map">
+            <img src="/img/mapaborrar.jpg" alt="Mapa de seguimiento" class="map-image">
+            <div class="map-overlay">
+                <div class="map-pin origin">
+                    <div class="pin-icon">A</div>
+                </div>
+                <div class="map-pin destination">
+                    <div class="pin-icon">B</div>
+                </div>
+                <div class="map-car">
+                    <div class="car-icon">🚗</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tracking-info">
+            <div class="tracking-status">
+                <div class="status-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/128/3097/3097144.png" alt="Icono de auto">
+                </div>
+                <div class="status-text">
+                    <h3>Tu voluntario está en camino</h3>
+                    <p>Llegará en aproximadamente <strong>5 minutos</strong></p>
+                </div>
+            </div>
+            
+            <div class="tracking-details">
+                <div class="volunteer-profile">
+                    <img src="https://cdn-icons-png.flaticon.com/128/4202/4202835.png" alt="Foto del voluntario" class="volunteer-avatar">
+                    <div class="volunteer-details">
+                        <h4>Miguel Sánchez</h4>
+                        <div class="volunteer-rating">
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star">★</span>
+                            <span class="rating-text">4.0</span>
+                        </div>
+                        <p>Voluntario desde Enero 2025</p>
+                    </div>
+                </div>
+                
+                <div class="contact-volunteer">
+                    <button class="btn btn-outline btn-sm">
+                        <span class="btn-icon">📞</span> Llamar
+                    </button>
+                    <button class="btn btn-outline btn-sm">
+                        <span class="btn-icon">💬</span> Mensaje
+                    </button>
+                </div>
+            </div>
+            
+            <div class="trip-details">
+                <h4>Detalles del Acompañamiento</h4>
+                <div class="trip-info">
+                    <div class="trip-info-item">
+                        <div class="info-label">Fecha:</div>
+                        <div class="info-value">15 de Mayo, 2025</div>
+                    </div>
+                    <div class="trip-info-item">
+                        <div class="info-label">Hora:</div>
+                        <div class="info-value">10:00 AM</div>
+                    </div>
+                    <div class="trip-info-item">
+                        <div class="info-label">Tipo:</div>
+                        <div class="info-value">CESFAM</div>
+                    </div>
+                    <div class="trip-info-item">
+                        <div class="info-label">Origen:</div>
+                        <div class="info-value">Av. Principal 123, Ciudad</div>
+                    </div>
+                    <div class="trip-info-item">
+                        <div class="info-label">Destino:</div>
+                        <div class="info-value">CESFAM Central, Av. Salud 456</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tracking-actions">
+                <button class="btn btn-outline">Cancelar Solicitud</button>
+                <button class="btn btn-primary" onclick="window.location.href='pasajero-dashboard.html'">Volver al Inicio</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Digni<span>Vida</span></h2>
+                    <p>Dignivida es amor, cuidado y bienestar</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="pasajero-dashboard.html">Inicio</a></li>
+                        <li><a href="pasajero-solicitud.html">Solicitar Acompañamiento</a></li>
+                        <li><a href="pasajero-historial.html">Mi Historial</a></li>
+                        <li><a href="pasajero-perfil.html">Mi Perfil</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Ayuda</h3>
+                    <ul>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contacto</h3>
+                    <p>¿Necesitas ayuda? Llámanos al:</p>
+                    <p class="contact-phone">+1569 67850875</p>
+                    <p>Lunes a Viernes: 9:00 - 18:00</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DigniVida. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script para mostrar/ocultar el menú desplegable del usuario
+        document.querySelector('.user-info').addEventListener('click', function() {
+            document.querySelector('.dropdown-menu').classList.toggle('active');
+        });
+        
+        // Cerrar el menú al hacer clic fuera de él
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.user-menu')) {
+                document.querySelector('.dropdown-menu').classList.remove('active');
+            }
+        });
+        
+        // Simulación de movimiento del auto en el mapa
+        let position = 0;
+        const carElement = document.querySelector('.map-car');
+        
+        function moveCarOnMap() {
+            position += 1;
+            if (position <= 100) {
+                // Mover el auto desde el origen hacia el destino
+                const left = position * 0.6; // Porcentaje de avance horizontal
+                const top = position * 0.3;  // Porcentaje de avance vertical
+                carElement.style.left = left + '%';
+                carElement.style.top = top + '%';
+                
+                // Actualizar el tiempo estimado
+                const timeRemaining = Math.max(5 - Math.floor(position / 20), 1);
+                document.querySelector('.status-text p strong').textContent = timeRemaining + ' minutos';
+                
+                setTimeout(moveCarOnMap, 1000);
+            }
+        }
+        
+        // Iniciar la simulación después de 2 segundos
+        setTimeout(moveCarOnMap, 2000);
+    </script>
+</body>
+</html>
