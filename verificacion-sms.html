@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación SMS - DigniVida</title>
+    <link rel="icon" type="image/png" href="/img/logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="estilos-auth.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Digni<span>Vida</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html#servicios">Servicios</a></li>
+                    <li><a href="index.html#como-funciona">Cómo Funciona</a></li>
+                    <li><a href="index.html#voluntarios">Voluntarios</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-outline">Iniciar Sesión</a>
+                <a href="index.html" class="btn btn-primary" id="btn-registro">Registrarse</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-container">
+                <h2 class="auth-title">Verificación SMS</h2>
+                <p class="auth-subtitle">Hemos enviado un código de verificación a tu teléfono</p>
+                
+                <form id="verification-form" class="auth-form" action="index.html">
+                    <div class="form-group">
+                        <label for="codigo">Código de verificación</label>
+                        <div class="verification-code-container">
+                            <input type="text" maxlength="1" class="verification-code-input" required>
+                            <input type="text" maxlength="1" class="verification-code-input" required>
+                            <input type="text" maxlength="1" class="verification-code-input" required>
+                            <input type="text" maxlength="1" class="verification-code-input" required>
+                            <input type="text" maxlength="1" class="verification-code-input" required>
+                            <input type="text" maxlength="1" class="verification-code-input" required>
+                        </div>
+                    </div>
+                    
+                    <div class="verification-message success-message" style="display: none;">
+                        <p>¡Código verificado correctamente! Tu cuenta ha sido creada.</p>
+                    </div>
+                    
+                    <div class="verification-message error-message" style="display: none;">
+                        <p>Código inválido. Intenta de nuevo.</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <p class="resend-code">¿No recibiste el código? <a href="#">Reenviar código</a></p>
+                        <p class="countdown">Puedes solicitar un nuevo código en: <span>02:00</span></p>
+                    </div>
+                        <button type="submit" class="btn btn-primary btn-block">Verificar</button>
+                </form>
+                
+                <div class="auth-footer">
+                    <p><a href="index.html">Volver al inicio</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Digni<span>Vida</span></h2>
+                    <p>Dignivida es amor, cuidado y bienestar</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="index.html#servicios">Servicios</a></li>
+                        <li><a href="index.html#como-funciona">Cómo Funciona</a></li>
+                        <li><a href="index.html#voluntarios">Voluntarios</a></li>
+                        <li><a href="index.html#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="#">Citas Médicas</a></li>
+                        <li><a href="#">Trámites Bancarios</a></li>
+                        <li><a href="#">Compras</a></li>
+                        <li><a href="#">Actividades Sociales</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Suscríbete a nuestro boletín</h3>
+                    <form>
+                        <input type="email" placeholder="Tu correo electrónico">
+                        <button type="submit" class="btn btn-primary">Suscribirse</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DigniVida. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="verificacion-sms.js"></script>
+</body>
+</html>
