@@ -22,5 +22,5 @@
         document.getElementById('verification-form').addEventListener('submit', function(e) {
         e.preventDefault(); // Evita que el formulario se envíe normalmente
 
-        window.location.href = 'pasajero-dashboard.html';
+        window.location.href = 'beneficiario-dashboard.html';
     });
