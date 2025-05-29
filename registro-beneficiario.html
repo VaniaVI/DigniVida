@@ -45,22 +45,25 @@
                     
                     <div class="form-group">
                         <label for="telefono">Teléfono</label>
-                        <input type="tel" id="telefono" name="telefono" placeholder="+56 9 XXXX XXXX" required>
-                        <small class="form-hint">Recibirás un código de verificación por SMS en este número</small>
+                        <input type="text" id="telefono" name="telefono" placeholder="+56 9 XXXX XXXX" required pattern="\d{9}">
+                        <span id="mensajeTel" style="color: red; display: none;">El número debe tener exactamente 9 dígitos</span>
+
                     </div>
                     
                     <div class="form-group">
                         <label for="Edad">Edad</label>
-                        <input type="age" id="edad" name="edad" placeholder="Ingresa tu edad" required>
-                        <small class="form-hint">Debes ser mayor de edad</small>
+                        <input type="number" id="edad" name="edad" placeholder="Ingresa tu edad" required min="60">
+                        <span id="mensajeEdad" style="color: red; display: none;">Debes tener al menos 60 años.</span>
                     </div>
+
                     <div class="form-group">
                         <label for="sexo">Selecciona tu género</label>
                         <select id="sexo" name="sexo" required>
                             <option value="">Selecciona</option>
-                            <option value="Y">Masculino</option>
-                            <option value="describe">Femenino</option>
-                            <small class="form-hint">Debes ser mayor de edad</small>                        </select>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                            <option value="?">Prefiero no decirlo</option>
+                        </select>
                     </div> 
 
                     
@@ -69,26 +72,42 @@
                         <select id="discapacidad" name="discapacidad" required>
                             <option value="">Selecciona</option>
                             <option value="Y">Si</option>
-                            <option value="describe">No</option>
-                            <input type="age" id="edad" name="edad" placeholder="¿cuál?, si no aplica no escribas nada">
+                            <option value="N">No</option>
                         </select>
+                        <div id="campoDescripcion" style="display:none; margin-top: 10px;">
+                            <input type="text" id="descripcion" name="descripcion" placeholder="¿Cuál?">
+                        </div>
                     </div>   
 
+
                     <div class="form-group">
-                        <label for="zona">Zona</label>
-                        <select id="zona" name="zona" required>
-                            <option value="">Selecciona tu zona</option>
-                            <option value="norte">Zona Norte</option>
-                            <option value="centro">Zona Centro</option>
-                            <option value="sur">Zona Sur</option>
-                            <option value="este">Zona Este</option>
-                            <option value="oeste">Zona Oeste</option>
+                        <label for="region">Región</label>
+                        <select id="region" name="region" required onchange="cargarComunas()">
+                            <option value="">Selecciona tu región</option>
+                            <option value="arica-y-parinacota">Arica y Parinacota</option>
+                            <option value="tarapaca">Tarapacá</option>
+                            <option value="antofagasta">Antofagasta</option>
+                            <option value="atacama">Atacama</option>
+                            <option value="coquimbo">Coquimbo</option>
+                            <option value="valparaiso">Valparaíso</option>
+                            <option value="ohiggins">Libertador Bernardo O'Higgins</option>
+                            <option value="maule">Maule</option>
+                            <option value="nuble">Ñuble</option>
+                            <option value="biobio">Biobío</option>
+                            <option value="araucania">La Araucanía</option>
+                            <option value="los-rios">Los Ríos</option>
+                            <option value="los-lagos">Los Lagos</option>
+                            <option value="aysen">Aysén</option>
+                            <option value="magallanes">Magallanes</option>
+                            <option value="metropolitana">Metropolitana de Santiago</option>
                         </select>
-                    </div>                    
-
-
-
-
+                    </div> 
+                    <div class="form-group" id="comuna-container" style="display: none;">
+                        <label for="comuna">Comuna</label>
+                        <select id="comuna" name="comuna" required>
+                            <option value="">Selecciona tu comuna</option>
+                        </select>
+                    </div>                  
 
 
                     <div class="form-group form-checkbox">
@@ -145,5 +164,6 @@
             </div>
         </div>
     </footer>
+    <script src="registro-pasajeros.js"></script>
 </body>
 </html>

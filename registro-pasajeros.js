@@ -1,5 +1,5 @@
 document.getElementById('telefono').addEventListener('input', function () {
-    const mensaje = document.getElementById('mensajeTelefono');
+    const mensaje = document.getElementById('mensajeTel');
     const valor = this.value;
 
     const nueveDigitos = /^\d{9}$/;
@@ -10,7 +10,6 @@ document.getElementById('telefono').addEventListener('input', function () {
         mensaje.style.display = 'none';
     }
 });
-
 
 
 document.getElementById('edad').addEventListener('input', function () {
