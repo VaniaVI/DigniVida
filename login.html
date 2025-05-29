@@ -17,7 +17,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html#inicio">Inicio</a></li>
+                    <li><a href="index.html">Inicio</a></li>
                     <li><a href="index.html#servicios">Servicios</a></li>
                     <li><a href="index.html#como-funciona">Cómo Funciona</a></li>
                     <li><a href="index.html#voluntarios">Voluntarios</a></li>
@@ -26,7 +26,7 @@
             </nav>
             <div class="auth-buttons">
                 <a href="login.html" class="btn btn-outline">Iniciar Sesión</a>
-                <a href="#" class="btn btn-primary" id="btn-registro">Registrarse</a>
+                <a href="index.html" class="btn btn-primary" id="btn-registro">Registrarse</a>
             </div>
         </div>
     </header>
@@ -47,7 +47,7 @@
                 <button type="submit" class="btn btn-primary">Ingresar</button>
             </form>
             <div class="auth-link">
-                <p>¿No tienes cuenta? <a href="#" id="btn-registro-link">Regístrate</a></p>
+                <p>¿No tienes cuenta? <a href="index.html" id="btn-registro-link">Regístrate</a></p>
             </div>
         </div>
     </main>
@@ -81,6 +81,33 @@
                 <p>&copy; 2025 DigniVida. Todos los derechos reservados.</p>
             </div>
         </div>
+        <!-- Modal de selección de tipo de usuario -->
+<div class="modal" id="modal-registro">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 class="auth-title">Elige tipo de registro</h2>
+        <p class="auth-subtitle">Selecciona el tipo de cuenta que deseas crear</p>
+        
+        <div class="user-type-selection">
+            <a href="registro-pasajero.html" class="user-type-card">
+                <div class="user-type-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/128/7433/7433296.png" alt="Icono pasajero">
+                </div>
+                <h3>Beneficiario</h3>
+                <p>Para adultos mayores o personas con movilidad reducida que necesitan acompañamiento</p>
+            </a>
+            
+            <a href="registro-voluntario.html" class="user-type-card">
+                <div class="user-type-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/128/4148/4148613.png" alt="Icono voluntario">
+                </div>
+                <h3>Voluntario</h3>
+                <p>Para personas que desean ofrecer su tiempo y ayuda a quienes lo necesitan</p>
+            </a>
+        </div>
+    </div>
+</div>
+
     </footer>
 
     <script src="index.js"></script>
