@@ -124,7 +124,7 @@ img {
     font-size: 1.1rem;
 }
 
-/* Header */
+/* Header
 header {
     background-color: white;
     box-shadow: 0 2px 10px var(--shadow-color);
@@ -171,9 +171,9 @@ nav ul li a:hover {
 .auth-buttons {
     display: flex;
     gap: 15px;
-}
+} */
 
-/* Hero Section */
+/* Hero Section
 #hero {
     padding: 100px 0;
     background-color: var(--background-alt);
@@ -209,9 +209,9 @@ nav ul li a:hover {
 .hero-image {
     flex: 1;
     border-radius: 10px;
-}
+} */
 
-/* Servicios */
+/* Servicios
 #servicios {
     padding: 100px 0;
     background-color: white;
@@ -257,7 +257,7 @@ nav ul li a:hover {
     font-size: 1.5rem;
     margin-bottom: 15px;
     color: var(--primary-dark);
-}
+} */
 
 /* Cómo Funciona */
 #como-funciona {
@@ -460,7 +460,9 @@ nav ul li a:hover {
     border-color: var(--primary-color);
 }
 
-/* Footer */
+
+/* Se implementa el footer en react */
+/* Footer
 footer {
     background-color: var(--primary-dark);
     color: white;
@@ -554,9 +556,9 @@ footer {
     text-align: center;
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
+} */
 
-/* Responsive */
+/* Responsive
 @media (max-width: 992px) {
     #hero .container,
     #voluntarios .container {
@@ -620,4 +622,4 @@ footer {
     .footer-newsletter form {
         flex-direction: column;
     }
-}
+} */

@@ -1,5 +1,7 @@
+import './Footer.css';
+
 export default function Footer() {
-  return (
+    return (
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -37,5 +39,5 @@ export default function Footer() {
             </div>
         </div>
     </footer>
-  )
+    )
 }
