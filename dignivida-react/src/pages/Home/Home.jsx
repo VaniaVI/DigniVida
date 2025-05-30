@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
 import voluntarios from '../../assets/voluntarios.jpg';
 import manosAyuda from '../../assets/manosAyuda.jpg'
 import './Home.css'
 
-export default function Home(){
+function Home(){
     return(
-        <div classNameName="home">
+        <div className="home">
             <section id="hero">
         <div className="container">
             <div className="hero-content">
@@ -202,3 +203,5 @@ export default function Home(){
 </div>
     );
 }
+
+export default Home;

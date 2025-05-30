@@ -1,7 +1,7 @@
 import './Header.css';
+import { Link } from 'react-router-dom';
 
-
-export default function Header() {
+const Header = () => {
   return (
     <header>
         <div class="container">
@@ -10,7 +10,7 @@ export default function Header() {
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html#inicio">Inicio</a></li>
+                    <li><Link to="/perfilBeneficiario">Inicio</Link></li>
                     <li><a href="index.html#servicios">Servicios</a></li>
                     <li><a href="index.html#como-funciona">Cómo Funciona</a></li>
                     <li><a href="index.html#voluntarios">Voluntarios</a></li>
@@ -19,9 +19,10 @@ export default function Header() {
             </nav>
             <div class="auth-buttons">
                 <a href="login.html" class="btn btn-outline">Iniciar Sesión</a>
-                <a href="#" class="btn btn-primary" id="btn-registro">Registrarse</a>
+                <a href="" class="btn btn-primary" id="btn-registro">Registrarse</a>
             </div>
         </div>
     </header>
   );
 }
+export default Header;
