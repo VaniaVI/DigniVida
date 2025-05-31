@@ -5,11 +5,9 @@ import Layout from './pages/Layout';
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route path="/" element={Layout}>
+        <Route path="/" element={<Layout/>}>
             <Route path="/" element={<Home />}  />
             <Route path="/perfilBeneficiario" element={<PerfilBeneficiario />} />
         </Route>
     )
 )
-
-export default router;

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import './PerfilBeneficiario.css'
 
 
-function PerfilBeneficiario() {
+const PerfilBeneficiario = () => {
     return(
         <div className="perfilBeneficiario">
                 <section className="page-header">
@@ -29,7 +29,7 @@ function PerfilBeneficiario() {
                             <img src="https://cdn-icons-png.flaticon.com/128/166/166256.png" alt="Foto de perfil" className="avatar-preview"/>
                             <div className="avatar-actions">
                                 <label for="avatar-upload" className="btn btn-outline btn-sm">Cambiar foto</label>
-                                <input type="file" id="avatar-upload" accept="image/*" style="display: none;"/>
+                                <input type="file" id="avatar-upload" accept="image/*" style={{ display: 'none' }}/>
                             </div>
                         </div>
                         
