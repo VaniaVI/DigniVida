@@ -39,27 +39,17 @@ bower_components
 *.sublime-workspace
 
 # IDE - VSCode
-.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
-!.vscode/extensions.json
 
 # misc
 .sass-cache
 connect.lock
 typings
 
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
 
 # Dependency directories
-node_modules/
 jspm_packages/
 
 # Optional npm cache directory
