@@ -1,42 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solicitar Acompañamiento - DigniVida</title>
-    <link rel="icon" type="image/png" href="/img/logo.png">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="estilos-auth.css">
-    <link rel="stylesheet" href="estilos-beneficiario.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-</head>
-<body>
-    <header class="header-logged">
-        <div class="container">
-            <div class="logo">
-                <h1>Digni<span>Vida</span></h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="beneficiario-dashboard.html">Inicio</a></li>
-                    <li><a href="beneficiario-solicitud.html" class="active">Solicitar Acompañamiento</a></li>
-                    <li><a href="beneficiario-historial.html">Mi Historial</a></li>
-                    <li><a href="perfil-beneficiario.html">Mi Perfil</a></li>
-                </ul>
-            </nav>
-            <div class="user-menu">
-                <div class="user-info">
-                    <span class="user-name">Vania Vargas</span>
-                    <img src="/placeholder.svg?height=40&width=40" alt="Foto de perfil" class="user-avatar">
-                </div>
-                <div class="dropdown-menu">
-                    <a href="perfil-beneficiario.html">Mi Perfil</a>
-                    <a href="index.html">Cerrar Sesión</a>
-                </div>
-            </div>
-        </div>
-    </header>
+import './BenSoliciReact.css'
 
+function BenSoliciReact() {
+    return (
+    <>    
     <section class="page-header">
         <div class="container">
             <h2>Solicitar Acompañamiento</h2>
@@ -61,13 +27,13 @@
                     
                     <div class="form-group" id="otro-tramite-container" style="display: none;">
                         <label for="otro-tramite">Especifica el trámite</label>
-                        <input type="text" id="otro-tramite" name="otro-tramite" placeholder="Describe el tipo de trámite">
+                        <input type="text" id="otro-tramite" name="otro-tramite" placeholder="Describe el tipo de trámite"/>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label for="fecha">Fecha</label>
-                            <input type="date" id="fecha" name="fecha" required min="">
+                            <input type="date" id="fecha" name="fecha" required min=""/>
                         </div>
                         
                         <div class="form-group">
@@ -89,10 +55,10 @@
                     
                     <div class="form-group">
                         <label for="direccion-origen">Dirección de Origen</label>
-                        <input type="text" id="direccion-origen" name="direccion-origen" placeholder="¿Dónde te recogemos?" required>
+                        <input type="text" id="direccion-origen" name="direccion-origen" placeholder="¿Dónde te recogemos?" required/>
                         <div class="address-options">
                             <label class="address-option">
-                                <input type="radio" name="origen" value="casa" checked>
+                                <input type="radio" name="origen" value="casa" checked/>
                                 Usar mi dirección de casa
                             </label>
                         </div>
@@ -100,7 +66,7 @@
                     
                     <div class="form-group">
                         <label for="direccion-destino">Dirección de Destino</label>
-                        <input type="text" id="direccion-destino" name="direccion-destino" placeholder="¿A dónde vamos?" required>
+                        <input type="text" id="direccion-destino" name="direccion-destino" placeholder="¿A dónde vamos?" required/>
                     </div>
                     
                     <div class="form-group">
@@ -144,46 +110,9 @@
             </div>
         </div>
     </section>
+    </>
+    );
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <h2>Digni<span>Vida</span></h2>
-                    <p>Dignivida es amor, cuidado y bienestar</p>
-                </div>
-                <div class="footer-links">
-                    <h3>Enlaces Rápidos</h3>
-                    <ul>
-                        <li><a href="beneficiario-dashboard.html">Inicio</a></li>
-                        <li><a href="beneficiario-solicitud.html">Solicitar Acompañamiento</a></li>
-                        <li><a href="beneficiario-historial.html">Mi Historial</a></li>
-                        <li><a href="perfil-beneficiario.html">Mi Perfil</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h3>Ayuda</h3>
-                    <ul>
-                        <li><a href="#">Preguntas Frecuentes</a></li>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="#">Términos y Condiciones</a></li>
-                        <li><a href="#">Política de Privacidad</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h3>Contacto</h3>
-                    <p>¿Necesitas ayuda? Llámanos al:</p>
-                    <p class="contact-phone">+1569 67850875</p>
-                    <p>Lunes a Viernes: 9:00 - 18:00</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 DigniVida. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
 
-    <script src="beneficiario-solicitud.js"></script>
-    
-</body>
-</html>
+}
+export default BenSoliciReact

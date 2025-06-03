@@ -15,7 +15,7 @@ const Home = () => {
                 <div className="hero-buttons">
                     <Link to="/perfilBeneficiario" className="btn btn-primary btn-large">Solicitar Acompañamiento</Link>
                     {/* <a href="/registro-beneficiario.html" className="btn btn-primary btn-large">Solicitar Acompañamiento</a> */}
-                    <a href="/registro-voluntario.html" className="btn btn-secondary btn-large" id="btn-ser-voluntario">Ser Voluntario</a>
+                    <a href="/beneficiarioSeguimiento" className="btn btn-secondary btn-large" id="btn-ser-voluntario">Ser Voluntario</a>
                 </div>
             </div>
             <div className="hero-image">
