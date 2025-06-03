@@ -4,7 +4,7 @@ const BeneficiarioSeguimiento = () =>{
     return(
         <section class="tracking-section">
         <div class="tracking-map">
-            <img src="{mapa}" alt="Mapa de seguimiento" class="map-image"/>
+            <img src={mapa} alt="Mapa de seguimiento" class="map-image"/>
             <div class="map-overlay">
                 <div class="map-pin origin">
                     <div class="pin-icon">A</div>
