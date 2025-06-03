@@ -1,4 +1,6 @@
 import './BenSoliciReact.css'
+import './EstilosBeneficiarioReact'
+
 
 function BenSoliciReact() {
     return (
