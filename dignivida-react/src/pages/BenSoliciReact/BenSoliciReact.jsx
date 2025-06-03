@@ -1,4 +1,4 @@
-import './pages'
+import './BenSoliciReact.css'
 
 function BenSoliciReact() {
     return (
