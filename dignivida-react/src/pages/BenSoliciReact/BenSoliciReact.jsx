@@ -2,7 +2,7 @@ import './BenSoliciReact.css'
 
 function BenSoliciReact() {
     return (
-
+        <>
         <section class="page-header">
             <div class="container">
                 <h2>Solicitar Acompañamiento</h2>
@@ -25,7 +25,7 @@ function BenSoliciReact() {
                             </select>
                         </div>
                         
-                        <div class="form-group" id="otro-tramite-container" style="display: none;">
+                        <div class="form-group" id="otro-tramite-container" style={{display: 'none'}}>
                             <label for="otro-tramite">Especifica el trámite</label>
                             <input type="text" id="otro-tramite" name="otro-tramite" placeholder="Describe el tipo de trámite"/>
                         </div>
@@ -80,7 +80,7 @@ function BenSoliciReact() {
                         </div>
                     </form>
                     
-                    <div class="confirmation-message" id="confirmation-message" style="display: none;">
+                    <div class="confirmation-message" id="confirmation-message" style={{display: 'none'}}>
                         <div class="confirmation-icon">✓</div>
                         <h3>Solicitud enviada</h3>
                         <p>Espere confirmación. Te notificaremos cuando un voluntario acepte tu solicitud.</p>
@@ -110,7 +110,7 @@ function BenSoliciReact() {
                 </div>
             </div>
         </section>
-    
+    </>
     );
 
 
