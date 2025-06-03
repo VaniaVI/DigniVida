@@ -15,7 +15,6 @@ export default function VerificacionSMS() {
     const verificarCodigo = async () => {
         // Aquí verificarías el código ingresado con el backend
         console.log('Verificando código:', codigo);
-        // Simulación exitosa
         alert('¡Teléfono verificado con éxito!');
     };
 
