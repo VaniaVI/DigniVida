@@ -1,3 +1,5 @@
+import './pages'
+
 function BenSoliciReact() {
     return (
     <>    
