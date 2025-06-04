@@ -3,6 +3,7 @@ import Home from './pages/Home/Home';
 import PerfilBeneficiario from './pages/PerfilBeneficiario/PerfilBeneficiario';
 import BeneficiarioSeguimiento from './pages/BeneficiarioSeguimiento/BeneficiarioSeguimiento';
 import Layout from './pages/Layout';
+import BeneficiarioDashboard from './pages/BeneficiarioDashboardReact/BeneficiarioDashboard';
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -10,6 +11,7 @@ export const router = createBrowserRouter(
             <Route path="/" element={<Home />}  />
             <Route path="/perfilBeneficiario" element={<PerfilBeneficiario />} />
             <Route path="/beneficiarioSeguimiento" element={<BeneficiarioSeguimiento />} />
+            <Route path="/beneficiarioDashboard" element={<BeneficiarioDashboard />} />
         </Route>
     )
 )
