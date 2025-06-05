@@ -22,7 +22,7 @@ const BeneficiarioDashboard = () => {
                     </div>
                     <h3>Solicitar Acompañamiento</h3>
                     <p>Crea una nueva solicitud para que un voluntario te acompañe a realizar un trámite.</p>
-                    <Link to ="beneficiario-solicitud.html" class="btn btn-primary">Solicitar</Link>
+                    <Link to ="/beneSolicitud" class="btn btn-primary">Solicitar</Link>
                 </div>
                 
                 <div className="dashboard-card">
