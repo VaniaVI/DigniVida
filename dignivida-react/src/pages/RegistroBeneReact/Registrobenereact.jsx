@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+import {Link} from 'react-router-dom'
+=======
+>>>>>>> f303ba1769a5bc67a00331e5fd512a92d9ff7ec1
 
 function Registrobenereact() {
    
@@ -87,11 +91,11 @@ function Registrobenereact() {
                         <label for="terminos">Acepto los <a href="#">Términos y Condiciones</a> y la <a href="#">Política de Privacidad</a></label>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary btn-block">Registrarme</button>
+                    <Link to = "/verificacionsms"><button type="submit" class="btn btn-primary btn-block">Registrarme</button></Link>
                 </form>
                 
                 <div class="auth-footer">
-                    <p>¿Ya tienes una cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+                    <p>¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link></p>
                 </div>
             </div>
         </div>
