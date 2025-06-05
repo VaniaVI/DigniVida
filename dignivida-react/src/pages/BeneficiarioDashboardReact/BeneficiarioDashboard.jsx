@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../EstilosBeneficiarioReact.css"
 
 const BeneficiarioDashboard = () => {
@@ -72,7 +73,7 @@ const BeneficiarioDashboard = () => {
                         <div class="volunteer-details">
                             <h4>Miguel Sánchez</h4>
                             <p>Tu voluntario asignado</p>
-                            <a href="beneficiario_seguimiento.html" class="btn btn-secondary">Ver Seguimiento</a>
+                            <Link to="/beneficiarioSeguimiento" class="btn btn-secondary">Ver Seguimiento</Link>
                         </div>
                     </div>
                 </div>
