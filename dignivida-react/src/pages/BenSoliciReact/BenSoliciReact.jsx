@@ -76,7 +76,7 @@ function BenSoliciReact() {
                         
                         <div className="form-actions">
                             <Link to="/beneficiarioDashboard"><button className="btn btn-outline">Cancelar</button></Link>
-                            <Link to="/beneficiarioSolicitado"><button type="submit" className="btn btn-primary" id="btn-enviar" disabled>Enviar Solicitud</button></Link>
+                            <Link to="/beneficiarioSolicitado"><button type="submit" className="btn btn-primary" id="btn-enviar">Enviar Solicitud</button></Link>
                         </div>
                     </form>
                     

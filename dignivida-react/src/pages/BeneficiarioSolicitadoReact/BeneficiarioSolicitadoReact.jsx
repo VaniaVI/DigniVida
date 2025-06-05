@@ -1,5 +1,5 @@
 
-
+import {Link} from 'react-router-dom'
 
 function BeneficiarioSolicitadoReact () {
     return(
@@ -213,7 +213,7 @@ function BeneficiarioSolicitadoReact () {
                 </div>
 
                 <div className="selection-actions">
-                    <button className="btn btn-outline" onclick="window.location.href='beneficiario-solicitud.html'">Volver a la Solicitud</button>
+                    <Link to = '/beneSolicitud'><button className="btn btn-outline">Volver a la Solicitud</button></Link>
                     <button className="btn btn-primary" id="btn-auto-assign">Asignación Automática</button>
                 </div>
             </div>
@@ -235,7 +235,7 @@ function BeneficiarioSolicitadoReact () {
                     </div>
                     <p>El voluntario ha sido notificado y confirmará tu solicitud en breve.</p>
                     <div className="confirmation-actions">
-                        <button className="btn btn-primary" onclick="window.location.href='beneficiario-dashboard.html'">Volver al Inicio</button>
+                        <Link to = "/beneficiarioDashboard"><button className="btn btn-primary"> Volver al Inicio</button></Link>
                     </div>
                 </div>
             </div>
