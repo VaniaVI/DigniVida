@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 export default function VerificacionSMS() {
     const [telefono, setTelefono] = useState('');
     const [codigo, setCodigo] = useState('');
