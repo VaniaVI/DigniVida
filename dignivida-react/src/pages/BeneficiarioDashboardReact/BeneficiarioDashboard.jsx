@@ -1,4 +1,4 @@
-import "./,estilos-beneficiario.css"
+import "../EstilosBeneficiarioReact.css"
 
 const BeneficiarioDashboard = () => {
     return (
