@@ -1,53 +1,83 @@
-import '../../index.css';
-import React, { useState } from 'react';
+import { useVerificacionSMS } from "../../hooks/useVerificacionSms"
 
+const VerificacionSMS = () => {
+  const { codigo, loading, error, success, handleInputChange, handleKeyDown, verificarCodigo, inputsRef } =
+    useVerificacionSMS()
 
-export default function VerificacionSMS() {
-    const [telefono, setTelefono] = useState('');
-    const [codigo, setCodigo] = useState('');
-    const [paso, setPaso] = useState(1);
-
-    const enviarSMS = async () => {
-        console.log('Enviando SMS a', telefono);
-        setPaso(2);
-    };
-
-    const verificarCodigo = async () => {
-        console.log('Verificando código:', codigo);
-        alert('¡Teléfono verificado con éxito!');
-    };
-
+  if (success) {
     return (
-        <div className="sms-verification">
-            {paso === 1 ? (
-                <form onSubmit={(e) => { e.preventDefault(); enviarSMS(); }}>
-                    <h2>Verificación SMS</h2>
-                    <label htmlFor="telefono">Número de teléfono:</label>
-                    <input
-                        type="tel"
-                        id="telefono"
-                        value={telefono}
-                        onChange={(e) => setTelefono(e.target.value)}
-                        placeholder="+56 9 1234 5678"
-                        required
-                    />
-                    <button type="submit">Enviar código</button>
-                </form>
-            ) : (
-                <form onSubmit={(e) => { e.preventDefault(); verificarCodigo(); }}>
-                    <h2>Ingresa el código</h2>
-                    <label htmlFor="codigo">Código recibido:</label>
-                    <input
-                        type="text"
-                        id="codigo"
-                        value={codigo}
-                        onChange={(e) => setCodigo(e.target.value)}
-                        placeholder="123456"
-                        required
-                    />
-                    <button type="submit">Verificar</button>
-                </form>
-            )}
+      <section className="auth-section">
+        <div className="container">
+          <div className="auth-container">
+            <h2 className="auth-title">¡Verificación Exitosa!</h2>
+            <p className="auth-subtitle">Tu cuenta ha sido creada correctamente.</p>
+            <div className="verification-message success-message">
+              <p>¡Código verificado correctamente! Tu cuenta ha sido creada.</p>
+            </div>
+          </div>
         </div>
-    );
+      </section>
+    )
+  }
+
+  return (
+    <section className="auth-section">
+      <div className="container">
+        <div className="auth-container">
+          <h2 className="auth-title">Verificación SMS</h2>
+          <p className="auth-subtitle">Hemos enviado un código de verificación a tu teléfono</p>
+
+          <form className="auth-form" onSubmit={verificarCodigo}>
+            <div className="form-group">
+              <label htmlFor="codigo">Código de verificación</label>
+              <div className="verification-code-container">
+                {codigo.map((valor, index) => (
+                  <input
+                    key={index}
+                    type="text"
+                    maxLength="1"
+                    className="verification-code-input"
+                    value={valor}
+                    onChange={(e) => handleInputChange(e.target.value, index)}
+                    onKeyDown={(e) => handleKeyDown(e, index)}
+                    ref={(el) => (inputsRef.current[index] = el)}
+                    disabled={loading}
+                    required
+                  />
+                ))}
+              </div>
+            </div>
+
+            {error && (
+              <div className="verification-message error-message">
+                <p>{error}</p>
+              </div>
+            )}
+
+            <div className="form-group">
+              <p className="resend-code">
+                ¿No recibiste el código? <a href="#">Reenviar código</a>
+              </p>
+            </div>
+
+            <button
+              type="submit"
+              className="btn btn-primary btn-block"
+              disabled={loading || codigo.some((c) => c === "")}
+            >
+              {loading ? "Verificando..." : "Verificar"}
+            </button>
+          </form>
+
+          <div className="auth-footer">
+            <p>
+              <a href="/">Volver al inicio</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
 }
+
+export default VerificacionSMS
