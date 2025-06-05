@@ -23,6 +23,7 @@ export const router = createBrowserRouter(
             <Route path="/perfilBeneficiario" element={<PerfilBeneficiario />} />
             <Route path="/beneficiarioSeguimiento" element={<BeneficiarioSeguimiento />} />
             <Route path="/beneficiarioDashboard" element={<BeneficiarioDashboard />} />
+      
         </Route>
         </>
     )
