@@ -3,17 +3,14 @@ import React, { useState } from 'react';
 export default function VerificacionSMS() {
     const [telefono, setTelefono] = useState('');
     const [codigo, setCodigo] = useState('');
-    const [paso, setPaso] = useState(1); // 1: ingresar teléfono, 2: ingresar código
+    const [paso, setPaso] = useState(1);
 
     const enviarSMS = async () => {
-        // Aquí iría una petición a tu backend o servicio externo para enviar el SMS
         console.log('Enviando SMS a', telefono);
-        // Simulación exitosa
         setPaso(2);
     };
 
     const verificarCodigo = async () => {
-        // Aquí verificarías el código ingresado con el backend
         console.log('Verificando código:', codigo);
         alert('¡Teléfono verificado con éxito!');
     };
