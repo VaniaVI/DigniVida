@@ -1,4 +1,3 @@
-import './BenSoliciReact.css'
 
 function BenSoliciReact() {
     return (
