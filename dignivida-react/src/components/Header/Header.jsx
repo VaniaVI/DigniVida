@@ -20,7 +20,7 @@ const Header = () => {
             </nav>
             <div class="auth-buttons">
                 <a href="login.html" class="btn btn-outline">Iniciar Sesión</a>
-                <a href="" class="btn btn-primary" id="btn-registro">Registrarse</a>
+                <RouterLink to="/registroBeneficiario" class="btn btn-primary" id="btn-registro">Registrarse</RouterLink>
             </div>
         </div>
     </header>

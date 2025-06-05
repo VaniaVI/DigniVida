@@ -1,6 +1,5 @@
 
 
-import './Registrobenereact.css'
 function Registrobenereact() {
    
     return(
@@ -20,14 +19,14 @@ function Registrobenereact() {
                     <div class="form-group">
                         <label for="telefono">Teléfono</label>
                         <input type="text" id="telefono" name="telefono" placeholder="+56 9 XXXX XXXX" required pattern="\d{9}"/>
-                        <span id="mensajeTel" style="color: red; display: none;">El número debe tener exactamente 9 dígitos</span>
+                        <span id="mensajeTel" style={{ color: 'red', display: 'none' }}>El número debe tener exactamente 9 dígitos</span>
 
                     </div>
                     
                     <div class="form-group">
                         <label for="Edad">Edad</label>
                         <input type="number" id="edad" name="edad" placeholder="Ingresa tu edad" required min="60"/>
-                        <span id="mensajeEdad" style="color: red; display: none;">Debes tener al menos 60 años.</span>
+                        <span id="mensajeEdad" style={{color: 'red', display: 'none'}}>Debes tener al menos 60 años.</span>
                     </div>
 
                     <div class="form-group">
@@ -48,7 +47,7 @@ function Registrobenereact() {
                             <option value="Y">Si</option>
                             <option value="N">No</option>
                         </select>
-                        <div id="campoDescripcion" style="display:none; margin-top: 10px;">
+                        <div id="campoDescripcion" style={{display:'none', marginTop: '10px'}}>
                             <input type="text" id="descripcion" name="descripcion" placeholder="¿Cuál?"/>
                         </div>
                     </div>   
@@ -76,7 +75,7 @@ function Registrobenereact() {
                             <option value="metropolitana">Metropolitana de Santiago</option>
                         </select>
                     </div> 
-                    <div class="form-group" id="comuna-container" style="display: none;">
+                    <div class="form-group" id="comuna-container" style={{display: 'none'}}>
                         <label for="comuna">Comuna</label>
                         <select id="comuna" name="comuna" required>
                             <option value="">Selecciona tu comuna</option>
