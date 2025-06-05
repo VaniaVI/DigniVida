@@ -3,8 +3,12 @@ import Home from './pages/Home/Home';
 import PerfilBeneficiario from './pages/PerfilBeneficiario/PerfilBeneficiario';
 import BeneficiarioSeguimiento from './pages/BeneficiarioSeguimiento/BeneficiarioSeguimiento';
 import Layout from './pages/Layout';
+<<<<<<< HEAD
 import Login from './pages/Login';
 import VerificacionSms from './pages/VerificacionSms/verificacionsms';
+=======
+import BeneficiarioDashboard from './pages/BeneficiarioDashboardReact/BeneficiarioDashboard';
+>>>>>>> main
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -15,6 +19,7 @@ export const router = createBrowserRouter(
             <Route path="/" element={<Home />}  />
             <Route path="/perfilBeneficiario" element={<PerfilBeneficiario />} />
             <Route path="/beneficiarioSeguimiento" element={<BeneficiarioSeguimiento />} />
+            <Route path="/beneficiarioDashboard" element={<BeneficiarioDashboard />} />
         </Route>
         </>
     )
