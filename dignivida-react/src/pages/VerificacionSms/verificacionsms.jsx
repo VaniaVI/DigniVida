@@ -92,7 +92,7 @@ const verificacionSMS = () => {
                 </form>
                 
                 <div className="auth-footer">
-                    <p><a href="index.html">Volver al inicio</a></p>
+                    <p><Link to = "/">Volver al inicio</Link></p>
                 </div>
             </div>
         </div>

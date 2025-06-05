@@ -1,4 +1,5 @@
 import './Footer.css';
+import {Link} from "react-router";
 
 const Footer = () => {
     return (
@@ -12,17 +13,16 @@ const Footer = () => {
                 <div className="footer-links">
                     <h3>Enlaces Rápidos</h3>
                     <ul>
-                        <li><a href="beneficiario-dashboard.html">Inicio</a></li>
-                        <li><a href="beneficiario-solicitud.html">Solicitar Acompañamiento</a></li>
+                        <li><Link to = '/'>Inicio</Link></li>
+                        <li><Link to ='/beneSolicitud'>Solicitar Acompañamiento</Link></li>
                         <li><a href="beneficiario-historial.html">Mi Historial</a></li>
-                        <li><a href="perfil-beneficiario.html">Mi Perfil</a></li>
+                        <li><Link to ='/perfilBeneficiario'>Mi Perfil</Link></li>
                     </ul>
                 </div>
                 <div className="footer-links">
                     <h3>Ayuda</h3>
                     <ul>
                         <li><a href="#">Preguntas Frecuentes</a></li>
-                        <li><a href="#">Contacto</a></li>
                         <li><a href="#">Términos y Condiciones</a></li>
                         <li><a href="#">Política de Privacidad</a></li>
                     </ul>
@@ -30,8 +30,8 @@ const Footer = () => {
                 <div className="footer-contact">
                     <h3>Contacto</h3>
                     <p>¿Necesitas ayuda? Llámanos al:</p>
-                    <p className="contact-phone">+1569 67850875</p>
-                    <p>Lunes a Viernes: 9:00 - 18:00</p>
+                    <p className="contact-phone">+56944556677</p>
+                    <p>Lunes a Viernes: 9:00 - 18:00 hs</p>
                 </div>
             </div>
             <div className="footer-bottom">

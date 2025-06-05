@@ -1,10 +1,23 @@
-import { Link } from 'react-router-dom';
-import { Element } from 'react-scroll';
+import { Link, useLocation } from 'react-router-dom';
+import { Element, scroller } from 'react-scroll';
+import { useEffect } from 'react';
 import voluntarios from '../../assets/voluntarios.jpg';
-import manosAyuda from '../../assets/manosAyuda.jpg'
-import './Home.css'
+import manosAyuda from '../../assets/manosAyuda.jpg';
+import './Home.css';
 
 const Home = () => {
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.state?.scrollTo) {
+            scroller.scrollTo(location.state.scrollTo, {
+                smooth: true,
+                duration: 500,
+                offset: -70,
+            });
+        }
+    }, [location]);
+
     return(
         <div className="home">
             <section id="hero">
