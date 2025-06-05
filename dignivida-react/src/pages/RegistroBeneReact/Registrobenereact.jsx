@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import {Link} from 'react-router-dom'
+=======
+>>>>>>> f303ba1769a5bc67a00331e5fd512a92d9ff7ec1
 
 function Registrobenereact() {
    
