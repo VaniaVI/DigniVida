@@ -3,13 +3,13 @@ import './Footer.css';
 const Footer = () => {
     return (
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
+        <div className="container">
+            <div className="footer-content">
+                <div className="footer-logo">
                     <h2>Digni<span>Vida</span></h2>
                     <p>Dignivida es amor, cuidado y bienestar</p>
                 </div>
-                <div class="footer-links">
+                <div className="footer-links">
                     <h3>Enlaces Rápidos</h3>
                     <ul>
                         <li><a href="beneficiario-dashboard.html">Inicio</a></li>
@@ -18,7 +18,7 @@ const Footer = () => {
                         <li><a href="perfil-beneficiario.html">Mi Perfil</a></li>
                     </ul>
                 </div>
-                <div class="footer-links">
+                <div className="footer-links">
                     <h3>Ayuda</h3>
                     <ul>
                         <li><a href="#">Preguntas Frecuentes</a></li>
@@ -27,14 +27,14 @@ const Footer = () => {
                         <li><a href="#">Política de Privacidad</a></li>
                     </ul>
                 </div>
-                <div class="footer-contact">
+                <div className="footer-contact">
                     <h3>Contacto</h3>
                     <p>¿Necesitas ayuda? Llámanos al:</p>
-                    <p class="contact-phone">+1569 67850875</p>
+                    <p className="contact-phone">+1569 67850875</p>
                     <p>Lunes a Viernes: 9:00 - 18:00</p>
                 </div>
             </div>
-            <div class="footer-bottom">
+            <div className="footer-bottom">
                 <p>&copy; 2025 DigniVida. Todos los derechos reservados.</p>
             </div>
         </div>

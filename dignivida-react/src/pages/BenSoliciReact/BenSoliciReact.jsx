@@ -1,19 +1,20 @@
+import {Link} from 'react-router-dom'
 
 function BenSoliciReact() {
     return (
-
-        <section class="page-header">
-            <div class="container">
+        <>
+        <section className="page-header">
+            <div className="container">
                 <h2>Solicitar Acompañamiento</h2>
                 <p>Completa el formulario para solicitar que un voluntario te acompañe</p>
             </div>
         </section>
 
-        <section class="form-section">
-            <div class="container">
-                <div class="form-container">
+        <section className="form-section">
+            <div className="container">
+                <div className="form-container">
                     <form id="solicitud-form">
-                        <div class="form-group">
+                        <div className="form-group">
                             <label for="tipo-tramite">Tipo de Trámite</label>
                             <select id="tipo-tramite" name="tipo-tramite" required>
                                 <option value="">Selecciona el tipo de trámite</option>
@@ -24,18 +25,18 @@ function BenSoliciReact() {
                             </select>
                         </div>
                         
-                        <div class="form-group" id="otro-tramite-container" style="display: none;">
+                        <div className="form-group" id="otro-tramite-container" style={{display: 'none'}}>
                             <label for="otro-tramite">Especifica el trámite</label>
                             <input type="text" id="otro-tramite" name="otro-tramite" placeholder="Describe el tipo de trámite"/>
                         </div>
                         
-                        <div class="form-row">
-                            <div class="form-group">
+                        <div className="form-row">
+                            <div className="form-group">
                                 <label for="fecha">Fecha</label>
                                 <input type="date" id="fecha" name="fecha" required min=""/>
                             </div>
                             
-                            <div class="form-group">
+                            <div className="form-group">
                                 <label for="hora">Hora</label>
                                 <select id="hora" name="hora" required>
                                     <option value="">Selecciona la hora</option>
@@ -52,43 +53,43 @@ function BenSoliciReact() {
                             </div>
                         </div>
                         
-                        <div class="form-group">
+                        <div className="form-group">
                             <label for="direccion-origen">Dirección de Origen</label>
                             <input type="text" id="direccion-origen" name="direccion-origen" placeholder="¿Dónde te recogemos?" required/>
-                            <div class="address-options">
-                                <label class="address-option">
+                            <div className="address-options">
+                                <label className="address-option">
                                     <input type="radio" name="origen" value="casa" checked/>
                                     Usar mi dirección de casa
                                 </label>
                             </div>
                         </div>
                         
-                        <div class="form-group">
+                        <div className="form-group">
                             <label for="direccion-destino">Dirección de Destino</label>
                             <input type="text" id="direccion-destino" name="direccion-destino" placeholder="¿A dónde vamos?" required/>
                         </div>
                         
-                        <div class="form-group">
+                        <div className="form-group">
                             <label for="notas">Notas Adicionales (opcional)</label>
                             <textarea id="notas" name="notas" rows="3" placeholder="Información adicional que el voluntario deba saber"></textarea>
                         </div>
                         
-                        <div class="form-actions">
-                            <button type="button" class="btn btn-outline" onclick="window.location.href='beneficiario-dashboard.html'">Cancelar</button>
-                            <button type="submit" class="btn btn-primary" id="btn-enviar" disabled>Enviar Solicitud</button>
+                        <div className="form-actions">
+                            <Link to="/beneficiarioDashboard"><button className="btn btn-outline">Cancelar</button></Link>
+                            <Link to="/beneficiarioSolicitado"><button type="submit" className="btn btn-primary" id="btn-enviar" disabled>Enviar Solicitud</button></Link>
                         </div>
                     </form>
                     
-                    <div class="confirmation-message" id="confirmation-message" style="display: none;">
-                        <div class="confirmation-icon">✓</div>
+                    <div className="confirmation-message" id="confirmation-message" style={{display: 'none'}}>
+                        <div className="confirmation-icon">✓</div>
                         <h3>Solicitud enviada</h3>
                         <p>Espere confirmación. Te notificaremos cuando un voluntario acepte tu solicitud.</p>
-                        <button class="btn btn-primary" onclick="window.location.href='beneficiario-dashboard.html'">Volver al Inicio</button>
+                        <Link to= "/beneficiarioDashboard"><button className="btn btn-primary">Volver al Inicio</button></Link>
                     </div>
                 </div>
                 
-                <div class="form-sidebar">
-                    <div class="sidebar-card">
+                <div className="form-sidebar">
+                    <div className="sidebar-card">
                         <h3>Consejos</h3>
                         <ul>
                             <li>Solicita el acompañamiento con al menos 24 horas de anticipación.</li>
@@ -97,19 +98,19 @@ function BenSoliciReact() {
                         </ul>
                     </div>
                     
-                    <div class="sidebar-card">
+                    <div className="sidebar-card">
                         <h3>Horarios Disponibles</h3>
                         <p>Nuestros voluntarios están disponibles de lunes a viernes, de 9:00 a 17:00 horas.</p>
                     </div>
                     
-                    <div class="sidebar-card">
+                    <div className="sidebar-card">
                         <h3>¿Necesitas ayuda?</h3>
                         <p>Llámanos al +1569 67850875</p>
                     </div>
                 </div>
             </div>
         </section>
-    
+    </>
     );
 
 

@@ -5,8 +5,8 @@ import { Link as ScrollLink } from 'react-scroll';
 const Header = () => {
   return (
     <header>
-        <div class="container">
-            <div class="logo">
+        <div className="container">
+            <div className="logo">
                 <RouterLink to="/"><h1>Digni<span>Vida</span></h1></RouterLink>
             </div>
             <nav>
@@ -18,9 +18,9 @@ const Header = () => {
                     <li><ScrollLink to="contacto" smooth={true}>Contacto</ScrollLink></li>
                 </ul>
             </nav>
-            <div class="auth-buttons">
-                <RouterLink to="/login" class="btn btn-outline">Iniciar Sesión</RouterLink>
-                <RouterLink to="/registroBeneficiario" class="btn btn-primary" id="btn-registro">Registrarse</RouterLink>
+            <div className="auth-buttons">
+                <RouterLink to="/login" className="btn btn-outline">Iniciar Sesión</RouterLink>
+                <RouterLink to="/registroBeneficiario" className="btn btn-primary" id="btn-registro">Registrarse</RouterLink>
             </div>
         </div>
     </header>
