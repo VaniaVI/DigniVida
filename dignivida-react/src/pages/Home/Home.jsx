@@ -28,7 +28,7 @@ const Home = () => {
                 <div className="hero-buttons">
                     <Link to="/perfilBeneficiario" className="btn btn-primary btn-large">Solicitar Acompañamiento</Link>
                     {/* <a href="/registro-beneficiario.html" className="btn btn-primary btn-large">Solicitar Acompañamiento</a> */}
-                    <Link to="/beneficiarioSeguimiento" className="btn btn-secondary btn-large" id="btn-ser-voluntario">Ser Voluntario</Link>
+                    <Link to="/registroVoluntario" className="btn btn-secondary btn-large" id="btn-ser-voluntario">Ser Voluntario</Link>
                 </div>
             </div>
             <div className="hero-image">
@@ -141,7 +141,7 @@ const Home = () => {
                 <div className="volunteer-content">
                     <h2>Únete a Nuestro Equipo de Voluntarios</h2>
                     <p>Tu tiempo y compañía pueden hacer una gran diferencia en la vida de quienes más lo necesitan. Conviértete en voluntario y ayuda a crear una comunidad más solidaria.</p>
-                    <a href="#" className="btn btn-primary" id="btn-ser-voluntario-2">Ser Voluntario</a>
+                    <Link to = 'registroVoluntario' className="btn btn-primary" id="btn-ser-voluntario-2">Ser Voluntario</Link>
                 </div>
                 <div className="volunteer-image">
                     <img src={voluntarios} alt="Grupo de voluntarios sonrientes"/>

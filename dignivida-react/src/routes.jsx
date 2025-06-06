@@ -10,7 +10,7 @@ import BeneficiarioSolicitadoReact from './pages/BeneficiarioSolicitadoReact/Ben
 import BeneficiarioHistorial from './pages/BeneficiarioHistorial';
 import PerfilBeneficiario from './pages/PerfilBeneficiario/PerfilBeneficiario';
 import BeneficiarioSeguimiento from './pages/BeneficiarioSeguimiento/BeneficiarioSeguimiento';
-
+import RegistroVoluntario from './pages/RegistroVoluntarioReact/RegistroVoluntario';
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -27,6 +27,8 @@ export const router = createBrowserRouter(
             <Route path="/beneficiarioHistorial" element={<BeneficiarioHistorial/>} />  
             <Route path="/perfilBeneficiario" element={<PerfilBeneficiario />} /> 
             <Route path="/beneficiarioSeguimiento" element={<BeneficiarioSeguimiento />} /> 
+            <Route path="/beneficiarioSeguimiento" element={<BeneficiarioSeguimiento />} /> 
+            <Route path="/registroVoluntario" element={<RegistroVoluntario />} /> 
             
         </Route>
         </>

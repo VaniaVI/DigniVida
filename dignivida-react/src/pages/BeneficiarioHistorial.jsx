@@ -281,6 +281,6 @@ const BeneficiarioHistorial = () => {
             </section>
         </>
     );
-}
+};
 
 export default BeneficiarioHistorial;
