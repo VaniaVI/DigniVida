@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../EstilosBeneficiarioReact.css"
+import "./EstilosBeneficiarioReact.css"
 
 const BeneficiarioDashboard = () => {
     return (

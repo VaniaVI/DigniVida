@@ -1,16 +1,16 @@
 import { createBrowserRouter, createRoutesFromElements, Route} from 'react-router-dom';
 import Layout from './pages/Layout';
 import Home from './pages/Home/Home';
-import Login from './pages/Login/login';
-import RegistroBeneficiarioReact from './pages/RegistroBeneficiarioReact/Registrobenereact';
-import VerificacionSms from './pages/VerificacionSms/verificacionsms';
-import BeneficiarioDashboard from './pages/BeneficiarioDashboardReact/BeneficiarioDashboard';
-import BeneficiarioSoliAcompañamiento from './pages/BenSoliciAcompañamientoReact/BenSoliciReact'
-import BeneficiarioSolicitadoReact from './pages/BeneficiarioSolicitadoReact/BeneficiarioSolicitadoReact';
+import Login from './pages/login';
+import RegistroBeneficiarioReact from './pages/Registrobenereact';
+import VerificacionSms from './pages/verificacionsms';
+import BeneficiarioDashboard from './pages/BeneficiarioDashboard';
+import BeneficiarioSoliAcompañamiento from './pages/BenSoliciReact'
+import BeneficiarioSolicitadoReact from './pages/BeneficiarioSolicitadoReact';
 import BeneficiarioHistorial from './pages/BeneficiarioHistorial';
 import PerfilBeneficiario from './pages/PerfilBeneficiario/PerfilBeneficiario';
-import BeneficiarioSeguimiento from './pages/BeneficiarioSeguimiento/BeneficiarioSeguimiento';
-
+import BeneficiarioSeguimiento from './pages/BeneficiarioSeguimiento';
+import RegistroVoluntario from './pages/RegistroVoluntario';
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -27,6 +27,8 @@ export const router = createBrowserRouter(
             <Route path="/beneficiarioHistorial" element={<BeneficiarioHistorial/>} />  
             <Route path="/perfilBeneficiario" element={<PerfilBeneficiario />} /> 
             <Route path="/beneficiarioSeguimiento" element={<BeneficiarioSeguimiento />} /> 
+            <Route path="/beneficiarioSeguimiento" element={<BeneficiarioSeguimiento />} /> 
+            <Route path="/registroVoluntario" element={<RegistroVoluntario />} /> 
             
         </Route>
         </>

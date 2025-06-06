@@ -1,67 +1,43 @@
-import { useState, useEffect, useRef } from 'react';
+"use client"
+
+import { useState, useEffect, useRef } from "react"
 
 export function useModalRegistro() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isVolunteerPreselected, setIsVolunteerPreselected] = useState(false);
-  const modalRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false)
+  const modalRef = useRef(null)
 
+  // Abrir modal
   const openModal = (e) => {
-    if (e) e.preventDefault();
-    setIsModalOpen(true);
-    setIsVolunteerPreselected(false);
-  };
+    if (e) e.preventDefault()
+    setIsOpen(true)
+  }
 
-  const openModalWithVolunteer = (e) => {
-    if (e) e.preventDefault();
-    setIsModalOpen(true);
-    setIsVolunteerPreselected(true);
-  };
-
+  // Cerrar modal
   const closeModal = () => {
-    setIsModalOpen(false);
-    setIsVolunteerPreselected(false);
-  };
+    setIsOpen(false)
+  }
 
+  // Cerrar modal al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && event.target === modalRef.current) {
-        closeModal();
+        closeModal()
       }
-    };
+    }
 
-    if (isModalOpen) {
-      document.addEventListener('click', handleClickOutside);
+    if (isOpen) {
+      document.addEventListener("click", handleClickOutside)
     }
 
     return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [isModalOpen]);
-
-  const getCardStyles = (isVolunteerCard) => {
-    if (isVolunteerPreselected && isVolunteerCard) {
-      return {
-        borderColor: 'var(--primary-color)',
-        transform: 'translateY(-5px)',
-        boxShadow: '0 10px 20px var(--shadow-color)',
-        transition: 'all 0.3s ease',
-      };
+      document.removeEventListener("click", handleClickOutside)
     }
-    return {
-      borderColor: 'transparent',
-      transform: 'none',
-      boxShadow: 'none',
-      transition: 'all 0.3s ease',
-    };
-  };
+  }, [isOpen])
 
   return {
-    isModalOpen,
-    isVolunteerPreselected,
-    modalRef,
+    isOpen,
     openModal,
-    openModalWithVolunteer,
     closeModal,
-    getCardStyles,
-  };
+    modalRef,
+  }
 }

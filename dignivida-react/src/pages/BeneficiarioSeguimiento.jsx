@@ -1,4 +1,4 @@
-import mapa from '../../assets/mapaborrar.jpg';
+import mapa from '../assets/mapaborrar.jpg';
 
 const BeneficiarioSeguimiento = () =>{
     return(

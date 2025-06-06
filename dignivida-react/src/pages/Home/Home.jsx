@@ -28,7 +28,7 @@ const Home = () => {
                 <div className="hero-buttons">
                     <Link to="/perfilBeneficiario" className="btn btn-primary btn-large">Solicitar Acompañamiento</Link>
                     {/* <a href="/registro-beneficiario.html" className="btn btn-primary btn-large">Solicitar Acompañamiento</a> */}
-                    <Link to="/beneficiarioSeguimiento" className="btn btn-secondary btn-large" id="btn-ser-voluntario">Ser Voluntario</Link>
+                    <Link to="/registroVoluntario" className="btn btn-secondary btn-large" id="btn-ser-voluntario">Ser Voluntario</Link>
                 </div>
             </div>
             <div className="hero-image">
@@ -141,7 +141,7 @@ const Home = () => {
                 <div className="volunteer-content">
                     <h2>Únete a Nuestro Equipo de Voluntarios</h2>
                     <p>Tu tiempo y compañía pueden hacer una gran diferencia en la vida de quienes más lo necesitan. Conviértete en voluntario y ayuda a crear una comunidad más solidaria.</p>
-                    <a href="#" className="btn btn-primary" id="btn-ser-voluntario-2">Ser Voluntario</a>
+                    <Link to = 'registroVoluntario' className="btn btn-primary" id="btn-ser-voluntario-2">Ser Voluntario</Link>
                 </div>
                 <div className="volunteer-image">
                     <img src={voluntarios} alt="Grupo de voluntarios sonrientes"/>
@@ -193,32 +193,7 @@ const Home = () => {
             </div>
         </section>
     </Element>
-     {/* Modal de selección de tipo de usuario  */}
-    <div className="modal" id="modal-registro">
-        <div className="modal-content">
-            <span className="close-modal">&times;</span>
-            <h2 className="auth-title">Elige tipo de registro</h2>
-            <p className="auth-subtitle">Selecciona el tipo de cuenta que deseas crear</p>
-            
-            <div className="user-type-selection">
-                <a href="registro-beneficiario.html" className="user-type-card">
-                    <div className="user-type-icon">
-                        <img src="https://cdn-icons-png.flaticon.com/128/7433/7433296.png" alt="Icono pasajero"/>
-                    </div>
-                    <h3>Beneficiario</h3>
-                    <p>Para adultos mayores o personas con movilidad reducida que necesitan acompañamiento</p>
-                </a>
-                
-                <a href="registro-voluntario.html" className="user-type-card">
-                    <div className="user-type-icon">
-                        <img src="https://cdn-icons-png.flaticon.com/128/4148/4148613.png" alt="Icono voluntario"/>
-                    </div>
-                    <h3>Voluntario</h3>
-                    <p>Para personas que desean ofrecer su tiempo y ayuda a quienes lo necesitan</p>
-                </a>
-            </div>
-        </div>
-    </div>
+    
 </div>
     );
 }
