@@ -213,7 +213,7 @@ function BeneficiarioSolicitadoReact () {
                 </div>
 
                 <div className="selection-actions">
-                    <Link to = '/beneSolicitud'><button className="btn btn-outline">Volver a la Solicitud</button></Link>
+                    <Link to = '/beneficiarioSolicitaAcompa'><button className="btn btn-outline">Volver a la Solicitud</button></Link>
                     <button className="btn btn-primary" id="btn-auto-assign">Asignación Automática</button>
                 </div>
             </div>

@@ -14,8 +14,8 @@ const Footer = () => {
                     <h3>Enlaces Rápidos</h3>
                     <ul>
                         <li><Link to = '/'>Inicio</Link></li>
-                        <li><Link to ='/beneSolicitud'>Solicitar Acompañamiento</Link></li>
-                        <li><a href="beneficiario-historial.html">Mi Historial</a></li>
+                        <li><Link to ='/beneficiarioSolicitaAcompa'>Solicitar Acompañamiento</Link></li>
+                        <li><Link to='/beneficiarioHistorial'>Mi Historial</Link></li>
                         <li><Link to ='/perfilBeneficiario'>Mi Perfil</Link></li>
                     </ul>
                 </div>
@@ -30,7 +30,7 @@ const Footer = () => {
                 <div className="footer-contact">
                     <h3>Contacto</h3>
                     <p>¿Necesitas ayuda? Llámanos al:</p>
-                    <p className="contact-phone">+56944556677</p>
+                    <p className="contact-phone">+569 44 55 66 77</p>
                     <p>Lunes a Viernes: 9:00 - 18:00 hs</p>
                 </div>
             </div>

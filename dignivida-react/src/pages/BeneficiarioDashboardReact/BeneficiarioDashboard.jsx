@@ -22,7 +22,7 @@ const BeneficiarioDashboard = () => {
                     </div>
                     <h3>Solicitar Acompañamiento</h3>
                     <p>Crea una nueva solicitud para que un voluntario te acompañe a realizar un trámite.</p>
-                    <Link to ="/beneSolicitud" class="btn btn-primary">Solicitar</Link>
+                    <Link to ="/beneficiarioSolicitaAcompa" class="btn btn-primary">Solicitar</Link>
                 </div>
                 
                 <div className="dashboard-card">
@@ -31,7 +31,7 @@ const BeneficiarioDashboard = () => {
                     </div>
                     <h3>Mi Historial</h3>
                     <p>Revisa el historial de tus solicitudes anteriores y los voluntarios que te han ayudado.</p>
-                    <Link to ="beneficiario-historial.html" class="btn btn-primary">Ver Historial</Link>
+                    <Link to ='/beneficiarioHistorial' class="btn btn-primary">Ver Historial</Link>
                 </div>
                 
                 <div className="dashboard-card">
@@ -40,7 +40,7 @@ const BeneficiarioDashboard = () => {
                     </div>
                     <h3>Mi Perfil</h3>
                     <p>Actualiza tu información personal, datos médicos y contactos de emergencia.</p>
-                    <Link to ="perfil-beneficiario.html" class="btn btn-primary">Editar Perfil</Link>
+                    <Link to ='/perfilBeneficiario' class="btn btn-primary">Editar Perfil</Link>
                 </div>
             </div>
             
