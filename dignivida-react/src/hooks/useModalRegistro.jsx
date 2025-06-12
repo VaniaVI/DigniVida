@@ -1,43 +1,47 @@
-"use client"
-
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router";
 
 export function useModalRegistro() {
-  const [isOpen, setIsOpen] = useState(false)
-  const modalRef = useRef(null)
+  const [isOpen, setIsOpen] = useState(false);
+  const modalOverlayRef = useRef(null);
+  const location = useLocation();
 
-  // Abrir modal
   const openModal = (e) => {
-    if (e) e.preventDefault()
-    setIsOpen(true)
-  }
+    if (e) e.preventDefault();
+    setIsOpen(true);
+  };
 
-  // Cerrar modal
   const closeModal = () => {
-    setIsOpen(false)
-  }
+    setIsOpen(false);
+  };
 
-  // Cerrar modal al hacer clic fuera
+  // Detectar clic fuera del contenido del modal
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (modalRef.current && event.target === modalRef.current) {
-        closeModal()
+      if (
+        isOpen &&
+        modalOverlayRef.current &&
+        event.target === modalOverlayRef.current
+      ) {
+        closeModal();
       }
-    }
+    };
 
-    if (isOpen) {
-      document.addEventListener("click", handleClickOutside)
-    }
-
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("click", handleClickOutside)
-    }
-  }, [isOpen])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
+    // 🔥 Cierra el modal si cambia la ruta
+  useEffect(() => {
+    closeModal();
+  }, [location]);
 
   return {
     isOpen,
     openModal,
     closeModal,
-    modalRef,
-  }
+    modalOverlayRef,
+  };
 }

@@ -1,6 +1,5 @@
 import './Header.css';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
-import { Link as ScrollLink } from 'react-scroll';
+import { Link, Link as RouterLink, useLocation } from 'react-router-dom';
 import { useModalRegistro } from '../../hooks/useModalRegistro'
 
 
@@ -16,7 +15,7 @@ const Header = () => {
   ];
 
   // Abre el modal o pop up de registro de usuario 
-   const { isOpen, openModal, closeModal, modalRef } = useModalRegistro()
+  const { isOpen, openModal, closeModal, modalRef } = useModalRegistro()
 
   return (
     <>
@@ -48,9 +47,9 @@ const Header = () => {
       </div>
     </header>
 
-      {/* Modal - Solo aparece cuando isOpen es true */}
+     {/* Modal */}
       {isOpen && (
-        <div className="modal" id="modal-registro" ref={modalRef}>
+        <div className="modal-overlay" ref={modalRef}>
           <div className="modal-content">
             <span className="close-modal" onClick={closeModal}>
               &times;
@@ -59,26 +58,22 @@ const Header = () => {
             <p className="auth-subtitle">Selecciona el tipo de cuenta que deseas crear</p>
 
             <div className="user-type-selection">
-              <a href="registro-beneficiario.html" className="user-type-card">
-                <div className="user-type-icon">
-                  <img src="https://cdn-icons-png.flaticon.com/128/7433/7433296.png" alt="Icono pasajero" />
-                </div>
+              <Link to="/registroBeneficiario" className="user-type-card">
+                <img src="https://cdn-icons-png.flaticon.com/128/7433/7433296.png" alt="Beneficiario" />
                 <h3>Beneficiario</h3>
-                <p>Para adultos mayores o personas con movilidad reducida que necesitan acompañamiento</p>
-              </a>
+                <p>Adultos mayores que necesitan apoyo</p>
+              </Link>
 
-              <a href="registro-voluntario.html" className="user-type-card">
-                <div className="user-type-icon">
-                  <img src="https://cdn-icons-png.flaticon.com/128/4148/4148613.png" alt="Icono voluntario" />
-                </div>
+              <Link to="/registroVoluntario" className="user-type-card">
+                <img src="https://cdn-icons-png.flaticon.com/128/4148/4148613.png" alt="Voluntario" />
                 <h3>Voluntario</h3>
-                <p>Para personas que desean ofrecer su tiempo y ayuda a quienes lo necesitan</p>
-              </a>
+                <p>Personas que quieren ayudar</p>
+              </Link>
             </div>
           </div>
         </div>
       )}
-  </>
+    </>
   );
 
 };

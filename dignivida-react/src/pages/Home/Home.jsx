@@ -26,7 +26,7 @@ const Home = () => {
                 <h2>Dignivida es amor, cuidado y bienestar</h2>
                 <p>Conectamos adultos mayores y personas con discapacidad con voluntarios comprometidos que los acompañarán a citas médicas, trámites bancarios y más.</p>
                 <div className="hero-buttons">
-                    <Link to="/perfilBeneficiario" className="btn btn-primary btn-large">Solicitar Acompañamiento</Link>
+                    <Link to="/beneficiarioSolicitaAcompa" className="btn btn-primary btn-large">Solicitar Acompañamiento</Link>
                     {/* <a href="/registro-beneficiario.html" className="btn btn-primary btn-large">Solicitar Acompañamiento</a> */}
                     <Link to="/registroVoluntario" className="btn btn-secondary btn-large" id="btn-ser-voluntario">Ser Voluntario</Link>
                 </div>
@@ -175,15 +175,15 @@ const Home = () => {
                     <div className="contact-form">
                         <form>
                             <div className="form-group">
-                                <label for="nombre">Nombre</label>
+                                <label htmlFor="nombre">Nombre</label>
                                 <input type="text" id="nombre" name="nombre" required/>
                             </div>
                             <div className="form-group">
-                                <label for="email">Email</label>
+                                <label htmlFor="email">Email</label>
                                 <input type="email" id="email" name="email" required/>
                             </div>
                             <div className="form-group">
-                                <label for="mensaje">Mensaje</label>
+                                <label htmlFor="mensaje">Mensaje</label>
                                 <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
                             </div>
                             <button type="submit" className="btn btn-primary">Enviar Mensaje</button>
