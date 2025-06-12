@@ -50,16 +50,33 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="zona">Zona</label>
-                        <select id="zona" name="zona" required>
-                            <option value="">Selecciona tu zona</option>
-                            <option value="norte">Zona Norte</option>
-                            <option value="centro">Zona Centro</option>
-                            <option value="sur">Zona Sur</option>
-                            <option value="este">Zona Este</option>
-                            <option value="oeste">Zona Oeste</option>
+                        <label for="region">Región</label>
+                        <select id="region" name="region" required onchange="cargarComunas()">
+                            <option value="">Selecciona tu región</option>
+                            <option value="arica-y-parinacota">Arica y Parinacota</option>
+                            <option value="tarapaca">Tarapacá</option>
+                            <option value="antofagasta">Antofagasta</option>
+                            <option value="atacama">Atacama</option>
+                            <option value="coquimbo">Coquimbo</option>
+                            <option value="valparaiso">Valparaíso</option>
+                            <option value="ohiggins">Libertador Bernardo O'Higgins</option>
+                            <option value="maule">Maule</option>
+                            <option value="nuble">Ñuble</option>
+                            <option value="biobio">Biobío</option>
+                            <option value="araucania">La Araucanía</option>
+                            <option value="los-rios">Los Ríos</option>
+                            <option value="los-lagos">Los Lagos</option>
+                            <option value="aysen">Aysén</option>
+                            <option value="magallanes">Magallanes</option>
+                            <option value="metropolitana">Metropolitana de Santiago</option>
                         </select>
-                    </div>
+                    </div> 
+                    <div class="form-group" id="comuna-container" style="display: none;">
+                        <label for="comuna">Comuna</label>
+                        <select id="comuna" name="comuna" required>
+                            <option value="">Selecciona tu comuna</option>
+                        </select>
+                    </div>   
                     
                     <div class="form-group">
                         <label for="documento">Subir Documento (DNI/RUT)</label>
@@ -130,11 +147,6 @@
     </footer>
 
     <!-- Script para mostrar el nombre del archivo seleccionado -->
-    <script>
-        document.getElementById('documento').addEventListener('change', function(e) {
-            var fileName = e.target.files[0] ? e.target.files[0].name : 'Ningún archivo seleccionado';
-            document.getElementById('file-name').textContent = fileName;
-        });
-    </script>
+    <script src="registro-voluntario.js"></script>
 </body>
 </html>

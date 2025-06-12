@@ -42,7 +42,7 @@ const Header = () => {
         </nav>
         <div className="auth-buttons">
           <RouterLink to="/login" className="btn btn-outline">Iniciar Sesión</RouterLink>
-          <button onClick={openModal} className="btn btn-primary" id="btn-registro">Registrarse</button>
+          <RouterLink onClick={openModal} className="btn btn-primary" id="btn-registro">Registrarse</RouterLink>
         </div>
       </div>
     </header>

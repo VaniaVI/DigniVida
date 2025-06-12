@@ -1,90 +1,99 @@
-import mapa from '../assets/mapaborrar.jpg';
+import Mapa from '../components/Mapa';
+import { useNavigate } from 'react-router-dom';
 
 const BeneficiarioSeguimiento = () =>{
+
+    const origen = [-33.4489, -70.6693];     // Ej: Santiago
+    const destino = [-33.4569, -70.6483]; 
+    const navigate = useNavigate();
+
     return(
-        <section class="tracking-section">
-        <div class="tracking-map">
-            <img src={mapa} alt="Mapa de seguimiento" class="map-image"/>
-            <div class="map-overlay">
-                <div class="map-pin origin">
-                    <div class="pin-icon">A</div>
+        <section className="tracking-section">
+        <div className="tracking-map">
+            <div className="tracking-map">
+                <Mapa origen={origen} destino={destino} />
+            </div>
+            <div className="map-overlay">
+                <div className="map-pin origin">
+                    <div className="pin-icon">A</div>
                 </div>
-                <div class="map-pin destination">
-                    <div class="pin-icon">B</div>
+                <div className="map-pin destination">
+                    <div className="pin-icon">B</div>
                 </div>
-                <div class="map-car">
-                    <div class="car-icon">🚗</div>
+                <div className="map-car">
+                    <div className="car-icon">🚗</div>
                 </div>
             </div>
         </div>
         
-        <div class="tracking-info">
-            <div class="tracking-status">
-                <div class="status-icon">
+        <div className="tracking-info">
+            <div className="tracking-status">
+                <div className="status-icon">
                     <img src="https://cdn-icons-png.flaticon.com/128/3097/3097144.png" alt="Icono de auto"/>
                 </div>
-                <div class="status-text">
+                <div className="status-text">
                     <h3>Tu voluntario está en camino</h3>
                     <p>Llegará en aproximadamente <strong>5 minutos</strong></p>
                 </div>
             </div>
             
-            <div class="tracking-details">
-                <div class="volunteer-profile">
-                    <img src="https://cdn-icons-png.flaticon.com/128/4202/4202835.png" alt="Foto del voluntario" class="volunteer-avatar"/>
-                    <div class="volunteer-details">
+            <div className="tracking-details">
+                <div className="volunteer-profile">
+                    <img src="https://cdn-icons-png.flaticon.com/128/4202/4202835.png" alt="Foto del voluntario" className="volunteer-avatar"/>
+                    <div className="volunteer-details">
                         <h4>Miguel Sánchez</h4>
-                        <div class="volunteer-rating">
-                            <span class="star filled">★</span>
-                            <span class="star filled">★</span>
-                            <span class="star filled">★</span>
-                            <span class="star filled">★</span>
-                            <span class="star">★</span>
-                            <span class="rating-text">4.0</span>
+                        <div className="volunteer-rating">
+                            <span className="star filled">★</span>
+                            <span className="star filled">★</span>
+                            <span className="star filled">★</span>
+                            <span className="star filled">★</span>
+                            <span className="star">★</span>
+                            <span className="rating-text">4.0</span>
                         </div>
                         <p>Voluntario desde Enero 2025</p>
                     </div>
                 </div>
                 
-                <div class="contact-volunteer">
-                    <button class="btn btn-outline btn-sm">
-                        <span class="btn-icon">📞</span> Llamar
+                <div className="contact-volunteer">
+                    <button className="btn btn-outline btn-sm">
+                        <span className="btn-icon">📞</span> Llamar
                     </button>
-                    <button class="btn btn-outline btn-sm">
-                        <span class="btn-icon">💬</span> Mensaje
+                    <button className="btn btn-outline btn-sm">
+                        <span className="btn-icon">💬</span> Mensaje
                     </button>
                 </div>
             </div>
             
-            <div class="trip-details">
+            <div className="trip-details">
                 <h4>Detalles del Acompañamiento</h4>
-                <div class="trip-info">
-                    <div class="trip-info-item">
-                        <div class="info-label">Fecha:</div>
-                        <div class="info-value">15 de Mayo, 2025</div>
+                <div className="trip-info">
+                    <div className="trip-info-item">
+                        <div className="info-label">Fecha:</div>
+                        <div className="info-value">15 de Mayo, 2025</div>
                     </div>
-                    <div class="trip-info-item">
-                        <div class="info-label">Hora:</div>
-                        <div class="info-value">10:00 AM</div>
+                    <div className="trip-info-item">
+                        <div className="info-label">Hora:</div>
+                        <div className="info-value">10:00 AM</div>
                     </div>
-                    <div class="trip-info-item">
-                        <div class="info-label">Tipo:</div>
-                        <div class="info-value">CESFAM</div>
+                    <div className="trip-info-item">
+                        <div className="info-label">Tipo:</div>
+                        <div className="info-value">CESFAM</div>
                     </div>
-                    <div class="trip-info-item">
-                        <div class="info-label">Origen:</div>
-                        <div class="info-value">Av. Principal 123, Ciudad</div>
+                    <div className="trip-info-item">
+                        <div className="info-label">Origen:</div>
+                        <div className="info-value">Av. Principal 123, Ciudad</div>
                     </div>
-                    <div class="trip-info-item">
-                        <div class="info-label">Destino:</div>
-                        <div class="info-value">CESFAM Central, Av. Salud 456</div>
+                    <div className="trip-info-item">
+                        <div className="info-label">Destino:</div>
+                        <div className="info-value">CESFAM Central, Av. Salud 456</div>
                     </div>
                 </div>
             </div>
             
-            <div class="tracking-actions">
-                <button class="btn btn-outline">Cancelar Solicitud</button>
-                <button class="btn btn-primary" onclick="window.location.href='beneficiario-dashboard.html'">Volver al Inicio</button>
+            <div className="tracking-actions">
+                <button className="btn btn-outline">Cancelar Solicitud</button>
+                <button className="btn btn-primary" onClick={() => navigate('/beneficiario-dashboard')}></button>
+
             </div>
         </div>
     </section>
