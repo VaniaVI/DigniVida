@@ -23,7 +23,7 @@ const Footer = () => {
                     <h3>Ayuda</h3>
                     <ul>
                         <li><a href="#">Preguntas Frecuentes</a></li>
-                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><Link to = '/terminosYCondiciones' >Términos y Condiciones</Link></li>
                         <li><a href="#">Política de Privacidad</a></li>
                     </ul>
                 </div>
