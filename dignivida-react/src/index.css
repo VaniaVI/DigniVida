@@ -148,6 +148,30 @@ a:hover {
     align-items: center;
 }
 
+.regiscolor{
+    color: var(--primary-dark);
+}
+
+.form-group-remember-me2
+{
+  display: flex;
+  align-items: left;
+  gap: 8px;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+  justify-content: flex-start;
+}
+.form-group-remember-me1 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+  justify-content: flex-start;
+}
+
+
+
 .auth-container {
     max-width: 600px;
     margin: 5vh auto;
