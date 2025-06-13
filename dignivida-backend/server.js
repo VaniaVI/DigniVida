@@ -10,7 +10,7 @@ app.use(express.json());
 const voluntariosRoutes = require('./rutas/voluntarios');
 app.use('/api/voluntarios', voluntariosRoutes);
 
-const beneficiariosRoutes = require('./rutas/beneficiarios');
+const beneficiariosRoutes = require('./rutas/beneficiario');
 app.use('/api/beneficiarios', beneficiariosRoutes);
 
 mongoose.connect(process.env.MONGO_URI, {

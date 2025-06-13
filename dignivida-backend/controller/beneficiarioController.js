@@ -1,4 +1,4 @@
-const { Beneficiario } = require('../modelos/usuario');
+const { Beneficiario } = require('../model');
 
 // GET - listar todos los beneficiarios
 exports.getBeneficiarios = async (req, res) => {

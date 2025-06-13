@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const voluntarioController = require('../controladores/voluntarioController');
+const voluntarioController = require('../controller/voluntarioController');
 
 // Rutas CRUD
 router.get('/', voluntarioController.getVoluntarios);

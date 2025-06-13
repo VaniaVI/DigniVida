@@ -1,4 +1,4 @@
-const { Voluntario } = require('../modelos/usuario');
+const { Voluntario } = require('../model');
 
 // GET - todos los voluntarios
 exports.getVoluntarios = async (req, res) => {
