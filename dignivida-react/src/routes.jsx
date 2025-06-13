@@ -16,6 +16,8 @@ import BeneficiarioSeguimiento from './pages/BeneficiarioSeguimiento';
 import RegistroVoluntario from './pages/RegistroVoluntario';
 import TerminosYCondiciones from './pages/TerminosYCondiciones';
 
+import PoliticasDePrivacidad from './pages/PoliticasDePrivacidad';
+
 export const router = createBrowserRouter(
     createRoutesFromElements(
         <>
@@ -37,7 +39,7 @@ export const router = createBrowserRouter(
             <Route path="/beneficiarioSeguimiento" element={<BeneficiarioSeguimiento />} /> 
             <Route path="/registroVoluntario" element={<RegistroVoluntario />} /> 
             <Route path="/terminosYCondiciones" element={<TerminosYCondiciones />} /> 
-
+            <Route path="/politicasDePrivacidad" element={<PoliticasDePrivacidad />} />             
             
         </Route>
         </>

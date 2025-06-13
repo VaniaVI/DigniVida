@@ -24,7 +24,7 @@ const sections = [
   },
 ];
 
-const TermsAndConditions = () => (
+const TerminosYCondiciones = () => (
   <section className="auth-section" style={{ background: 'var(--background-alt)' }}>
     <div className="auth-container" style={{ maxWidth: 700 }}>
       <h1 className="section-title" style={{ marginBottom: 30 }}>Términos y Condiciones</h1>
@@ -76,4 +76,4 @@ const TermsAndConditions = () => (
   </section>
 );
 
-export default TermsAndConditions;
+export default TerminosYCondiciones;

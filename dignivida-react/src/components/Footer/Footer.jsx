@@ -24,7 +24,7 @@ const Footer = () => {
                     <ul>
                         <li><a href="#">Preguntas Frecuentes</a></li>
                         <li><Link to = '/terminosYCondiciones' >Términos y Condiciones</Link></li>
-                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><Link to = '/politicasDePrivacidad'>Política de Privacidad</Link></li>
                     </ul>
                 </div>
                 <div className="footer-contact">
