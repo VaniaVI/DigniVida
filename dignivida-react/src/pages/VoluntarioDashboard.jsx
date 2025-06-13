@@ -4,7 +4,7 @@ import "./EstilosBeneficiarioReact.css"
 const VoluntarioDashboard = () => {
   // Aquí podrías añadir lógica para cargar datos del voluntario
   // como su nombre, próximas tareas, horas de voluntariado, etc.
-  const voluntarioNombre = "Sofía Vargas"; // Ejemplo
+  const voluntarioNombre = "Vania"; // Ejemplo
   const proximasTareas = [
     {
       id: 1,
