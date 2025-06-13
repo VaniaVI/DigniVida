@@ -5,8 +5,6 @@ function RegistroVoluntario (){
     const {
         formData,
         comunas,
-        isLoading,
-        showDescripcion,
         showComuna,
         updateField,
         handleSubmit,
@@ -58,6 +56,21 @@ function RegistroVoluntario (){
                     {hasError("telefono") && (
                         <span style={{ color: "red", display: "block" }}>{getErrorMessage("telefono")}</span>
                     )}
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="edad">Edad</label>
+                      <input
+                        type="number"
+                        id="edad"
+                        name="edad"
+                        placeholder="Ingresa tu edad"
+                        value={formData.edad}
+                        onChange={(e) => updateField("edad", e.target.value)}
+                        required
+                        min="60"
+                      />
+                      {hasError("edad") && <span style={{ color: "red", display: "block" }}>{getErrorMessage("edad")}</span>}
                     </div>
                     
 <div className="form-group">

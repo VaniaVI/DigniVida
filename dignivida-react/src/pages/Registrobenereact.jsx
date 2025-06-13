@@ -226,4 +226,4 @@ function RegistroBeneficiarioReact() {
   )
 }
 
-export default RegistroBeneficiarioReact
+export default RegistroBeneficiarioReact;
