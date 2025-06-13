@@ -15,6 +15,7 @@ import PerfilBeneficiario from './pages/PerfilBeneficiario/PerfilBeneficiario';
 import BeneficiarioSeguimiento from './pages/BeneficiarioSeguimiento';
 import RegistroVoluntario from './pages/RegistroVoluntario';
 import TerminosYCondiciones from './pages/TerminosYCondiciones';
+import PreguntasFrecuentes from './pages/PreguntasFrecuentes';
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -37,6 +38,7 @@ export const router = createBrowserRouter(
             <Route path="/beneficiarioSeguimiento" element={<BeneficiarioSeguimiento />} /> 
             <Route path="/registroVoluntario" element={<RegistroVoluntario />} /> 
             <Route path="/terminosYCondiciones" element={<TerminosYCondiciones />} /> 
+            <Route path="/PreguntasFrecuentes" element={<PreguntasFrecuentes />} />
 
             
         </Route>

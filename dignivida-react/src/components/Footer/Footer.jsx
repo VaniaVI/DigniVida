@@ -22,7 +22,7 @@ const Footer = () => {
                 <div className="footer-links">
                     <h3>Ayuda</h3>
                     <ul>
-                        <li><a href="#">Preguntas Frecuentes</a></li>
+                        <li><Link to ="PreguntasFrecuentes">Preguntas Frecuentes</Link></li>
                         <li><Link to = '/terminosYCondiciones' >Términos y Condiciones</Link></li>
                         <li><a href="#">Política de Privacidad</a></li>
                     </ul>
