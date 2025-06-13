@@ -1,41 +1,52 @@
+// controller/voluntarioController.js
 const { Voluntario } = require('../model');
 
-// GET - todos los voluntarios
-exports.getVoluntarios = async (req, res) => {
+// Crear voluntario
+const createVoluntario = async (req, res) => {
   try {
-    const data = await Voluntario.find();
-    res.json(data);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    const voluntario = await Voluntario.create({
+      ...req.body,
+      imagen_dni: req.file.filename // El nombre del archivo lo da multer
+    });
+    res.status(201).json(voluntario);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 };
 
-// POST - crear voluntario
-exports.createVoluntario = async (req, res) => {
+// Obtener todos
+const getVoluntarios = async (req, res) => {
   try {
-    const nuevo = await Voluntario.create(req.body);
-    res.status(201).json(nuevo);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+    const voluntarios = await Voluntario.find();
+    res.json(voluntarios);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };
 
-// PUT - actualizar voluntario
-exports.updateVoluntario = async (req, res) => {
+// Actualizar
+const updateVoluntario = async (req, res) => {
   try {
     const actualizado = await Voluntario.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.json(actualizado);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
 };
 
-// DELETE - eliminar voluntario
-exports.deleteVoluntario = async (req, res) => {
+// Eliminar
+const deleteVoluntario = async (req, res) => {
   try {
     await Voluntario.findByIdAndDelete(req.params.id);
     res.json({ mensaje: 'Voluntario eliminado' });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
+};
+
+module.exports = {
+  createVoluntario,
+  getVoluntarios,
+  updateVoluntario,
+  deleteVoluntario
 };

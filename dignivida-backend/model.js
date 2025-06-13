@@ -14,16 +14,16 @@ const User = mongoose.model('User', baseUserSchema);
 
 // schema de voluntario
 const voluntarioSchema = new Schema({
-  experiencia: String,
-  zonas: [String]
+  imagen_dni: { type: String, required: true},
 });
 
 const Voluntario = User.discriminator('voluntario', voluntarioSchema);
 
 // schema de beneficiario
 const beneficiarioSchema = new Schema({
-  
-  necesidad: String
+  sexo: String,
+  discapacidad: { type: String, required: true},
+  descripcion: String,
 });
 
 const Beneficiario = User.discriminator('beneficiario', beneficiarioSchema);

@@ -5,8 +5,6 @@ function RegistroVoluntario (){
     const {
         formData,
         comunas,
-        isLoading,
-        showDescripcion,
         showComuna,
         updateField,
         handleSubmit,
