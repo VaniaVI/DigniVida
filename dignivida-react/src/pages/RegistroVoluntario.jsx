@@ -130,7 +130,7 @@ function RegistroVoluntario (){
                     
                     <div class="form-group form-checkbox">
                         <input type="checkbox" id="terminos" name="terminos" required/>
-                        <label for="terminos">Acepto los <a href="#">Términos y Condiciones</a> y la <a href="#">Política de Privacidad</a></label>
+                        <label for="terminos">Acepto los <Link to = '/terminosYCondiciones'>Términos y Condiciones</Link> y la <Link to = '/politicasDePrivacidad'>Política de Privacidad</Link></label>
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-block">Registrarme</button>
