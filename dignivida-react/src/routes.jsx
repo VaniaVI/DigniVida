@@ -7,6 +7,7 @@ import VerificacionSms from './pages/verificacionsms';
 import BeneficiarioDashboard from './pages/BeneficiarioDashboard';
 import VoluntarioDashboard from './pages/VoluntarioDashboard';
 import VoluntarioTareas from './pages/voluntarioTareas';
+import PerfilVoluntario from './pages/perfilVoluntario';
 import VoluntarioOportunidades from './pages/voluntarioOportunidades';
 import BeneficiarioSoliAcompañamiento from './pages/BenSoliciReact'
 import BeneficiarioSolicitadoReact from './pages/BeneficiarioSolicitadoReact';
@@ -29,6 +30,7 @@ export const router = createBrowserRouter(
             <Route path="/beneficiarioDashboard" element={<BeneficiarioDashboard />} />
             <Route path="/VoluntarioDashboard" element={<VoluntarioDashboard />} />
             <Route path="/voluntarioTareas" element={<VoluntarioTareas />} />
+            <Route path="/PerfilVoluntario" element={<PerfilVoluntario />} />
             <Route path="/voluntarioOportunidades" element={<VoluntarioOportunidades />} />
             <Route path="/beneficiarioSolicitaAcompa" element={<BeneficiarioSoliAcompañamiento/>} />
             <Route path="/beneficiarioSolicitado" element={<BeneficiarioSolicitadoReact />} />
