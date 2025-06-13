@@ -78,7 +78,7 @@ const PreguntasFrecuentes = () => {
       <div className="faq-contact-info">
         <h3>¿No encontraste lo que buscabas?</h3>
         <p>Si aún tienes preguntas o necesitas ayuda adicional, no dudes en contactarnos directamente.</p>
-        <a href="/contacto" className="btn btn-primary">Contactar Soporte</a>
+        
       </div>
     </div>
   );
