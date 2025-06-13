@@ -15,7 +15,7 @@ import PerfilBeneficiario from './pages/PerfilBeneficiario/PerfilBeneficiario';
 import BeneficiarioSeguimiento from './pages/BeneficiarioSeguimiento';
 import RegistroVoluntario from './pages/RegistroVoluntario';
 import TerminosYCondiciones from './pages/TerminosYCondiciones';
-
+import PreguntasFrecuentes from './pages/PreguntasFrecuentes';
 import PoliticasDePrivacidad from './pages/PoliticasDePrivacidad';
 
 export const router = createBrowserRouter(
@@ -40,6 +40,9 @@ export const router = createBrowserRouter(
             <Route path="/registroVoluntario" element={<RegistroVoluntario />} /> 
             <Route path="/terminosYCondiciones" element={<TerminosYCondiciones />} /> 
             <Route path="/politicasDePrivacidad" element={<PoliticasDePrivacidad />} />             
+            <Route path="/PreguntasFrecuentes" element={<PreguntasFrecuentes />} />
+
+
             
         </Route>
         </>

@@ -1233,3 +1233,198 @@
     }
 }
 }
+/* --- ESTILOS PARA PREGUNTAS FRECUENTES (FAQs) --- */
+
+/* Contenedor principal de FAQs */
+.faq-container {
+  /* Ya deberías tener estilos para '.container' que centren y limiten el ancho */
+  /* Si no, agrega aquí un max-width, margin: 0 auto, padding, etc. */
+  margin-top: 50px; /* Espacio superior */
+  margin-bottom: 50px; /* Espacio inferior */
+  background-color: white; /* Fondo blanco, similar a tus tarjetas */
+  border-radius: 15px; /* Bordes redondeados */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Sombra suave */
+  padding: 30px;
+}
+
+/* Encabezado de la sección de FAQs */
+.faq-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee; /* Línea divisoria suave */
+}
+
+.faq-header h1 {
+  font-size: 2.8em; /* Tamaño de título grande */
+  color: #333; /* Color de texto oscuro */
+  margin-bottom: 15px;
+}
+
+.faq-header p {
+  font-size: 1.1em;
+  color: #666; /* Color de texto más claro */
+  line-height: 1.6;
+}
+
+/* Lista de preguntas y respuestas */
+.faq-list {
+  margin-bottom: 40px;
+}
+
+/* Ítem individual de FAQ (pregunta y respuesta) */
+.faq-item {
+  background-color: #f8f8f8; /* Fondo ligeramente gris para ítems cerrados */
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: hidden; /* Importante para la animación de altura */
+  transition: all 0.3s ease-in-out;
+}
+
+.faq-item.open {
+  background-color: #e6e6fa; /* Fondo cuando el ítem está abierto (similar a tus colores) */
+  border-color: #1a6b43; /* Color del borde para el estado abierto, puedes usar tu azul/morado */
+  /* Reemplaza #007bff con el color primario de tu BeneficiarioDashboard si es diferente al morado del voluntario.
+     Por ejemplo, si tu color primario del beneficiario es un azul: #007bff o un verde: #28a745 */
+}
+
+/* Botón de la pregunta (área cliqueable) */
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 18px 25px; /* Ajusta el padding */
+  background-color: transparent;
+  border: none;
+  font-size: 1.15em; /* Tamaño de fuente de la pregunta */
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+  color: #135c31; /* Color al pasar el mouse (el mismo que uses para el borde abierto) */
+}
+
+/* Icono +/- en la pregunta */
+.faq-icon {
+  font-size: 1.6em; /* Tamaño del icono */
+  font-weight: bold;
+  margin-left: 15px;
+  color: #195829; /* Color del icono (el mismo que uses para el borde abierto) */
+  transition: transform 0.3s ease;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(180deg); /* Gira el icono cuando la pregunta está abierta */
+}
+
+/* Contenedor de la respuesta (para la animación de altura) */
+.faq-answer-wrapper {
+  max-height: 0; /* Oculta la respuesta por defecto */
+  overflow: hidden;
+  transition: max-height 0.5s ease-out; /* Animación suave al abrir/cerrar */
+}
+
+.faq-item.open .faq-answer-wrapper {
+  max-height: 500px; /* Altura máxima cuando está abierto (ajusta si tus respuestas son muy largas) */
+}
+
+/* Texto de la respuesta */
+.faq-answer {
+  padding: 0 25px 20px 25px; /* Padding inferior y lateral de la respuesta */
+  font-size: 1em;
+  color: #555;
+  line-height: 1.7;
+}
+
+/* Sección de información de contacto */
+.faq-contact-info {
+  text-align: center;
+  background-color: #f0f8ff; /* Un fondo suave para esta sección, similar al azul de tu btn-primary si lo tienes */
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px dashed #aaddff; /* Borde punteado */
+}
+
+.faq-contact-info h3 {
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.faq-contact-info p {
+  font-size: 1.1em;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* Puedes reutilizar los estilos de .btn y .btn-primary que ya tienes en EstilosBeneficiarioReact.css */
+/* Si no los tienes definidos globalmente, asegúrate de que existan en este CSS. */
+/* Ejemplo de cómo podrían ser tus botones en EstilosBeneficiarioReact.css: */
+/*
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff; // O el azul/color primario de tu Beneficiario Dashboard
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; // Tono más oscuro al pasar el mouse
+  transform: translateY(-2px);
+}
+*/
+
+/* Media Queries para Responsividad (adapta desde tus otros CSS) */
+@media (max-width: 768px) {
+  .faq-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .faq-header h1 {
+    font-size: 2.2em;
+  }
+
+  .faq-header p {
+    font-size: 1em;
+  }
+
+  .faq-question {
+    padding: 15px 20px;
+    font-size: 1.1em;
+  }
+
+  .faq-answer {
+    padding: 0 20px 15px 20px;
+    font-size: 0.95em;
+  }
+
+  .faq-contact-info h3 {
+    font-size: 1.5em;
+  }
+
+  .faq-contact-info p {
+    font-size: 1em;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.95em;
+  }
+}
