@@ -1284,7 +1284,7 @@
 
 .faq-item.open {
   background-color: #e6e6fa; /* Fondo cuando el ítem está abierto (similar a tus colores) */
-  border-color: #007bff; /* Color del borde para el estado abierto, puedes usar tu azul/morado */
+  border-color: #09530d; /* Color del borde para el estado abierto, puedes usar tu azul/morado */
   /* Reemplaza #007bff con el color primario de tu BeneficiarioDashboard si es diferente al morado del voluntario.
      Por ejemplo, si tu color primario del beneficiario es un azul: #007bff o un verde: #28a745 */
 }
@@ -1307,7 +1307,7 @@
 }
 
 .faq-question:hover {
-  color: #007bff; /* Color al pasar el mouse (el mismo que uses para el borde abierto) */
+  color: #0e641a; /* Color al pasar el mouse (el mismo que uses para el borde abierto) */
 }
 
 /* Icono +/- en la pregunta */
@@ -1315,7 +1315,7 @@
   font-size: 1.6em; /* Tamaño del icono */
   font-weight: bold;
   margin-left: 15px;
-  color: #007bff; /* Color del icono (el mismo que uses para el borde abierto) */
+  color: #136917; /* Color del icono (el mismo que uses para el borde abierto) */
   transition: transform 0.3s ease;
 }
 
