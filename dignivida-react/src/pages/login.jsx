@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useRef } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
+    const modalRef = useRef(null);
     const navigate = useNavigate();
+
+    const openModal = () => setIsOpen(true);
+    const closeModal = () => setIsOpen(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -48,13 +53,40 @@ export default function Login() {
                                 required
                             />
                         </div>
-                        <button type="submit" className="btn btn-primary btn-block">Ingresar</button>
+                        <div className="auth-link">
+                            <p>
+                                ¿No tienes cuenta?{' '}
+                                <button type="button" className="link-button" onClick={openModal}>
+                                    Regístrate
+                                </button>
+                            </p>
+                        </div>
                     </form>
-                    <div className="auth-link">
-                        <p>¿No tienes cuenta? <a href="registro-pasajero.html" id="btn-registro-link">Regístrate</a></p>
-                    </div>
+                    {isOpen && (
+                        <div className="modal-overlay" ref={modalRef}>
+                            <div className="modal-content">
+                                <span className="close-modal" onClick={closeModal}>
+                                    &times;
+                                </span>
+                                <h2 className="auth-title">Elige tipo de registro</h2>
+                                <p className="auth-subtitle">Selecciona el tipo de cuenta que deseas crear</p>
+                                <div className="user-type-selection">
+                                    <Link to="/registroBeneficiario" className="user-type-card">
+                                        <img src="https://cdn-icons-png.flaticon.com/128/7433/7433296.png" alt="Beneficiario" />
+                                        <h3>Beneficiario</h3>
+                                        <p>Adultos mayores que necesitan apoyo</p>
+                                    </Link>
+                                    <Link to="/registroVoluntario" className="user-type-card">
+                                        <img src="https://cdn-icons-png.flaticon.com/128/4148/4148613.png" alt="Voluntario" />
+                                        <h3>Voluntario</h3>
+                                        <p>Personas que quieren ayudar</p>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </main>
         </div>
-    );
+    )
 }
