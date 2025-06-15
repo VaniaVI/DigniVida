@@ -24,7 +24,7 @@ const sections = [
   },
 ];
 
-const TerminosYCondiciones = () => (
+const TerminosYCondicionesregben = () => (
   <section className="auth-section" style={{ background: 'var(--background-alt)' }}>
     <div className="auth-container" style={{ maxWidth: 700 }}>
       <h1 className="section-title" style={{ marginBottom: 30 }}>Términos y Condiciones</h1>
@@ -70,10 +70,10 @@ const TerminosYCondiciones = () => (
         ))}
       </div>
       <div style={{ textAlign: 'center', marginTop: 40 }}>
-        <Link to = '/' className="btn btn-primary btn-large" style={{ borderRadius: 8 }}>Volver</Link>
+        <Link to = '/registroBeneficiario' className="btn btn-primary btn-large" style={{ borderRadius: 8 }}>Volver</Link>
       </div>
     </div>
   </section>
 );
 
-export default TerminosYCondiciones;
+export default TerminosYCondicionesregben;

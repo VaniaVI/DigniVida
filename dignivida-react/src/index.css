@@ -510,3 +510,110 @@ a:hover {
     }
 }
 
+.address-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.address-option input[type="checkbox"] {
+  margin: 0;
+  accent-color: var(--primary-color);
+  width: 25px;
+  height: 17px;
+}
+
+.address-option input[type="radio"] {
+  margin: 0; /* Elimina margen por defecto del navegador */
+}
+
+/* 2. Input deshabilitado con fondo suave
+   - Cuando el campo está desactivado (por ejemplo, usando la dirección de casa), se ve gris claro y no editable */
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background-color: #f0f0f0 !important; /* Fondo gris suave */
+  color: var(--text-light) !important;  /* Texto gris claro */
+  cursor: not-allowed;                  /* Cursor de no permitido */
+  opacity: 1;
+}
+
+select {
+    background-color: white !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    padding: 12px;
+}
+/* Unifica el foco verde para todos los campos de formulario */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 2px rgba(46, 139, 87, 0.15); /* Sombra verde suave opcional */
+}
+
+/* --- MEJORas ESTÉTICAS Y TIPOGRÁFICAS --- */
+
+/* Títulos más elegantes y con sombreado sutil */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 3px rgba(46, 139, 87, 0.05);
+}
+
+/* Párrafos y textos generales más legibles */
+body, p, label, input, select, textarea, .user-name, .status-text, .detail-item {
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  
+}
+
+/* Inputs y selects más suaves y modernos */
+input, select, textarea {
+  background-color: #fff;
+  color: var(--text-color);
+  border: 1.5px solid var(--border-color);
+  border-radius: 7px;
+  font-size: 1rem;
+  padding: 13px 14px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(46, 139, 87, 0.13);
+  outline: none;
+}
+
+label {
+  font-weight: 500;
+  color: var(--primary-color);
+  letter-spacing: 0.02em;
+}
+
+/* Botones más modernos */
+.btn, .btn-primary, .btn-outline {
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  font-size: 1.08rem;
+  letter-spacing: 0.03em;
+}
+
+/* Sidebar y cards con títulos destacados */
+.sidebar-card h3, .dashboard-card h3 {
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  font-weight: 600;
+  color: var(--primary-color);
+  letter-spacing: 0.02em;
+}
+
+
+
+

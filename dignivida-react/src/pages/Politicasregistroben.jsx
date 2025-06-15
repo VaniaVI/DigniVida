@@ -52,7 +52,7 @@ const sections = [
   },
 ];
 
-const PoliticasDePrivacidad = () => (
+const Politicasregistroben = () => (
   <section className="auth-section" style={{ background: 'var(--background-alt)' }}>
     <div className="auth-container" style={{ maxWidth: 700 }}>
       <h1 className="section-title" style={{ marginBottom: 30 }}>Políticas y Seguridad</h1>
@@ -85,10 +85,10 @@ const PoliticasDePrivacidad = () => (
         ))}
       </div>
       <div style={{ textAlign: 'center', marginTop: 40 }}>
-        <Link to="/" className="btn btn-primary btn-large" style={{ borderRadius: 8 }}> Volver</Link>
+        <Link to='/registroBeneficiario' className="btn btn-primary btn-large" style={{ borderRadius: 8 }}>Volver</Link>
       </div>
     </div>
   </section>
 );
 
-export default PoliticasDePrivacidad;
+export default Politicasregistroben;
