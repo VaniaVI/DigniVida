@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"; // 🆕 Se agregó useNavigate
 import { Element } from 'react-scroll';
-import { useRegistroBeneficiario } from "../hooks/useRegistroBeneficiario"
+import { useRegistroBeneficiario } from "../hooks/useRegistroBeneficiario";
 
 function RegistroBeneficiarioReact() {
   const {
@@ -13,20 +13,21 @@ function RegistroBeneficiarioReact() {
     handleSubmit,
     getErrorMessage,
     hasError,
-  } = useRegistroBeneficiario()
+  } = useRegistroBeneficiario();
+
+  const navigate = useNavigate(); // 🆕 Hook de navegación para redirigir programáticamente
 
   const onSubmit = async (e) => {
-    const success = await handleSubmit(e)
+    const success = await handleSubmit(e);
     if (success) {
-      // Aquí puedes redirigir o mostrar mensaje de éxito
       console.log("Registro exitoso");
-      
-      // Si quieres redirigir automáticamente, descomenta la siguiente línea:
-      // window.location.href = "/verificacionsms"
+
+      // 🆕 Redirección automática tras registro exitoso
+      navigate("/verificacionsms");
     } else {
-      alert("Error al registrar. Intenta nuevamente.")
+      alert("Error al registrar. Intenta nuevamente.");
     }
-  }
+  };
 
   return (
     <div className="Registrobenereact">
@@ -37,6 +38,7 @@ function RegistroBeneficiarioReact() {
             <p className="auth-subtitle">Crea tu cuenta para solicitar acompañamiento</p>
 
             <form className="auth-form" onSubmit={onSubmit}>
+              {/* campos del formulario (sin cambios) */}
               <div className="form-group">
                 <label htmlFor="nombre">Nombre Completo</label>
                 <input
@@ -79,8 +81,11 @@ function RegistroBeneficiarioReact() {
                   onChange={(e) => updateField("edad", e.target.value)}
                   required
                   min="60"
+                  max="140"
                 />
-                {hasError("edad") && <span style={{ color: "red", display: "block" }}>{getErrorMessage("edad")}</span>}
+                {hasError("edad") && (
+                  <span style={{ color: "red", display: "block" }}>{getErrorMessage("edad")}</span>
+                )}
               </div>
 
               <div className="form-group">
@@ -97,7 +102,9 @@ function RegistroBeneficiarioReact() {
                   <option value="F">Femenino</option>
                   <option value="?">Prefiero no decirlo</option>
                 </select>
-                {hasError("sexo") && <span style={{ color: "red", display: "block" }}>{getErrorMessage("sexo")}</span>}
+                {hasError("sexo") && (
+                  <span style={{ color: "red", display: "block" }}>{getErrorMessage("sexo")}</span>
+                )}
               </div>
 
               <div className="form-group">
@@ -126,6 +133,7 @@ function RegistroBeneficiarioReact() {
                       placeholder="¿Cuál?"
                       value={formData.descripcionDiscapacidad}
                       onChange={(e) => updateField("descripcionDiscapacidad", e.target.value)}
+                      required={formData.discapacidad === "Y"} //validador de descripción
                     />
                     {hasError("descripcionDiscapacidad") && (
                       <span style={{ color: "red", display: "block" }}>
@@ -201,16 +209,16 @@ function RegistroBeneficiarioReact() {
                   required
                 />
                 <label htmlFor="terminos">
-                  Acepto los <Link to = '/terminosYCondiciones'>Términos y Condiciones</Link> y la <Link to = '/politicasDePrivacidad'>Política de Privacidad</Link>
+                  Acepto los <Link to="/terminosYCondiciones">Términos y Condiciones</Link> y la <Link to="/politicasDePrivacidad">Política de Privacidad</Link>
                 </label>
                 {hasError("terminos") && (
                   <span style={{ color: "red", display: "block" }}>{getErrorMessage("terminos")}</span>
                 )}
               </div>
 
-            
+              {/* 🆕 Botón de submit ahora solo envía el form. La redirección es con navigate */}
               <button type="submit" className="btn btn-primary btn-block" disabled={isLoading}>
-                <Link to="/verificacionsms" style={{color:'white'}}>{isLoading ? "Registrando..." : "Registrarme"}</Link>
+                {isLoading ? "Registrando..." : "Registrarme"}
               </button>
             </form>
 
@@ -223,7 +231,7 @@ function RegistroBeneficiarioReact() {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
-export default RegistroBeneficiarioReact
+export default RegistroBeneficiarioReact;
