@@ -201,7 +201,7 @@ function RegistroBeneficiarioReact() {
                   required
                 />
                 <label htmlFor="terminos">
-                  Acepto los <Link to = '/terminosyCregBen'>Términos y Condiciones</Link> y la <Link to = '/politicasregistroben'>Política de Privacidad</Link>
+                  Acepto los <Link to = '/terminosYCondiciones'>Términos y Condiciones</Link> y la <Link to = '/politicasDePrivacidad'>Política de Privacidad</Link>
                 </label>
                 {hasError("terminos") && (
                   <span style={{ color: "red", display: "block" }}>{getErrorMessage("terminos")}</span>

@@ -18,9 +18,7 @@ import RegistroVoluntario from './pages/RegistroVoluntario';
 import TerminosYCondiciones from './pages/TerminosYCondiciones';
 import PreguntasFrecuentes from './pages/PreguntasFrecuentes';
 import PoliticasDePrivacidad from './pages/PoliticasDePrivacidad';
-import Politicasregistroben from './pages/Politicasregistroben';
-import TerminosYCondicionesregben from './pages/Terminosregistroben';
-import Politicasregistro from './pages/Politicasregistroben';
+
 
 
 export const router = createBrowserRouter(
@@ -47,8 +45,7 @@ export const router = createBrowserRouter(
             <Route path="/terminosYCondiciones" element={<TerminosYCondiciones />} /> 
             <Route path="/politicasDePrivacidad" element={<PoliticasDePrivacidad />} />             
             <Route path="/PreguntasFrecuentes" element={<PreguntasFrecuentes />} />
-            <Route path="/politicasregistroben" element={<Politicasregistroben/>} />             
-            <Route path="/terminosyCregBen" element={<TerminosYCondicionesregben />} /> 
+
 
 
             

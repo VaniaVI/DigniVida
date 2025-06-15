@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { ScrollRestoration } from "react-router-dom";
 
 const sections = [
   {
@@ -52,43 +53,53 @@ const sections = [
   },
 ];
 
-const PoliticasDePrivacidad = () => (
-  <section className="auth-section" style={{ background: 'var(--background-alt)' }}>
-    <div className="auth-container" style={{ maxWidth: 700 }}>
-      <h1 className="section-title" style={{ marginBottom: 30 }}>Políticas y Seguridad</h1>
-      <p style={{ textAlign: 'center', color: 'var(--text-light)', marginBottom: 35 }}>
-        Conoce nuestras políticas de privacidad y las medidas de seguridad que implementamos para protegerte.
-      </p>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 35 }}>
-        {sections.map(({ title, content, color }, idx) => (
-          <div
-            key={title}
-            style={{
-              borderLeft: `6px solid ${color}`,
-              background: 'var(--background-alt)',
-              borderRadius: 10,
-              padding: '22px 20px',
-              boxShadow: '0 2px 8px var(--shadow-color)',
-              animation: `modalFadeIn 0.4s ${0.1 * idx}s both`,
-            }}
-          >
-            <h2 style={{
-              marginBottom: 8,
-              color: color,
-              fontSize: '1.25rem',
-              fontWeight: 600,
-            }}>
-              {title}
-            </h2>
-            <div style={{ color: 'var(--text-color)' }}>{content}</div>
-          </div>
-        ))}
+const PoliticasDePrivacidad = () => {
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
+  return (
+    <section className="auth-section" style={{ background: 'var(--background-alt)' }}>
+      <ScrollRestoration />
+      <div className="auth-container" style={{ maxWidth: 700 }}>
+        <h1 className="section-title" style={{ marginBottom: 30 }}>Políticas y Seguridad</h1>
+        <p style={{ textAlign: 'center', color: 'var(--text-light)', marginBottom: 35 }}>
+          Conoce nuestras políticas de privacidad y las medidas de seguridad que implementamos para protegerte.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 35 }}>
+          {sections.map(({ title, content, color }, idx) => (
+            <div
+              key={title}
+              style={{
+                borderLeft: `6px solid ${color}`,
+                background: 'var(--background-alt)',
+                borderRadius: 10,
+                padding: '22px 20px',
+                boxShadow: '0 2px 8px var(--shadow-color)',
+                animation: `modalFadeIn 0.4s ${0.1 * idx}s both`,
+              }}
+            >
+              <h2 style={{
+                marginBottom: 8,
+                color: color,
+                fontSize: '1.25rem',
+                fontWeight: 600,
+              }}>
+                {title}
+              </h2>
+              <div style={{ color: 'var(--text-color)' }}>{content}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ textAlign: 'center', marginTop: 40 }}>
+          {/*<Link to="/" className="btn btn-primary btn-large" style={{ borderRadius: 8 }}> Volver</Link>*/}
+          <button onClick={handleGoBack} className="btn btn-primary btn-large" style={{ borderRadius: 8 }}>Volver</button>
+        </div>
       </div>
-      <div style={{ textAlign: 'center', marginTop: 40 }}>
-        <Link to="/" className="btn btn-primary btn-large" style={{ borderRadius: 8 }}> Volver</Link>
-      </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default PoliticasDePrivacidad;
