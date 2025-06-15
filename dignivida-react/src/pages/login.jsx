@@ -56,9 +56,9 @@ export default function Login() {
                         <div className="auth-link">
                             <p>
                                 ¿No tienes cuenta?{' '}
-                                <button type="button" className="link-button" onClick={openModal}>
+                                <a id="btn-registro-link" onClick={openModal}>
                                     Regístrate
-                                </button>
+                                </a>
                             </p>
                         </div>
                     </form>
