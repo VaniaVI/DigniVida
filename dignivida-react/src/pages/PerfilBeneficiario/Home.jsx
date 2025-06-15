@@ -79,23 +79,23 @@ const Home = () => {
         <section id="como-funciona">
             <div className="container">
                 <h2 className="section-title">¿Cómo Funciona?</h2>
-                <div className="services-grid">
-                    <div className="service-card">
+                <div className="steps">
+                    <div className="step">
                         <div className="step-number">1</div>
                         <h3>Regístrate</h3>
                         <p>Crea una cuenta gratuita como usuario o como voluntario.</p>
                     </div>
-                    <div className="service-card">
+                    <div className="step">
                         <div className="step-number">2</div>
                         <h3>Solicita Ayuda</h3>
                         <p>Indica qué tipo de acompañamiento necesitas, fecha y hora.</p>
                     </div>
-                    <div className="service-card">
+                    <div className="step">
                         <div className="step-number">3</div>
                         <h3>Conecta</h3>
                         <p>Te pondremos en contacto con un voluntario disponible.</p>
                     </div>
-                    <div className="service-card">
+                    <div className="step">
                         <div className="step-number">4</div>
                         <h3>Recibe Apoyo</h3>
                         <p>El voluntario te acompañará a donde necesites ir.</p>
