@@ -150,7 +150,7 @@ function RegistroVoluntario (){
                 </form>
                 
                 <div class="auth-footer">
-                    <p>¿Ya tienes una cuenta? <Link to = '/login'>Inicia sesión aquí</Link></p>
+                    <p>¿Ya tienes una cuenta? <Link to = '/login'>Inicia sesión</Link></p>
                 </div>
             </div>
         </div>
