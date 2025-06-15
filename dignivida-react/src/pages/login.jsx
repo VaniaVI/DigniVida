@@ -56,7 +56,7 @@ export default function Login() {
                         <div className="auth-link">
                             <p>
                                 ¿No tienes cuenta?{' '}
-                                <a id="btn-registro-link" onClick={openModal}>
+                                <a  id="btn-registro-link" onClick={openModal}>
                                     Regístrate
                                 </a>
                             </p>
