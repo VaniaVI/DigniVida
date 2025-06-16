@@ -41,7 +41,6 @@ export const router = createBrowserRouter(
             <Route path="/beneficiarioHistorial" element={<BeneficiarioHistorial/>} />  
             <Route path="/perfilBeneficiario" element={<PerfilBeneficiario />} /> 
             <Route path="/beneficiarioSeguimiento" element={<BeneficiarioSeguimiento />} /> 
-            <Route path="/beneficiarioSeguimiento" element={<BeneficiarioSeguimiento />} /> 
             <Route path="/registroVoluntario" element={<RegistroVoluntario />} /> 
             <Route path="/terminosYCondiciones" element={<TerminosYCondiciones />} /> 
             <Route path="/politicasDePrivacidad" element={<PoliticasDePrivacidad />} />             

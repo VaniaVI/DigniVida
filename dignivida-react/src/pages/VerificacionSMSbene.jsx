@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const VerificacionSMSbene = () => {
-  const [timer, setTimer] = useState(60); // 1 minuto en segundos
+  const [timer, setTimer] = useState(5); // 1 minuto en segundos
   const [inputs, setInputs] = useState(["", "", "", "", "", ""]);
   const inputRefs = useRef([]);
   const [verificando, setVerificando] = useState(false);

@@ -13,7 +13,10 @@ const Layout = () => {
         "/verificacionsms",
         "/beneficiarioDashboard",
         "/VoluntarioDashboard",
-        "/voluntarioDashboard"
+        "/voluntarioDashboard",
+        "/beneficiarioSeguimiento",
+        "/beneficiarioSolicitaAcompa",
+        "/beneficiarioHistorial"
 
         // agrega más rutas si lo necesitas
     ];
@@ -26,7 +29,8 @@ const Layout = () => {
         "/terminosYCondiciones",
         "/politicasDePrivacidad",
         "/PreguntasFrecuentes",
-        "/verificacionSMSbene"
+        "/verificacionSMSbene",
+        "/perfilBeneficiario"
  
         
         // agrega más rutas si lo necesitas

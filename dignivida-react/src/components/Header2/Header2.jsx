@@ -7,9 +7,9 @@ const Header2 = ({ userName }) => {
 
   // Puedes personalizar estos ítems según lo que deba ver un usuario logeado
   const navItems = [
-    { to: '/dashboard', label: 'Dashboard' },
-    { to: '/perfil', label: 'Mi Perfil' },
-    { to: '/ayuda', label: 'Ayuda' },
+    { to: '/beneficiarioSolicitaAcompa', label: 'Solicitar acompañamiento' },
+    { to: '/beneficiarioHistorial', label: 'Mi Historial' },
+    { to: '/perfilBeneficiario', label: 'Mi Perfil' },
   ];
 
   return (
