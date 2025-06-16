@@ -46,10 +46,6 @@ export const router = createBrowserRouter(
             <Route path="/politicasDePrivacidad" element={<PoliticasDePrivacidad />} />             
             <Route path="/preguntasFrecuentes" element={<PreguntasFrecuentes />} />
             <Route path="/verificacionSMSbene" element={<VerificacionSMSbene />} />
-
-
-
-            
         </Route>
         </>
     )
