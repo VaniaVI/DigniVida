@@ -1,17 +1,17 @@
-//BENEFICIARIO
+//VOLUNTARIO
 
-import './Header2.css';
+import './Header3.css';
 import { Link, useLocation } from 'react-router-dom';
 
-const Header2 = ({ userName }) => {
+const Header3 = ({ userName }) => {
   const location = useLocation();
-  const isHome = location.pathname === '/beneficiarioDashboard';
+  const isHome = location.pathname === '/voluntarioioDashboard';
 
   // Puedes personalizar estos ítems según lo que deba ver un usuario logeado
   const navItems = [
-    { to: '/beneficiarioSolicitaAcompa', label: 'Solicitar acompañamiento' },
-    { to: '/beneficiarioHistorial', label: 'Mi Historial' },
-    { to: '/perfilBeneficiario', label: 'Mi Perfil' },
+    { to: '/beneficiarioSolicitaAcompa', label: ' volun' },
+    { to: '/beneficiarioHistorial', label: 'Mi volun' },
+    { to: '/perfilBeneficiario', label: 'Mi volun' },
   ];
 
   return (
@@ -22,7 +22,7 @@ const Header2 = ({ userName }) => {
         </div>
         <nav>
           <ul>
-            <li><Link to="/beneficiarioDashboard">Inicio</Link></li>
+            <li><Link to="/voluntarioDashboard">Inicio</Link></li>
             {navItems.map(item => (
               <li key={item.to}>
                 <Link to={item.to}>{item.label}</Link>
@@ -43,4 +43,4 @@ const Header2 = ({ userName }) => {
   );
 };
 
-export default Header2;
+export default Header3;

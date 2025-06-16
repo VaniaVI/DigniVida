@@ -77,7 +77,7 @@ const VoluntarioDashboard = () => {
               </div>
               <h3>Mi Perfil</h3>
               <p>Actualiza tu disponibilidad, habilidades y datos de contacto.</p>
-              <Link to="/PerfilVoluntario" className="btn btn-primary">
+              <Link to="/perfilVoluntario" className="btn btn-primary">
                 Editar Perfil
               </Link>
             </div>

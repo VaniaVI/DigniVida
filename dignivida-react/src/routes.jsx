@@ -32,9 +32,9 @@ export const router = createBrowserRouter(
             <Route path="/registroBeneficiario" element={<RegistroBeneficiarioReact />} />
             <Route path="/verificacionsms" element={<VerificacionSms />} />
             <Route path="/beneficiarioDashboard" element={<BeneficiarioDashboard />} />
-            <Route path="/VoluntarioDashboard" element={<VoluntarioDashboard />} />
+            <Route path="/voluntarioDashboard" element={<VoluntarioDashboard />} />
             <Route path="/voluntarioTareas" element={<VoluntarioTareas />} />
-            <Route path="/PerfilVoluntario" element={<PerfilVoluntario />} />
+            <Route path="/perfilVoluntario" element={<PerfilVoluntario />} />
             <Route path="/voluntarioOportunidades" element={<VoluntarioOportunidades />} />
             <Route path="/beneficiarioSolicitaAcompa" element={<BeneficiarioSoliAcompañamiento/>} />
             <Route path="/beneficiarioSolicitado" element={<BeneficiarioSolicitadoReact />} />
@@ -44,7 +44,7 @@ export const router = createBrowserRouter(
             <Route path="/registroVoluntario" element={<RegistroVoluntario />} /> 
             <Route path="/terminosYCondiciones" element={<TerminosYCondiciones />} /> 
             <Route path="/politicasDePrivacidad" element={<PoliticasDePrivacidad />} />             
-            <Route path="/PreguntasFrecuentes" element={<PreguntasFrecuentes />} />
+            <Route path="/preguntasFrecuentes" element={<PreguntasFrecuentes />} />
             <Route path="/verificacionSMSbene" element={<VerificacionSMSbene />} />
 
 

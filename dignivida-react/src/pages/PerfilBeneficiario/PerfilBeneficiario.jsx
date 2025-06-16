@@ -169,8 +169,9 @@ const PerfilBeneficiario = () => {
                   <input type="password" id="repetir-clave" placeholder="********" />
                 </div>
                 <div className="form-actions">
-                  <button type="submit" className="btn btn-primary">Actualizar Contraseña</button>
+                  <button type="submit" className="btn btn-primary" onClick={() => alert('¡Tu contraseña se actualizó correctamente!')}>Actualizar Contraseña</button>
                 </div>
+
               </form>
             </div>
           </div>

@@ -626,3 +626,31 @@ label {
   color: var(--primary-dark); /* Color del enlace al pasar el cursor */
 }
 
+.status-badge {
+  padding: 0.35rem 1.1rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: #fff;
+  display: inline-block;
+  margin-right: 8px;
+  margin-bottom: 0;
+}
+
+.status-confirmada {
+  background-color: var(--primary-color); /* Verde mar */
+}
+
+.status-pendiente {
+  background-color: #f39c12; /* Naranja */
+}
+
+.status-cancelada {
+  background-color: #e74c3c; /* Rojo */
+}
+
+.status-completada {
+  background-color: #27ae60; /* Verde éxito */
+}
+

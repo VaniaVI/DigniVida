@@ -26,7 +26,7 @@ const Home = () => {
                 <h2>Dignivida es amor, cuidado y bienestar</h2>
                 <p>Conectamos adultos mayores y personas con discapacidad con voluntarios comprometidos que los acompañarán a citas médicas, trámites bancarios y más.</p>
                 <div className="hero-buttons">
-                    <Link to="/beneficiarioSolicitaAcompa" className="btn btn-primary btn-large">Solicitar Acompañamiento</Link>
+                    <Link to="/login" className="btn btn-primary btn-large">Solicitar Acompañamiento</Link>
                     {/* <a href="/registro-beneficiario.html" className="btn btn-primary btn-large">Solicitar Acompañamiento</a> */}
                     <Link to="/registroVoluntario" className="btn btn-secondary btn-large" id="btn-ser-voluntario">Ser Voluntario</Link>
                 </div>
