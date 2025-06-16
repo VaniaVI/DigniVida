@@ -53,6 +53,9 @@ export default function Login() {
                                 required
                             />
                         </div>
+                        <button type="submit" className="btn btn-primary btn-block" >
+                            <Link to="/verificacionSMSbene" style={{color:'white'}}> Iniciar sesión</Link>
+                        </button>
                         <div className="auth-link">
                             <p>
                                 ¿No tienes cuenta?{' '}
