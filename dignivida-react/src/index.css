@@ -654,3 +654,11 @@ label {
   background-color: #27ae60; /* Verde éxito */
 }
 
+.status-badge.pendiente {
+  background-color: #f39c12; /* Naranja, bien visible */
+  color: #fff;
+}
+
+#preg, #termin,  #poli {
+    cursor:help
+}

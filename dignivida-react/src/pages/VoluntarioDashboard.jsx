@@ -1,5 +1,6 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./EstilosBeneficiarioReact.css"
+import "./EstilosBeneficiarioReact.css";
 
 const VoluntarioDashboard = () => {
   // Aquí podrías añadir lógica para cargar datos del voluntario
@@ -13,6 +14,7 @@ const VoluntarioDashboard = () => {
       tipo: "Trámite bancario",
       beneficiario: "Juan Pérez",
       estado: "Pendiente",
+      descripcion: "Acompañamiento a sucursal bancaria para realizar trámites de pensión.",
     },
     {
       id: 2,
@@ -21,9 +23,32 @@ const VoluntarioDashboard = () => {
       tipo: "Visita médica (CESFAM)",
       beneficiario: "María Gómez",
       estado: "Pendiente",
+      descripcion: "Acompañamiento a control médico mensual en CESFAM La Florida.",
     },
   ];
-  const horasVoluntariado = 45; // Ejemplo de horas acumuladas
+  const horasVoluntariado = 45;
+
+  // Estados para el modal de detalles
+  const [modalAbierto, setModalAbierto] = useState(false);
+  const [tareaDetalle, setTareaDetalle] = useState(null);
+
+  const abrirModal = (tarea) => {
+    setTareaDetalle(tarea);
+    setModalAbierto(true);
+    setTimeout(() => {
+      const modal = document.querySelector('.modal');
+      if (modal) modal.style.display = 'flex';
+    }, 10);
+  };
+
+  const cerrarModal = () => {
+    setModalAbierto(false);
+    setTareaDetalle(null);
+    setTimeout(() => {
+      const modal = document.querySelector('.modal');
+      if (modal) modal.style.display = 'none';
+    }, 200);
+  };
 
   return (
     <div className="VoluntarioDashboard">
@@ -43,7 +68,7 @@ const VoluntarioDashboard = () => {
             <div className="dashboard-card">
               <div className="card-icon">
                 <img
-                  src="https://cdn-icons-png.flaticon.com/128/992/992451.png" // Icono de lista de tareas
+                  src="https://cdn-icons-png.flaticon.com/128/992/992451.png"
                   alt="Icono tareas"
                 />
               </div>
@@ -57,7 +82,7 @@ const VoluntarioDashboard = () => {
             <div className="dashboard-card">
               <div className="card-icon">
                 <img
-                  src="https://cdn-icons-png.flaticon.com/128/942/942748.png" // Icono de oportunidades
+                  src="https://cdn-icons-png.flaticon.com/128/942/942748.png"
                   alt="Icono oportunidades"
                 />
               </div>
@@ -71,7 +96,7 @@ const VoluntarioDashboard = () => {
             <div className="dashboard-card">
               <div className="card-icon">
                 <img
-                  src="https://cdn-icons-png.flaticon.com/128/166/166256.png" // Icono de perfil (similar al del beneficiario)
+                  src="https://cdn-icons-png.flaticon.com/128/166/166256.png"
                   alt="Icono perfil"
                 />
               </div>
@@ -83,7 +108,7 @@ const VoluntarioDashboard = () => {
             </div>
           </div>
 
-          {/* Sección de Resumen de Actividad / Próximas Tareas */}
+          {/* Resumen de Actividad */}
           <div className="activity-summary">
             <h3>Resumen de Actividad</h3>
             <div className="summary-cards">
@@ -91,18 +116,16 @@ const VoluntarioDashboard = () => {
                 <h4>Horas de Voluntariado Acumuladas</h4>
                 <p className="summary-value">{horasVoluntariado} horas</p>
                 <img
-                  src="https://cdn-icons-png.flaticon.com/128/921/921591.png" // Icono de reloj/tiempo
+                  src="https://cdn-icons-png.flaticon.com/128/921/921591.png"
                   alt="Icono horas"
                   className="summary-icon"
                 />
               </div>
-              {/* Podrías añadir más tarjetas aquí, como: */}
               <div className="summary-card">
                 <h4>Acompañamientos Realizados</h4>
-                <p className="summary-value">12</p>{" "}
-                {/* Ejemplo: número de acompañamientos */}
+                <p className="summary-value">12</p>
                 <img
-                  src="https://cdn-icons-png.flaticon.com/128/2921/2921935.png" // Icono de personas/ayuda
+                  src="https://cdn-icons-png.flaticon.com/128/2921/2921935.png"
                   alt="Icono acompañamientos"
                   className="summary-icon"
                 />
@@ -118,7 +141,7 @@ const VoluntarioDashboard = () => {
                 {proximasTareas.map((tarea) => (
                   <div key={tarea.id} className="task-card">
                     <div className="task-header">
-                      <span className={`status-badge ${tarea.estado.toLowerCase()}`}>
+                      <span className={`status-badge pendiente`}>
                         {tarea.estado}
                       </span>
                       <h4>
@@ -133,9 +156,12 @@ const VoluntarioDashboard = () => {
                         <strong>Hora:</strong> {tarea.hora}
                       </div>
                     </div>
-                    <Link to={`/voluntarioTareas/${tarea.id}`} className="btn btn-secondary btn-small">
+                    <button
+                      className="btn btn-secondary btn-small"
+                      onClick={() => abrirModal(tarea)}
+                    >
                       Ver Detalles
-                    </Link>
+                    </button>
                   </div>
                 ))}
               </div>
@@ -145,6 +171,42 @@ const VoluntarioDashboard = () => {
           </div>
         </div>
       </section>
+
+      {/* MODAL DE DETALLES */}
+      {modalAbierto && tareaDetalle && (
+        <div className="modal" style={{ display: "flex" }}>
+          <div className="modal-content">
+            <span className="close-modal" onClick={cerrarModal}>&times;</span>
+            <h2 className="auth-title" style={{ marginBottom: 10 }}>
+              Detalles de la Tarea
+            </h2>
+            <span
+              className={`status-badge pendiente`}
+              style={{
+                marginBottom: 15,
+                display: "inline-block"
+              }}
+            >
+              {tareaDetalle.estado}
+            </span>
+            <div style={{ marginBottom: 15 }}>
+              <strong>Tipo:</strong> {tareaDetalle.tipo}<br />
+              <strong>Beneficiario:</strong> {tareaDetalle.beneficiario}<br />
+              <strong>Fecha:</strong> {tareaDetalle.fecha}<br />
+              <strong>Hora:</strong> {tareaDetalle.hora}<br />
+            </div>
+            <div style={{ marginBottom: 15 }}>
+              <strong>Descripción:</strong>
+              <p style={{ marginTop: 5 }}>
+                {tareaDetalle.descripcion ? tareaDetalle.descripcion : "Sin descripción adicional."}
+              </p>
+            </div>
+            <button className="btn btn-primary" onClick={cerrarModal}>
+              Cerrar
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

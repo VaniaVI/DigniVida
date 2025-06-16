@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './EstilosBeneficiarioReact.css'; 
 
 const PreguntasFrecuentes = () => {
   // Estado para controlar qué pregunta está abierta en el acordeón
   const [openQuestionId, setOpenQuestionId] = useState(null);
+  const navigate = useNavigate();
 
   // Datos de las preguntas frecuentes
   const faqs = [
@@ -54,6 +56,11 @@ const PreguntasFrecuentes = () => {
     setOpenQuestionId(openQuestionId === id ? null : id);
   };
 
+  // Función para volver atrás
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
     <div className="faq-container">
       <div className="faq-header">
@@ -78,7 +85,16 @@ const PreguntasFrecuentes = () => {
       <div className="faq-contact-info">
         <h3>¿No encontraste lo que buscabas?</h3>
         <p>Si aún tienes preguntas o necesitas ayuda adicional, no dudes en contactarnos directamente.</p>
-        
+      </div>
+
+      <div style={{ textAlign: "center", marginTop: 32 }}>
+        <button
+          onClick={handleGoBack}
+          className="btn btn-primary btn-large"
+          style={{ borderRadius: 8 }}
+        >
+          Volver
+        </button>
       </div>
     </div>
   );

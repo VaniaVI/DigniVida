@@ -9,9 +9,10 @@ const Header3 = ({ userName }) => {
 
   // Puedes personalizar estos ítems según lo que deba ver un usuario logeado
   const navItems = [
-    { to: '/beneficiarioSolicitaAcompa', label: ' volun' },
-    { to: '/beneficiarioHistorial', label: 'Mi volun' },
-    { to: '/perfilBeneficiario', label: 'Mi volun' },
+
+    { to: '/voluntarioTareas', label: 'Tareas' },
+    { to: '/voluntarioOportunidades', label: ' Oportunidades' },    
+    { to: '/perfilVoluntario', label: 'Mi perfil' },
   ];
 
   return (
