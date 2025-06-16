@@ -15,14 +15,14 @@ function RegistroBeneficiarioReact() {
     hasError,
   } = useRegistroBeneficiario();
 
-  const navigate = useNavigate(); // 🆕 Hook de navegación para redirigir programáticamente
+  const navigate = useNavigate(); // Hook de navegación para redirigir programáticamente
 
   const onSubmit = async (e) => {
     const success = await handleSubmit(e);
     if (success) {
       console.log("Registro exitoso");
 
-      // 🆕 Redirección automática tras registro exitoso
+      // Redirección automática tras registro exitoso
       navigate("/verificacionsms");
     } else {
       alert("Error al registrar. Intenta nuevamente.");
@@ -54,21 +54,29 @@ function RegistroBeneficiarioReact() {
                 )}
               </div>
 
-              <div className="form-group">
-                <label htmlFor="telefono">Teléfono</label>
-                <input
-                  type="text"
-                  id="telefono"
-                  name="telefono"
-                  placeholder="+56 9 XXXX XXXX"
-                  value={formData.telefono}
-                  onChange={(e) => updateField("telefono", e.target.value)}
-                  required
-                />
-                {hasError("telefono") && (
-                  <span style={{ color: "red", display: "block" }}>{getErrorMessage("telefono")}</span>
-                )}
-              </div>
+<div className="form-group">
+  <label htmlFor="telefono">Teléfono</label>
+  <input
+    type="text"
+    id="telefono"
+    name="telefono"
+    placeholder="+56 9 XXXX XXXX"
+    value={formData.telefono}
+    onInput={(e) => {
+      // Solo permite números y máximo 9 caracteres
+      const value = e.target.value.replace(/\D/g, "").slice(0, 9);
+      updateField("telefono", value);
+    }}
+    required
+  />
+  {hasError("telefono") && (
+    <span style={{ color: "red", display: "block" }}>
+      {getErrorMessage("telefono")}
+    </span>
+  )}
+</div>
+
+
 
               <div className="form-group">
                 <label htmlFor="edad">Edad</label>
