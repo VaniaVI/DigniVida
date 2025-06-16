@@ -1,161 +1,286 @@
-import {Link} from 'react-router-dom'
-import { useRegistroBeneficiario } from "../hooks/useRegistroBeneficiario"
+import React from "react";
+import { Link } from "react-router-dom";
+import { useRegistroBeneficiario } from "../hooks/useRegistroBeneficiario";
 
-function RegistroVoluntario (){ 
-    const {
-        formData,
-        comunas,
-        showComuna,
-        updateField,
-        handleSubmit,
-        getErrorMessage,
-        hasError,
-    } = useRegistroBeneficiario()
+function RegistroVoluntario() {
+  const {
+    formData,
+    comunas,
+    showComuna,
+    isLoading,
+    updateField,
+    handleSubmit,
+    getErrorMessage,
+    hasError,
+  } = useRegistroBeneficiario();
 
-    const onSubmit = async (e) => {
-        const success = await handleSubmit(e)
-        if (success) {
-        // Aquí puedes redirigir o mostrar mensaje de éxito
-        console.log("Registro exitoso");
-        
-        // Si quieres redirigir automáticamente, descomenta la siguiente línea:
-        // window.location.href = "/verificacionsms"
-        } else {
-        alert("Error al registrar. Intenta nuevamente.")
-        }
+  const [fileName, setFileName] = React.useState("Ningún archivo seleccionado");
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [generalError, setGeneralError] = React.useState("");
+
+  const handleFileChange = (e) => {
+    if (e.target.files.length > 0) {
+      setFileName(e.target.files[0].name);
+      updateField("documento", e.target.files[0]);
+    } else {
+      setFileName("Ningún archivo seleccionado");
     }
+  };
 
-    return(
+  const validateAllFields = () => {
+    if (
+      !formData.nombre ||
+      !formData.telefono ||
+      !formData.edad ||
+      !formData.region ||
+      (showComuna && !formData.comuna) ||
+      !formData.documento ||
+      !document.getElementById("terminos").checked
+    ) {
+      setGeneralError("Debes completar todos los campos obligatorios antes de continuar.");
+      return false;
+    }
+    setGeneralError("");
+    return true;
+  };
 
-    <section class="auth-section">
-        <div class="container">
-            <div class="auth-container">
-                <h2 class="auth-title">Registro de Voluntario</h2>
-                <p class="auth-subtitle">Crea tu cuenta para ofrecer acompañamiento</p>
-                
-                <form class="auth-form" onSubmit={onSubmit}>
-                    <div class="form-group">
-                        <label for="nombre">Nombre Completo</label>
-                        <input type="text" id="nombre" name="nombre"value={formData.nombre} onChange={(e) => updateField("nombre", e.target.value)} required/>
-                        {hasError("nombre") && (
-                            <span style={{ color: "red", display: "block" }}>{getErrorMessage("nombre")}</span>
-                        )}
-                    </div>
-                    
-                    <div className="form-group">
-                    <label htmlFor="telefono">Teléfono</label>
-                    <input
-                        type="text"
-                        id="telefono"
-                        name="telefono"
-                        placeholder="+56 9 XXXX XXXX"
-                        value={formData.telefono}
-                        onChange={(e) => updateField("telefono", e.target.value)}
-                        required
-                    />
-                    {hasError("telefono") && (
-                        <span style={{ color: "red", display: "block" }}>{getErrorMessage("telefono")}</span>
-                    )}
-                    </div>
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (!validateAllFields()) {
+      return;
+    }
+    setIsSubmitting(true);
+    const success = await handleSubmit(e);
+    setIsSubmitting(false);
+    if (success) {
+      console.log("Registro exitoso");
+      // window.location.href = "/verificacionsms";
+    } else {
+      alert("Error al registrar. Intenta nuevamente.");
+    }
+  };
 
-                    <div className="form-group">
-                      <label htmlFor="edad">Edad</label>
-                      <input
-                        type="number"
-                        id="edad"
-                        name="edad"
-                        placeholder="Ingresa tu edad"
-                        value={formData.edad}
-                        onChange={(e) => updateField("edad", e.target.value)}
-                        required
-                        min="60"
-                      />
-                      {hasError("edad") && <span style={{ color: "red", display: "block" }}>{getErrorMessage("edad")}</span>}
-                    </div>
-                    
-<div className="form-group">
-                <label htmlFor="region">Región</label>
-                <select
-                  id="region"
-                  name="region"
-                  value={formData.region}
-                  onChange={(e) => updateField("region", e.target.value)}
-                  required
+  return (
+    <section className="auth-section">
+      <div className="container">
+        <div className="auth-container">
+          <h2 className="auth-title">Registro de Voluntario</h2>
+          <p className="auth-subtitle">
+            Crea tu cuenta para ofrecer acompañamiento
+          </p>
+
+          <form className="auth-form" onSubmit={onSubmit} autoComplete="off">
+            {generalError && (
+              <div className="form-general-error">
+                {generalError}
+              </div>
+            )}
+
+            {/* Nombre */}
+            <div className="form-group">
+              <label htmlFor="nombre">Nombre Completo</label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                value={formData.nombre}
+                onChange={(e) => updateField("nombre", e.target.value)}
+                required
+                aria-describedby={hasError("nombre") ? "nombre-error" : undefined}
+                autoComplete="name"
+              />
+              {hasError("nombre") && (
+                <span
+                  id="nombre-error"
+                  className="form-error"
                 >
-                  <option value="">Selecciona tu región</option>
-                  <option value="arica-y-parinacota">Arica y Parinacota</option>
-                  <option value="tarapaca">Tarapacá</option>
-                  <option value="antofagasta">Antofagasta</option>
-                  <option value="atacama">Atacama</option>
-                  <option value="coquimbo">Coquimbo</option>
-                  <option value="valparaiso">Valparaíso</option>
-                  <option value="ohiggins">Libertador Bernardo O'Higgins</option>
-                  <option value="maule">Maule</option>
-                  <option value="nuble">Ñuble</option>
-                  <option value="biobio">Biobío</option>
-                  <option value="araucania">La Araucanía</option>
-                  <option value="los-rios">Los Ríos</option>
-                  <option value="los-lagos">Los Lagos</option>
-                  <option value="aysen">Aysén</option>
-                  <option value="magallanes">Magallanes</option>
-                  <option value="metropolitana">Metropolitana de Santiago</option>
+                  {getErrorMessage("nombre")}
+                </span>
+              )}
+            </div>
+
+            {/* Teléfono */}
+            <div className="form-group">
+              <label htmlFor="telefono">Teléfono</label>
+              <input
+                type="tel"
+                id="telefono"
+                name="telefono"
+                placeholder="9 1234 5678"
+                value={formData.telefono}
+                onChange={(e) => updateField("telefono", e.target.value)}
+                pattern="^9\d{8}$"
+                title="Debe tener el formato 9XXXXXXXX"
+                required
+                aria-describedby={hasError("telefono") ? "telefono-error" : undefined}
+                autoComplete="tel"
+              />
+              {hasError("telefono") && (
+                <span
+                  id="telefono-error"
+                  className="form-error"
+                >
+                  {getErrorMessage("telefono")}
+                </span>
+              )}
+            </div>
+
+            {/* Edad */}
+            <div className="form-group">
+              <label htmlFor="edad">Edad</label>
+              <input
+                type="number"
+                id="edad"
+                name="edad"
+                placeholder="Ingresa tu edad"
+                value={formData.edad}
+                onChange={(e) => updateField("edad", e.target.value)}
+                required
+                min="60"
+                aria-describedby={hasError("edad") ? "edad-error" : undefined}
+                autoComplete="off"
+              />
+              {hasError("edad") && (
+                <span
+                  id="edad-error"
+                  className="form-error"
+                >
+                  {getErrorMessage("edad")}
+                </span>
+              )}
+            </div>
+
+            {/* Región */}
+            <div className="form-group">
+              <label htmlFor="region">Región</label>
+              <select
+                id="region"
+                name="region"
+                value={formData.region}
+                onChange={(e) => updateField("region", e.target.value)}
+                required
+                aria-describedby={hasError("region") ? "region-error" : undefined}
+              >
+                <option value="">Selecciona tu región</option>
+                <option value="arica-y-parinacota">Arica y Parinacota</option>
+                <option value="tarapaca">Tarapacá</option>
+                <option value="antofagasta">Antofagasta</option>
+                <option value="atacama">Atacama</option>
+                <option value="coquimbo">Coquimbo</option>
+                <option value="valparaiso">Valparaíso</option>
+                <option value="ohiggins">Libertador Bernardo O'Higgins</option>
+                <option value="maule">Maule</option>
+                <option value="nuble">Ñuble</option>
+                <option value="biobio">Biobío</option>
+                <option value="araucania">La Araucanía</option>
+                <option value="los-rios">Los Ríos</option>
+                <option value="los-lagos">Los Lagos</option>
+                <option value="aysen">Aysén</option>
+                <option value="magallanes">Magallanes</option>
+                <option value="metropolitana">Metropolitana de Santiago</option>
+              </select>
+              {hasError("region") && (
+                <span
+                  id="region-error"
+                  className="form-error"
+                >
+                  {getErrorMessage("region")}
+                </span>
+              )}
+            </div>
+
+            {/* Comuna */}
+            {showComuna && (
+              <div className="form-group">
+                <label htmlFor="comuna">Comuna</label>
+                <select
+                  id="comuna"
+                  name="comuna"
+                  value={formData.comuna}
+                  onChange={(e) => updateField("comuna", e.target.value)}
+                  required
+                  aria-describedby={hasError("comuna") ? "comuna-error" : undefined}
+                >
+                  <option value="">Selecciona tu comuna</option>
+                  {comunas.map((comuna) => (
+                    <option key={comuna} value={comuna}>
+                      {comuna}
+                    </option>
+                  ))}
                 </select>
-                {hasError("region") && (
-                  <span style={{ color: "red", display: "block" }}>{getErrorMessage("region")}</span>
+                {hasError("comuna") && (
+                  <span
+                    id="comuna-error"
+                    className="form-error"
+                  >
+                    {getErrorMessage("comuna")}
+                  </span>
                 )}
               </div>
+            )}
 
-              {showComuna && (
-                <div className="form-group">
-                  <label htmlFor="comuna">Comuna</label>
-                  <select
-                    id="comuna"
-                    name="comuna"
-                    value={formData.comuna}
-                    onChange={(e) => updateField("comuna", e.target.value)}
-                    required
-                  >
-                    <option value="">Selecciona tu comuna</option>
-                    {comunas.map((comuna) => (
-                      <option key={comuna} value={comuna}>
-                        {comuna}
-                      </option>
-                    ))}
-                  </select>
-                  {hasError("comuna") && (
-                    <span style={{ color: "red", display: "block" }}>{getErrorMessage("comuna")}</span>
-                  )}
-                </div>
-              )}  
-                    
-                    <div class="form-group">
-                        <label for="documento">Subir Documento (DNI/RUT)</label>
-                        <div class="file-upload">
-                            <input type="file" id="documento" name="documento" accept="image/*" required/>
-                            <label for="documento" class="file-upload-label">
-                                <span class="file-upload-icon">📷</span>
-                                <span class="file-upload-text">Seleccionar o tomar foto</span>
-                            </label>
-                            <div class="file-name" id="file-name">Ningún archivo seleccionado</div>
-                        </div>
-                        <small class="form-hint">Sube una foto clara de tu documento de identidad</small>
-                    </div>
-                    
-                    <div class="form-group form-checkbox">
-                        <input type="checkbox" id="terminos" name="terminos" required/>
-                        <label for="terminos">Acepto los <Link to = '/terminosYCondiciones'>Términos y Condiciones</Link> y la <Link to = '/politicasDePrivacidad'>Política de Privacidad</Link></label>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-block">Registrarme</button>
-                </form>
-                
-                <div class="auth-footer">
-                    <p>¿Ya tienes una cuenta? <Link to = '/login'>Inicia sesión</Link></p>
-                </div>
+            {/* Subir Documento */}
+            <div className="form-group">
+              <label htmlFor="documento">Subir Documento (DNI/RUT)</label>
+              <div className="file-upload">
+                <input
+                  type="file"
+                  id="documento"
+                  name="documento"
+                  accept="image/*"
+                  required
+                  onChange={handleFileChange}
+                  style={{ display: "none" }}
+                />
+                <label htmlFor="documento" className="file-upload-label" tabIndex={0}>
+                  <span className="file-upload-icon" role="img" aria-label="Cámara">
+                    📷
+                  </span>
+                  <span className="file-upload-text">Seleccionar o tomar foto</span>
+                </label>
+                <div className="file-name">{fileName}</div>
+              </div>
+              <small className="form-hint">
+                Sube una foto clara de tu documento de identidad
+              </small>
             </div>
+
+            {/* Checkbox de Términos */}
+            <div className="form-group form-checkbox">
+              <input
+                type="checkbox"
+                id="terminos"
+                name="terminos"
+                required
+                style={{ margin: 0 }}
+              />
+              <label htmlFor="terminos">
+                Acepto los{" "}
+                <Link to="/terminosYCondiciones">
+                  Términos y Condiciones
+                </Link>{" "}
+                y la{" "}
+                <Link to="/politicasDePrivacidad">
+                  Política de Privacidad
+                </Link>
+              </label>
+            </div>
+
+            {/* Botón de envío */}
+              <button type="submit" className="btn btn-primary btn-block" disabled={isLoading}>
+                <Link to="/verificacionsms" style={{color:'white'}}>{isLoading ? "Registrando..." : "Registrarme"}</Link>
+              </button>
+          </form>
+
+          <div className="auth-footer">
+            <p>
+              ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
+            </p>
+          </div>
         </div>
+      </div>
     </section>
-    );
-};
+  );
+}
 
 export default RegistroVoluntario;

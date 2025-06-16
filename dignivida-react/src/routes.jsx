@@ -18,6 +18,7 @@ import RegistroVoluntario from './pages/RegistroVoluntario';
 import TerminosYCondiciones from './pages/TerminosYCondiciones';
 import PreguntasFrecuentes from './pages/PreguntasFrecuentes';
 import PoliticasDePrivacidad from './pages/PoliticasDePrivacidad';
+import VerificacionSMSbene from './pages/VerificacionSMSbene';
 
 
 
@@ -45,6 +46,7 @@ export const router = createBrowserRouter(
             <Route path="/terminosYCondiciones" element={<TerminosYCondiciones />} /> 
             <Route path="/politicasDePrivacidad" element={<PoliticasDePrivacidad />} />             
             <Route path="/PreguntasFrecuentes" element={<PreguntasFrecuentes />} />
+            <Route path="/verificacionSMSbene" element={<VerificacionSMSbene />} />
 
 
 

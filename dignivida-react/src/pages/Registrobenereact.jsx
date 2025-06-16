@@ -22,7 +22,7 @@ function RegistroBeneficiarioReact() {
       console.log("Registro exitoso");
       
       // Si quieres redirigir automáticamente, descomenta la siguiente línea:
-      // window.location.href = "/verificacionsms"
+      // window.location.href = "/verificacionSMSbene"
     } else {
       alert("Error al registrar. Intenta nuevamente.")
     }
@@ -210,7 +210,7 @@ function RegistroBeneficiarioReact() {
 
             
               <button type="submit" className="btn btn-primary btn-block" disabled={isLoading}>
-                <Link to="/verificacionsms" style={{color:'white'}}>{isLoading ? "Registrando..." : "Registrarme"}</Link>
+                <Link to="/verificacionSMSbene" style={{color:'white'}}>{isLoading ? "Registrando..." : "Registrarme"}</Link>
               </button>
             </form>
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const VerificacionSMS = () => {
+const VerificacionSMSbene = () => {
   const [timer, setTimer] = useState(60); // 1 minuto en segundos
   const [inputs, setInputs] = useState(["", "", "", "", "", ""]);
   const inputRefs = useRef([]);
@@ -67,7 +67,7 @@ const VerificacionSMS = () => {
     e.preventDefault();
     if (codigoCompleto) {
       alert("¡Código verificado correctamente! Tu cuenta ha sido creada.");
-      navigate("/VoluntarioDashboard"); // Cambia la ruta si tu dashboard tiene otro path
+      navigate("/beneficiarioDashboard"); // Cambia la ruta si tu dashboard tiene otro path
     }
   };
 
@@ -151,4 +151,4 @@ const VerificacionSMS = () => {
   );
 };
 
-export default VerificacionSMS;
+export default VerificacionSMSbene;
