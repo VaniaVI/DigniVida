@@ -4,15 +4,22 @@ const { Voluntario } = require('../model');
 // Crear voluntario
 const createVoluntario = async (req, res) => {
   try {
+    // Verifica si llegó el archivo
+    if (!req.file) {
+      return res.status(400).json({ error: "No se recibió el archivo imagen_dni" });
+    }
+
     const voluntario = await Voluntario.create({
       ...req.body,
-      imagen_dni: req.file.filename // El nombre del archivo lo da multer
+      imagen_dni: req.file.filename // Ya seguro que req.file existe
     });
+
     res.status(201).json(voluntario);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
+
 
 // Obtener todos
 const getVoluntarios = async (req, res) => {
