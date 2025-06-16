@@ -18,6 +18,10 @@ const VoluntarioTareas = () => {
   const [modalAbierto, setModalAbierto] = useState(false);
   const [tareaDetalle, setTareaDetalle] = useState(null);
 
+  // Modal de contacto
+  const [modalContactoAbierto, setModalContactoAbierto] = useState(false);
+  const [contactoActual, setContactoActual] = useState(null);
+
   useEffect(() => {
     const fetchTareas = async () => {
       try {
@@ -86,17 +90,15 @@ const VoluntarioTareas = () => {
         t.id === id ? { ...t, estado: "Completada" } : t
       )
     );
-    // Si el modal está abierto y es esa tarea, ciérralo
     if (tareaDetalle && tareaDetalle.id === id) {
       cerrarModal();
     }
   };
 
-  // Modal: abrir y cerrar
+  // Modal: abrir y cerrar detalles
   const abrirModal = (tarea) => {
     setTareaDetalle(tarea);
     setModalAbierto(true);
-    // Mostrar el modal (display: flex)
     setTimeout(() => {
       const modal = document.querySelector('.modal');
       if (modal) modal.style.display = 'flex';
@@ -106,9 +108,27 @@ const VoluntarioTareas = () => {
   const cerrarModal = () => {
     setModalAbierto(false);
     setTareaDetalle(null);
-    // Ocultar el modal (display: none)
     setTimeout(() => {
       const modal = document.querySelector('.modal');
+      if (modal) modal.style.display = 'none';
+    }, 200);
+  };
+
+  // Modal: abrir y cerrar contacto
+  const abrirModalContacto = (tarea) => {
+    setContactoActual(tarea);
+    setModalContactoAbierto(true);
+    setTimeout(() => {
+      const modal = document.querySelector('.modal-contacto');
+      if (modal) modal.style.display = 'flex';
+    }, 10);
+  };
+
+  const cerrarModalContacto = () => {
+    setModalContactoAbierto(false);
+    setContactoActual(null);
+    setTimeout(() => {
+      const modal = document.querySelector('.modal-contacto');
       if (modal) modal.style.display = 'none';
     }, 200);
   };
@@ -185,7 +205,9 @@ const VoluntarioTareas = () => {
                   </p>
                   <div style={{ display: "flex", gap: "0.8rem", flexWrap: "wrap" }}>
                     {(tarea.estado === 'Confirmada' || tarea.estado === 'Pendiente') && (
-                      <button className="btn btn-secondary">Contactar</button>
+                      <button className="btn btn-secondary" onClick={() => abrirModalContacto(tarea)}>
+                        Contactar
+                      </button>
                     )}
                     {tarea.estado === 'Confirmada' && (
                       <button className="btn btn-primary" onClick={() => abrirModal(tarea)}>
@@ -239,7 +261,9 @@ const VoluntarioTareas = () => {
                 </div>
                 <div style={{ display: "flex", gap: "0.8rem", flexWrap: "wrap" }}>
                   {(tareaDetalle.estado === 'Confirmada' || tareaDetalle.estado === 'Pendiente') && (
-                    <button className="btn btn-secondary">Contactar</button>
+                    <button className="btn btn-secondary" onClick={() => abrirModalContacto(tareaDetalle)}>
+                      Contactar
+                    </button>
                   )}
                   {tareaDetalle.estado === 'Confirmada' && (
                     <button className="btn btn-success" onClick={() => {
@@ -250,6 +274,32 @@ const VoluntarioTareas = () => {
                     </button>
                   )}
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* MODAL DE CONTACTO */}
+          {modalContactoAbierto && contactoActual && (
+            <div className="modal modal-contacto" style={{ display: "flex" }}>
+              <div className="modal-content">
+                <span className="close-modal" onClick={cerrarModalContacto}>&times;</span>
+                <h2 className="auth-title" style={{ marginBottom: 10 }}>
+                  Contactar Beneficiario
+                </h2>
+                <div style={{ marginBottom: 15 }}>
+                  <strong>Beneficiario:</strong> {contactoActual.beneficiario}<br />
+                  <strong>Teléfono:</strong> +56 9 1234 5678<br />
+                  <strong>Email:</strong> maria.perez@email.com
+                </div>
+                <div style={{ marginBottom: 15 }}>
+                  <strong>Mensaje sugerido:</strong>
+                  <p style={{ marginTop: 5 }}>
+                    ¡Hola {contactoActual.beneficiario}! Soy tu voluntario asignado para la tarea de <b>{contactoActual.tipo}</b>. ¿En qué horario prefieres que nos contactemos?
+                  </p>
+                </div>
+                <button className="btn btn-primary" onClick={cerrarModalContacto}>
+                  Cerrar
+                </button>
               </div>
             </div>
           )}
