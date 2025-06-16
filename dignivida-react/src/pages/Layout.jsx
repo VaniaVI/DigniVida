@@ -12,7 +12,8 @@ const Layout = () => {
     const hideHeaderRoutes = [
         "/verificacionsms",
         "/beneficiarioDashboard",
-        "/VoluntarioDashboard"
+        "/VoluntarioDashboard",
+        "/voluntarioDashboard"
 
         // agrega más rutas si lo necesitas
     ];
