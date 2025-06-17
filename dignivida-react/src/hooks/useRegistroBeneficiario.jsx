@@ -1,11 +1,10 @@
-import { useState, useEffect, useCallback } from "react";
-import { useRegionComuna } from "./useRegionComuna"; // 👈 importar hook separado
-import { registrarBeneficiario } from '../services/beneficiarioService';
-
+import { useState } from "react";
 
 export function useRegistroBeneficiario() {
   const [formData, setFormData] = useState({
     nombre: "",
+    email: "",
+    password: "",
     telefono: "",
     edad: "",
     sexo: "",
@@ -18,107 +17,114 @@ export function useRegistroBeneficiario() {
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [comunas, setComunas] = useState([]);
   const [showDescripcion, setShowDescripcion] = useState(false);
+  const [showComuna, setShowComuna] = useState(false);
 
-  // 🧠 Hook que maneja comunas y lógica de región
-  const { comunas, showComuna } = useRegionComuna(formData.region);
+  function updateField(field, value) {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value,
+    }));
 
-  // 👉 Actualizar campos del formulario
-  const updateField = useCallback(
-    (field, value) => {
-      setFormData((prev) => ({ ...prev, [field]: value }));
+    if (field === "discapacidad") setShowDescripcion(value === "Y");
+    if (field === "region") setShowComuna(value !== "");
+  }
 
-      if (errors[field]) {
-        setErrors((prev) => ({ ...prev, [field]: "" }));
-      }
-    },
-    [errors]
-  );
-
-  // ✅ Validaciones
-  const validateForm = useCallback(() => {
+  function validate() {
     const newErrors = {};
 
     if (!formData.nombre.trim()) {
-      newErrors.nombre = "El nombre es requerido";
+      newErrors.nombre = "El nombre es obligatorio";
+    }
+
+    // Validación de email
+    if (!formData.email.trim()) {
+      newErrors.email = "El correo electrónico es obligatorio";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "El correo electrónico debe ser válido y contener un @";
+    }
+
+    // Validación de password
+    if (!formData.password) {
+      newErrors.password = "La contraseña es obligatoria";
+    } else if (
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/.test(formData.password)
+    ) {
+      newErrors.password =
+        "La contraseña debe tener al menos 8 caracteres, incluyendo mayúscula, minúscula, número y un carácter especial";
     }
 
     if (!formData.telefono.trim()) {
-      newErrors.telefono = "El teléfono es requerido";
-    } else if (!/^\d{9}$/.test(formData.telefono.replace(/\s/g, ""))) {
-      newErrors.telefono = "El número debe tener exactamente 9 dígitos";
+      newErrors.telefono = "El teléfono es obligatorio";
     }
 
-    const edad = Number.parseInt(formData.edad);
     if (!formData.edad) {
-      newErrors.edad = "La edad es requerida";
-    } else if (edad < 60) {
+      newErrors.edad = "La edad es obligatoria";
+    } else if (parseInt(formData.edad, 10) < 60) {
       newErrors.edad = "Debes tener al menos 60 años";
     }
 
-    if (!formData.sexo) newErrors.sexo = "Selecciona tu género";
-    if (!formData.discapacidad) newErrors.discapacidad = "Este campo es requerido";
-
-    if (formData.discapacidad === "Y" && !formData.descripcionDiscapacidad.trim()) {
-      newErrors.descripcionDiscapacidad = "Describe tu condición especial";
+    if (!formData.sexo) {
+      newErrors.sexo = "El género es obligatorio";
     }
 
-    if (!formData.region) newErrors.region = "Selecciona tu región";
-    if (!formData.comuna) newErrors.comuna = "Selecciona tu comuna";
+    if (!formData.discapacidad) {
+      newErrors.discapacidad = "Este campo es obligatorio";
+    }
+
+    if (formData.discapacidad === "Y" && !formData.descripcionDiscapacidad.trim()) {
+      newErrors.descripcionDiscapacidad = "Por favor describe tu condición";
+    }
+
+    if (!formData.region) {
+      newErrors.region = "La región es obligatoria";
+    }
+
+    if (showComuna && !formData.comuna) {
+      newErrors.comuna = "La comuna es obligatoria";
+    }
 
     if (!formData.terminos) {
       newErrors.terminos = "Debes aceptar los términos y condiciones";
     }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  }, [formData]);
+    return newErrors;
+  }
 
-  // 🔁 Envío del formulario
-  const handleSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
+  function getErrorMessage(field) {
+    return errors[field] || "";
+  }
 
-      if (!validateForm()) return false;
+  function hasError(field) {
+    return !!errors[field];
+  }
 
-      setIsLoading(true);
-      try {
-        const datos = {
-          ...formData,
-          rol: "beneficiario", // si tu backend espera un rol
-        };
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const validationErrors = validate();
+    setErrors(validationErrors);
 
-        await registrarBeneficiario(datos); // llamada a backend
-        return true;
-      } catch (error) {
-        console.error("❌ Error al registrar beneficiario:", error);
-        return false;
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [formData, validateForm]
-  );
-
-  // 🧠 Mostrar campo descripción discapacidad
-  useEffect(() => {
-    setShowDescripcion(formData.discapacidad === "Y");
-    if (formData.discapacidad !== "Y") {
-      setFormData((prev) => ({ ...prev, descripcionDiscapacidad: "" }));
+    if (Object.keys(validationErrors).length > 0) {
+      return false;
     }
-  }, [formData.discapacidad]);
+
+    setIsLoading(true);
+    // Simulación de envío (reemplaza por tu lógica real)
+    await new Promise(res => setTimeout(res, 1000));
+    setIsLoading(false);
+    return true;
+  }
 
   return {
     formData,
-    errors,
     comunas,
     isLoading,
     showDescripcion,
     showComuna,
     updateField,
     handleSubmit,
-    validateForm,
-    getErrorMessage: (field) => errors[field] || "",
-    hasError: (field) => !!errors[field],
+    getErrorMessage,
+    hasError,
   };
 }
