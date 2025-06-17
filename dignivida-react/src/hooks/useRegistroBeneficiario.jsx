@@ -1,37 +1,43 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useRegionComuna } from "./useRegionComuna"; // Hook separado para regiones y comunas
 
 export function useRegistroBeneficiario() {
   const [formData, setFormData] = useState({
     nombre: "",
-    email: "",
-    password: "",
     telefono: "",
     edad: "",
+    edad2: "",
     sexo: "",
     discapacidad: "",
     descripcionDiscapacidad: "",
     region: "",
     comuna: "",
     terminos: false,
+    email: "",
+    password: "",
   });
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [comunas, setComunas] = useState([]);
   const [showDescripcion, setShowDescripcion] = useState(false);
-  const [showComuna, setShowComuna] = useState(false);
 
-  function updateField(field, value) {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value,
-    }));
+  // Hook que maneja comunas y lógica de región
+  const { comunas, showComuna } = useRegionComuna(formData.region);
 
-    if (field === "discapacidad") setShowDescripcion(value === "Y");
-    if (field === "region") setShowComuna(value !== "");
-  }
+  // Actualizar campos del formulario
+  const updateField = useCallback(
+    (field, value) => {
+      setFormData((prev) => ({ ...prev, [field]: value }));
 
-  function validate() {
+      if (errors[field]) {
+        setErrors((prev) => ({ ...prev, [field]: "" }));
+      }
+    },
+    [errors]
+  );
+
+  // Validaciones
+  const validateForm = useCallback(() => {
     const newErrors = {};
 
     if (!formData.nombre.trim()) {
@@ -57,74 +63,85 @@ export function useRegistroBeneficiario() {
 
     if (!formData.telefono.trim()) {
       newErrors.telefono = "El teléfono es obligatorio";
+    } else if (!/^\d{9}$/.test(formData.telefono.replace(/\s/g, ""))) {
+      newErrors.telefono = "El número debe tener exactamente 9 dígitos";
     }
 
+    // Edad principal
+    const edad = Number.parseInt(formData.edad, 10);
     if (!formData.edad) {
       newErrors.edad = "La edad es obligatoria";
-    } else if (parseInt(formData.edad, 10) < 60) {
+    } else if (edad < 60) {
       newErrors.edad = "Debes tener al menos 60 años";
     }
 
-    if (!formData.sexo) {
-      newErrors.sexo = "El género es obligatorio";
+    // Edad2 adicional
+    const edad2 = Number.parseInt(formData.edad2, 10);
+    if (!formData.edad2) {
+      newErrors.edad2 = "La edad es obligatoria";
+    } else if (edad2 < 18) {
+      newErrors.edad2 = "Debes tener al menos 60 años";
     }
 
-    if (!formData.discapacidad) {
-      newErrors.discapacidad = "Este campo es obligatorio";
-    }
+    if (!formData.sexo) newErrors.sexo = "Selecciona tu género";
+    if (!formData.discapacidad) newErrors.discapacidad = "Este campo es obligatorio";
 
     if (formData.discapacidad === "Y" && !formData.descripcionDiscapacidad.trim()) {
       newErrors.descripcionDiscapacidad = "Por favor describe tu condición";
     }
 
-    if (!formData.region) {
-      newErrors.region = "La región es obligatoria";
-    }
-
-    if (showComuna && !formData.comuna) {
-      newErrors.comuna = "La comuna es obligatoria";
-    }
+    if (!formData.region) newErrors.region = "Selecciona tu región";
+    if (showComuna && !formData.comuna) newErrors.comuna = "Selecciona tu comuna";
 
     if (!formData.terminos) {
       newErrors.terminos = "Debes aceptar los términos y condiciones";
     }
 
-    return newErrors;
-  }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  }, [formData, showComuna]);
 
-  function getErrorMessage(field) {
-    return errors[field] || "";
-  }
-
-  function hasError(field) {
-    return !!errors[field];
-  }
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const validationErrors = validate();
-    setErrors(validationErrors);
-
-    if (Object.keys(validationErrors).length > 0) {
-      return false;
+  // Mostrar campo descripción discapacidad
+  useEffect(() => {
+    setShowDescripcion(formData.discapacidad === "Y");
+    if (formData.discapacidad !== "Y") {
+      setFormData((prev) => ({ ...prev, descripcionDiscapacidad: "" }));
     }
+  }, [formData.discapacidad]);
 
-    setIsLoading(true);
-    // Simulación de envío (reemplaza por tu lógica real)
-    await new Promise(res => setTimeout(res, 1000));
-    setIsLoading(false);
-    return true;
-  }
+  // Envío del formulario
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+
+      if (!validateForm()) return false;
+
+      setIsLoading(true);
+      try {
+        // Aquí iría tu lógica de envío, por ejemplo:
+        // await registrarBeneficiario(formData);
+        return true;
+      } catch (error) {
+        console.error("❌ Error al registrar beneficiario:", error);
+        return false;
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [formData, validateForm]
+  );
 
   return {
     formData,
+    errors,
     comunas,
     isLoading,
     showDescripcion,
     showComuna,
     updateField,
     handleSubmit,
-    getErrorMessage,
-    hasError,
+    validateForm,
+    getErrorMessage: (field) => errors[field] || "",
+    hasError: (field) => !!errors[field],
   };
 }

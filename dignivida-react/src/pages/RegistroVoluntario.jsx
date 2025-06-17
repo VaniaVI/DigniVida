@@ -175,25 +175,25 @@ function RegistroVoluntario() {
 
             {/* Edad */}
             <div className="form-group">
-              <label htmlFor="edad">Edad</label>
+              <label htmlFor="edad2">Edad</label>
               <input
                 type="number"
-                id="edad"
-                name="edad"
+                id="edad2"
+                name="edad2"
                 placeholder="Ingresa tu edad"
-                value={formData.edad}
-                onChange={(e) => updateField("edad", e.target.value)}
+                value={formData.edad2}
+                onChange={(e) => updateField("edad2", e.target.value)}
                 required
-                min="60"
-                aria-describedby={hasError("edad") ? "edad-error" : undefined}
+                min="18"
+                aria-describedby={hasError("edad2") ? "edad2-error" : undefined}
                 autoComplete="off"
               />
-              {hasError("edad") && (
+              {hasError("edad2") && (
                 <span
-                  id="edad-error"
+                  id="edad2-error"
                   className="form-error"
                 >
-                  {getErrorMessage("edad")}
+                  {getErrorMessage("edad2")}
                 </span>
               )}
             </div>
@@ -299,32 +299,32 @@ function RegistroVoluntario() {
 
             {/* Términos */}
             <div className="form-group form-checkbox">
-              <input
-                type="checkbox"
-                id="terminos"
-                name="terminos"
-                checked={formData.terminos}
-                onChange={(e) => updateField("terminos", e.target.checked)}
-                required
-              />
-              <label htmlFor="terminos">
+              <label htmlFor="terminos" style={{marginBottom: 0, cursor: "pointer"}}>
+                <input
+                  type="checkbox"
+                  id="terminos"
+                  name="terminos"
+                  checked={formData.terminos}
+                  onChange={(e) => updateField("terminos", e.target.checked)}
+                  required
+                  style={{marginRight: "0.5em"}}
+                />
                 Acepto los <Link to='/terminosYCondiciones'>Términos y Condiciones</Link> y la <Link to='/politicasDePrivacidad'>Política de Privacidad</Link>
               </label>
               {hasError("terminos") && (
-                <span className="form-error">
-                  {getErrorMessage("terminos")}
-                </span>
+                <span style={{ color: "red", display: "block" }}>{getErrorMessage("terminos")}</span>
               )}
             </div>
 
-            <button type="submit" className="btn btn-primary btn-block" disabled={isSubmitting || isLoading}>
-              {isSubmitting || isLoading ? "Registrando..." : "Registrarme"}
+
+            <button type="submit" className="btn btn-primary btn-block" disabled={isLoading}>
+              <Link to="/verificacionsms" style={{color:'white'}}>{isLoading ? "Registrando..." : "Registrarme"}</Link>
             </button>
           </form>
 
           <div className="auth-footer">
             <p>
-              ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link>
+              ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
             </p>
           </div>
         </div>
