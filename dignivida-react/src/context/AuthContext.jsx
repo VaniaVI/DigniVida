@@ -1,47 +1,70 @@
 import { createContext, useState, useEffect } from "react";
 import api from "../services/api";
-import { useNavigate } from "react-router-dom";
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const AuthContext = createContext(); // creación del contexto
+// Crear contexto
+export const AuthContext = createContext();
 
-
-const AuthProvider = ({ children }) => { // definición proveedor del contexto
-
+// Proveedor del contexto
+const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
-  // Cargar usuario desde localStorage
+  // Cargar usuario si hay token
   useEffect(() => {
-    const token = localStorage.getItem("token"); // usuario logueado
-    if (token) {
-      api.get("/user")
-        .then((response) => setUser(response.data.data))
-        .catch(() => logout());
-    }
+    const token = localStorage.getItem("token");
+
+    const fetchUser = async () => {
+      try {
+        const res = await api.get("/auth/me");
+        setUser(res.data);
+      } catch {
+        logout();
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    token ? fetchUser() : setLoading(false);
   }, []);
 
-  const login = async (email, password) => {
-    const response = await api.post("/login", { email, password }); // enviar peticion para hacer el login
-    const { token } = response.data;
-    console.log(response)
-    localStorage.setItem("token", token); // se creo la clave "token" y se le asigno un valor del token en el localStorage
-    const profile = await api.get("/user");
-    setUser(profile.data.data);
-    navigate("/profile");
-  };
+  // Login (sin navigate)
+const login = async (email, password) => {
+  try {
+    console.log("👉 Enviando login con:", { email, password });
 
+    const response = await api.post("/auth/login", { email, password });
+    console.log("✅ Respuesta del backend:", response);
+
+    const { token } = response.data;
+    localStorage.setItem("token", token);
+
+    const profile = await api.get("/auth/me", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    setUser(profile.data);
+    console.log("🎯 Perfil cargado:", profile.data);
+
+    // (opcional: redireccionar aquí si no lo haces en otro lado)
+  } catch (error) {
+    console.error("❌ Error en login context:", error);
+    throw new Error("Error en login");
+  }
+};
+
+  // Logout (sin navigate)
   const logout = () => {
-    localStorage.removeItem("token"); // eliminar el token del localStorage
+    localStorage.removeItem("token");
     setUser(null);
-    navigate("/login");
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export default AuthProvider
+export default AuthProvider;

@@ -1,59 +1,94 @@
-// controller/voluntarioController.js
-const { Voluntario } = require('../model');
+import { Voluntario } from '../model.js';
+import bcrypt from 'bcrypt';
 
-// Crear voluntario
-const createVoluntario = async (req, res) => {
+// 📌 Crear voluntario
+export const createVoluntario = async (req, res) => {
   try {
-    // Verifica si llegó el archivo
-    if (!req.file) {
-      return res.status(400).json({ error: "No se recibió el archivo imagen_dni" });
+    const {
+      nombre,
+      email,
+      password,
+      telefono,
+      edad,
+      region,
+      comuna
+    } = req.body;
+
+    if (!nombre || !email || !password || !telefono || !edad || !region || !comuna) {
+      return res.status(400).json({ error: "Todos los campos son obligatorios" });
     }
 
-    const voluntario = await Voluntario.create({
-      ...req.body,
-      imagen_dni: req.file.filename // Ya seguro que req.file existe
+    if (!req.file) {
+      return res.status(400).json({ error: "Debes subir una imagen del DNI" });
+    }
+
+    const voluntarioExistente = await Voluntario.findOne({ email });
+    if (voluntarioExistente) {
+      return res.status(400).json({ error: "Este correo ya está registrado" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const nuevoVoluntario = new Voluntario({
+      nombre,
+      email,
+      password: hashedPassword,
+      telefono,
+      edad,
+      region,
+      comuna,
+      imagen_dni: req.file.filename
     });
 
-    res.status(201).json(voluntario);
+    await nuevoVoluntario.save();
+
+    res.status(201).json({
+      mensaje: "Voluntario registrado exitosamente",
+      voluntario: {
+        id: nuevoVoluntario._id,
+        nombre: nuevoVoluntario.nombre,
+        email: nuevoVoluntario.email,
+        region: nuevoVoluntario.region,
+        comuna: nuevoVoluntario.comuna
+      }
+    });
+
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    console.error("❌ Error al registrar voluntario:", error);
+    res.status(500).json({ error: "Error interno del servidor al registrar voluntario" });
   }
 };
 
-
-// Obtener todos
-const getVoluntarios = async (req, res) => {
+// 📌 Obtener todos los voluntarios
+export const getVoluntarios = async (req, res) => {
   try {
     const voluntarios = await Voluntario.find();
     res.json(voluntarios);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: "Error al obtener voluntarios" });
   }
 };
 
-// Actualizar
-const updateVoluntario = async (req, res) => {
+// 📌 Actualizar voluntario
+export const updateVoluntario = async (req, res) => {
   try {
-    const actualizado = await Voluntario.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(actualizado);
+    const voluntarioActualizado = await Voluntario.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res.json({ mensaje: "Voluntario actualizado", voluntario: voluntarioActualizado });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: "No se pudo actualizar el voluntario" });
   }
 };
 
-// Eliminar
-const deleteVoluntario = async (req, res) => {
+// 📌 Eliminar voluntario
+export const deleteVoluntario = async (req, res) => {
   try {
     await Voluntario.findByIdAndDelete(req.params.id);
-    res.json({ mensaje: 'Voluntario eliminado' });
+    res.json({ mensaje: "Voluntario eliminado correctamente" });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: "No se pudo eliminar el voluntario" });
   }
-};
-
-module.exports = {
-  createVoluntario,
-  getVoluntarios,
-  updateVoluntario,
-  deleteVoluntario
 };

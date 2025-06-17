@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import { Element } from 'react-scroll';
 import { useRegistroBeneficiario } from "../hooks/useRegistroBeneficiario"
 
 function RegistroBeneficiarioReact() {
@@ -20,8 +19,6 @@ function RegistroBeneficiarioReact() {
     if (success) {
       // Aquí puedes redirigir o mostrar mensaje de éxito
       console.log("Registro exitoso");
-      
-      // Si quieres redirigir automáticamente, descomenta la siguiente línea:
       // window.location.href = "/verificacionSMSbene"
     } else {
       alert("Error al registrar. Intenta nuevamente.")
@@ -37,6 +34,7 @@ function RegistroBeneficiarioReact() {
             <p className="auth-subtitle">Crea tu cuenta para solicitar acompañamiento</p>
 
             <form className="auth-form" onSubmit={onSubmit}>
+              {/* Nombre */}
               <div className="form-group">
                 <label htmlFor="nombre">Nombre Completo</label>
                 <input
@@ -52,6 +50,39 @@ function RegistroBeneficiarioReact() {
                 )}
               </div>
 
+              {/* Email */}
+              <div className="form-group">
+                <label htmlFor="email">Correo electrónico</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={(e) => updateField("email", e.target.value)}
+                  required
+                />
+                {hasError("email") && (
+                  <span style={{ color: "red", display: "block" }}>{getErrorMessage("email")}</span>
+                )}
+              </div>
+
+              {/* Contraseña */}
+              <div className="form-group">
+                <label htmlFor="password">Contraseña</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={(e) => updateField("password", e.target.value)}
+                  required
+                />
+                {hasError("password") && (
+                  <span style={{ color: "red", display: "block" }}>{getErrorMessage("password")}</span>
+                )}
+              </div>
+
+              {/* Teléfono */}
               <div className="form-group">
                 <label htmlFor="telefono">Teléfono</label>
                 <input
@@ -68,6 +99,7 @@ function RegistroBeneficiarioReact() {
                 )}
               </div>
 
+              {/* Edad */}
               <div className="form-group">
                 <label htmlFor="edad">Edad</label>
                 <input
@@ -83,6 +115,7 @@ function RegistroBeneficiarioReact() {
                 {hasError("edad") && <span style={{ color: "red", display: "block" }}>{getErrorMessage("edad")}</span>}
               </div>
 
+              {/* Género */}
               <div className="form-group">
                 <label htmlFor="sexo">Selecciona tu género</label>
                 <select
@@ -100,6 +133,7 @@ function RegistroBeneficiarioReact() {
                 {hasError("sexo") && <span style={{ color: "red", display: "block" }}>{getErrorMessage("sexo")}</span>}
               </div>
 
+              {/* Discapacidad */}
               <div className="form-group">
                 <label htmlFor="discapacidad">¿Tienes alguna condición especial?</label>
                 <select
@@ -136,6 +170,7 @@ function RegistroBeneficiarioReact() {
                 )}
               </div>
 
+              {/* Región */}
               <div className="form-group">
                 <label htmlFor="region">Región</label>
                 <select
@@ -168,6 +203,7 @@ function RegistroBeneficiarioReact() {
                 )}
               </div>
 
+              {/* Comuna */}
               {showComuna && (
                 <div className="form-group">
                   <label htmlFor="comuna">Comuna</label>
@@ -191,6 +227,7 @@ function RegistroBeneficiarioReact() {
                 </div>
               )}
 
+              {/* Términos */}
               <div className="form-group form-checkbox">
                 <input
                   type="checkbox"
@@ -201,14 +238,13 @@ function RegistroBeneficiarioReact() {
                   required
                 />
                 <label htmlFor="terminos">
-                  Acepto los <Link to = '/terminosYCondiciones'>Términos y Condiciones</Link> y la <Link to = '/politicasDePrivacidad'>Política de Privacidad</Link>
+                  Acepto los <Link to='/terminosYCondiciones'>Términos y Condiciones</Link> y la <Link to='/politicasDePrivacidad'>Política de Privacidad</Link>
                 </label>
                 {hasError("terminos") && (
                   <span style={{ color: "red", display: "block" }}>{getErrorMessage("terminos")}</span>
                 )}
               </div>
 
-            
               <button type="submit" className="btn btn-primary btn-block" disabled={isLoading}>
                 <Link to="/verificacionSMSbene" style={{color:'white'}}>{isLoading ? "Registrando..." : "Registrarme"}</Link>
               </button>

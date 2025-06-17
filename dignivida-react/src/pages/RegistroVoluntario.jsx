@@ -1,6 +1,5 @@
-// ✅ Limpieza, modularidad y mejores prácticas
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRegistroVoluntario } from "../hooks/useRegistroVoluntario";
 
 function RegistroVoluntario() {
@@ -14,15 +13,21 @@ function RegistroVoluntario() {
     generalError,
     fileName,
     handleFileChange,
+    hasError,
+    getErrorMessage,
   } = useRegistroVoluntario();
 
+  const navigate = useNavigate();
+
   const onSubmit = async (e) => {
+    e.preventDefault();
     const success = await handleSubmit(e);
     if (success) {
-      console.log("Registro exitoso");
-      // window.location.href = "/verificacionsms";
+      navigate("/verificacionsms");
     } else {
+      
       alert("Error al registrar. Intenta nuevamente.");
+      console.error("❌ Error al registrar voluntario:");
     }
   };
 
@@ -31,18 +36,16 @@ function RegistroVoluntario() {
       <div className="container">
         <div className="auth-container">
           <h2 className="auth-title">Registro de Voluntario</h2>
-          <p className="auth-subtitle">
-            Crea tu cuenta para ofrecer acompañamiento
-          </p>
+          <p className="auth-subtitle">Crea tu cuenta para ofrecer acompañamiento</p>
 
           <form className="auth-form" onSubmit={onSubmit} autoComplete="off">
-            {generalError && (
-              <div className="form-general-error">{generalError}</div>
-            )}
+            {generalError && <div className="form-general-error">{generalError}</div>}
 
-            {/* Campos estándar */}
+            {/* Campos básicos */}
             {[
               { id: "nombre", label: "Nombre Completo", type: "text" },
+              { id: "email", label: "Correo Electrónico", type: "email" },
+              { id: "password", label: "Contraseña", type: "password" },
               { id: "telefono", label: "Teléfono", type: "tel", placeholder: "9 1234 5678" },
               { id: "edad", label: "Edad", type: "number", placeholder: "Ingresa tu edad" },
             ].map(({ id, label, type, placeholder }) => (
@@ -53,10 +56,11 @@ function RegistroVoluntario() {
                   id={id}
                   name={id}
                   placeholder={placeholder || ""}
-                  value={formData[id]}
+                  value={formData[id] || ""}
                   onChange={(e) => updateField(id, e.target.value)}
                   required
                 />
+                {hasError(id) && <span className="form-error">{getErrorMessage(id)}</span>}
               </div>
             ))}
 
@@ -71,23 +75,14 @@ function RegistroVoluntario() {
                 required
               >
                 <option value="">Selecciona tu región</option>
-                {["arica-y-parinacota",
-                 "tarapaca", 
-                 "antofagasta", 
-                 "atacama", 
-                 "coquimbo", 
-                 "valparaiso", 
-                 "ohiggins",
-                 "maule", 
-                 "nuble", 
-                 "biobio", 
-                 "araucania", 
-                 "los-rios", 
-                 "los-lagos", 
-                 "aysen", 
-                 "magallanes", 
-                 "metropolitana"].map((region) => (
-                  <option key={region} value={region}>{region.replace(/-/g, " ")}</option>
+                {[
+                  "arica-y-parinacota", "tarapaca", "antofagasta", "atacama", "coquimbo", "valparaiso",
+                  "ohiggins", "maule", "nuble", "biobio", "araucania", "los-rios", "los-lagos", "aysen",
+                  "magallanes", "metropolitana",
+                ].map((region) => (
+                  <option key={region} value={region}>
+                    {region.replace(/-/g, " ")}
+                  </option>
                 ))}
               </select>
             </div>
@@ -105,7 +100,9 @@ function RegistroVoluntario() {
                 >
                   <option value="">Selecciona tu comuna</option>
                   {comunas.map((comuna) => (
-                    <option key={comuna} value={comuna}>{comuna}</option>
+                    <option key={comuna} value={comuna}>
+                      {comuna}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -113,44 +110,48 @@ function RegistroVoluntario() {
 
             {/* Documento */}
             <div className="form-group">
-              <label htmlFor="documento">Subir Documento (DNI/RUT)</label>
-              <div className="file-upload">
-                <input
-                  type="file"
-                  id="documento"
-                  name="documento"
-                  accept="image/*"
-                  required
-                  onChange={handleFileChange}
-                  style={{ display: "none" }}
-                />
-                <label htmlFor="documento" className="file-upload-label" tabIndex={0}>
-                  <span className="file-upload-icon" role="img" aria-label="Cámara">📷</span>
-                  <span className="file-upload-text">Seleccionar o tomar foto</span>
-                </label>
-                <div className="file-name">{fileName}</div>
-              </div>
-              <small className="form-hint">Sube una foto clara de tu documento de identidad</small>
+              <label htmlFor="documento" className="file-upload-label" tabIndex={0}>
+                <span className="file-upload-icon" role="img" aria-label="Cámara">📷</span>
+                <span>{fileName}</span>
+              </label>
+              <input
+                type="file"
+                id="documento"
+                name="documento"
+                accept=".pdf,.jpg,.jpeg,.png"
+                onChange={handleFileChange}
+                style={{ display: "none" }}
+              />
+              <small className="form-hint">Sube una foto clara de tu documento</small>
             </div>
+
 
             {/* Términos */}
             <div className="form-group form-checkbox">
-              <input type="checkbox" id="terminos" name="terminos" required />
+              <input
+                type="checkbox"
+                id="terminos"
+                name="terminos"
+                checked={formData.terminos}
+                onChange={(e) => updateField("terminos", e.target.checked)}
+                required
+              />
               <label htmlFor="terminos">
                 Acepto los <Link to="/terminosYCondiciones">Términos y Condiciones</Link> y la <Link to="/politicasDePrivacidad">Política de Privacidad</Link>
               </label>
+              {hasError("terminos") && (
+                <span className="form-error">{getErrorMessage("terminos")}</span>
+              )}
             </div>
 
-            {/* Botón */}
+            {/* Botón de envío */}
             <button type="submit" className="btn btn-primary btn-block" disabled={isLoading}>
-              <Link to="/verificacionSMSbene" style={{color:'white'}}>{isLoading ? "Registrando..." : "Registrarme"}</Link>
+              {isLoading ? "Registrando..." : "Registrarme"}
             </button>
           </form>
 
           <div className="auth-footer">
-            <p>
-              ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
-            </p>
+            <p>¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link></p>
           </div>
         </div>
       </div>

@@ -1,25 +1,33 @@
-const express = require('express');
-const router = express.Router();
-const multer = require('multer');
-const voluntarioController = require('../controller/voluntarioController');
+import express from 'express';
+import multer from 'multer';
+import {
+  createVoluntario,
+  getVoluntarios,
+  updateVoluntario,
+  deleteVoluntario
+} from '../controller/voluntarioController.js';
 
-// Configuración multer
+const router = express.Router();
+
+// Configuración de almacenamiento con multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // Carpeta donde se guarda la imagen
+    cb(null, 'uploads/');
   },
   filename: function (req, file, cb) {
-    const uniqueName = Date.now() + '-' + file.originalname;
-    cb(null, uniqueName); // Nombre único
+    const uniqueName = `${Date.now()}-${file.originalname}`;
+    cb(null, uniqueName);
   }
 });
 
 const upload = multer({ storage });
 
-// 👉 Usamos multer en la ruta y luego enviamos al controller
-router.post('/', upload.single('imagen_dni'), voluntarioController.createVoluntario);
-router.get('/', voluntarioController.getVoluntarios);
-router.put('/:id', voluntarioController.updateVoluntario);
-router.delete('/:id', voluntarioController.deleteVoluntario);
+// Ruta POST: Registro de voluntario con imagen
+router.post('/', upload.single('documento'), createVoluntario);
 
-module.exports = router;
+// Otras rutas CRUD
+router.get('/', getVoluntarios);
+router.put('/:id', updateVoluntario);
+router.delete('/:id', deleteVoluntario);
+
+export default router;

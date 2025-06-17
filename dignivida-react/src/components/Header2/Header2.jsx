@@ -18,7 +18,7 @@ const Header2 = ({ userName }) => {
     <header>
       <div className="container">
         <div className="logo">
-          <h1>Digni<span>Vida</span></h1>
+          <h1><Link to="/beneficiarioDashboard">Digni<span>Vida</span></Link></h1>
         </div>
         <nav>
           <ul>
