@@ -36,8 +36,8 @@ const VoluntarioOportunidades = () => {
   // Datos simulados con 19 oportunidades
   const datosSimulados = [
     {
-      id: 'op001',
-      tipo: 'acompanar-medico',
+      id: '00001',
+      tipo: 'Apoyo-en-gestiones-medicas',
       tipoLabel: 'Acompañar al médico',
       fecha: '2025-07-25',
       hora: '11:00 AM',
@@ -48,32 +48,32 @@ const VoluntarioOportunidades = () => {
       requiereHabilidades: ['Paciencia'],
     },
     {
-      id: 'op002',
-      tipo: 'visita-banco',
+      id: '00002',
+      tipo: 'tramites',
       tipoLabel: 'Visita al Banco',
       fecha: '2025-07-26',
       hora: '10:00 AM',
       region: 'Metropolitana',
       comuna: 'Puente Alto',
-      descripcion: 'Ayuda con gestión de clave única y retiro de dinero.',
+      descripcion: 'Ayuda con gestión de clave de seguridad y retiro de dinero.',
       beneficiarioAnonimo: 'Adulto Mayor',
       requiereHabilidades: ['Conocimiento bancario'],
     },
     {
-      id: 'op003',
-      tipo: 'ir-parque',
+      id: '00003',
+      tipo: 'salidas',
       tipoLabel: 'Ir al parque',
       fecha: '2025-07-28',
       hora: '16:00 PM',
       region: 'Metropolitana',
-      comuna: 'La Reina',
+      comuna: 'San Ramón',
       descripcion: 'Compañía para un paseo relajante en el Parque Padre Hurtado.',
-      beneficiarioAnonimo: 'Joven con movilidad reducida',
+      beneficiarioAnonimo: 'Abuelito con movilidad reducida',
       requiereHabilidades: ['Conversación', 'Empatía'],
     },
     {
-      id: 'op004',
-      tipo: 'comprar-medicinas',
+      id: '00004',
+      tipo: 'Apoyo-en-gestiones-medicas',
       tipoLabel: 'Comprar medicinas',
       fecha: '2025-07-29',
       hora: '14:00 PM',
@@ -85,20 +85,20 @@ const VoluntarioOportunidades = () => {
     },
     // 15 oportunidades nuevas inventadas
     {
-      id: 'op005',
-      tipo: 'acompanar-medico',
-      tipoLabel: 'Acompañar al médico',
+      id: '00005',
+      tipo: 'tramites',
+      tipoLabel: 'Visita al banco',
       fecha: '2025-08-01',
       hora: '09:00 AM',
       region: 'Valparaíso',
       comuna: 'Viña del Mar',
-      descripcion: 'Acompañar a adulto mayor a consulta médica en clínica local.',
+      descripcion: 'Acompañar a adulto mayor a desbloquear su tarjeta.',
       beneficiarioAnonimo: 'Adulto Mayor',
       requiereHabilidades: ['Paciencia', 'Empatía'],
     },
     {
-      id: 'op006',
-      tipo: 'ir-parque',
+      id: '00006',
+      tipo: 'salidas',
       tipoLabel: 'Ir al parque',
       fecha: '2025-08-02',
       hora: '15:00 PM',
@@ -109,20 +109,20 @@ const VoluntarioOportunidades = () => {
       requiereHabilidades: ['Conversación', 'Apoyo físico'],
     },
     {
-      id: 'op007',
-      tipo: 'comprar-medicinas',
+      id: '00007',
+      tipo: 'Apoyo-en-gestiones-medicas',
       tipoLabel: 'Comprar medicinas',
       fecha: '2025-08-03',
       hora: '11:00 AM',
-      region: 'Biobío',
-      comuna: 'Concepción',
+      region: 'Metropolitana',
+      comuna: 'Colina',
       descripcion: 'Compra de medicamentos para persona mayor con movilidad limitada.',
       beneficiarioAnonimo: 'Adulto Mayor',
       requiereHabilidades: ['Organización', 'Paciencia'],
     },
     {
-      id: 'op008',
-      tipo: 'acompanar-medico',
+      id: '00008',
+      tipo: 'Apoyo-en-gestiones-medicas',
       tipoLabel: 'Acompañar al médico',
       fecha: '2025-08-04',
       hora: '10:30 AM',
@@ -133,8 +133,8 @@ const VoluntarioOportunidades = () => {
       requiereHabilidades: ['Empatía', 'Comunicación'],
     },
     {
-      id: 'op009',
-      tipo: 'ir-parque',
+      id: '00009',
+      tipo: 'salidas',
       tipoLabel: 'Ir al parque',
       fecha: '2025-08-05',
       hora: '17:00 PM',
@@ -145,8 +145,8 @@ const VoluntarioOportunidades = () => {
       requiereHabilidades: ['Conversación'],
     },
     {
-      id: 'op010',
-      tipo: 'comprar-medicinas',
+      id: '00010',
+      tipo: 'Apoyo-en-gestiones-medicas',
       tipoLabel: 'Comprar medicinas',
       fecha: '2025-08-06',
       hora: '13:00 PM',
@@ -157,8 +157,8 @@ const VoluntarioOportunidades = () => {
       requiereHabilidades: ['Organización'],
     },
     {
-      id: 'op011',
-      tipo: 'acompanar-medico',
+      id: '00011',
+      tipo: 'Apoyo-en-gestiones-medicas',
       tipoLabel: 'Acompañar al médico',
       fecha: '2025-08-07',
       hora: '09:30 AM',
@@ -169,8 +169,8 @@ const VoluntarioOportunidades = () => {
       requiereHabilidades: ['Paciencia'],
     },
     {
-      id: 'op012',
-      tipo: 'ir-parque',
+      id: '00012',
+      tipo: 'salidas',
       tipoLabel: 'Ir al parque',
       fecha: '2025-08-08',
       hora: '16:30 PM',
@@ -181,8 +181,8 @@ const VoluntarioOportunidades = () => {
       requiereHabilidades: ['Empatía'],
     },
     {
-      id: 'op013',
-      tipo: 'comprar-medicinas',
+      id: '00013',
+      tipo: 'Apoyo-en-gestiones-medicas',
       tipoLabel: 'Comprar medicinas',
       fecha: '2025-08-09',
       hora: '14:30 PM',
@@ -193,8 +193,8 @@ const VoluntarioOportunidades = () => {
       requiereHabilidades: ['Organización'],
     },
     {
-      id: 'op014',
-      tipo: 'acompanar-medico',
+      id: '00014',
+      tipo: 'Apoyo-en-gestiones-medicas',
       tipoLabel: 'Acompañar al médico',
       fecha: '2025-08-10',
       hora: '10:00 AM',
@@ -205,8 +205,8 @@ const VoluntarioOportunidades = () => {
       requiereHabilidades: ['Paciencia'],
     },
     {
-      id: 'op015',
-      tipo: 'ir-parque',
+      id: '00015',
+      tipo: 'salidas',
       tipoLabel: 'Ir al parque',
       fecha: '2025-08-11',
       hora: '15:00 PM',
@@ -217,8 +217,8 @@ const VoluntarioOportunidades = () => {
       requiereHabilidades: ['Conversación', 'Empatía'],
     },
     {
-      id: 'op016',
-      tipo: 'comprar-medicinas',
+      id: '00016',
+      tipo: 'Apoyo-en-gestiones-medicas',
       tipoLabel: 'Comprar medicinas',
       fecha: '2025-08-12',
       hora: '11:00 AM',
@@ -229,20 +229,20 @@ const VoluntarioOportunidades = () => {
       requiereHabilidades: ['Organización'],
     },
     {
-      id: 'op017',
-      tipo: 'acompanar-medico',
-      tipoLabel: 'Acompañar al médico',
+      id: '00017',
+      tipo: 'Apoyo-en-gestiones-medicas',
+      tipoLabel: 'Acompañar a la ACHS',
       fecha: '2025-08-13',
       hora: '09:00 AM',
       region: 'Metropolitana',
-      comuna: 'Ñuñoa',
-      descripcion: 'Acompañamiento a consulta médica.',
-      beneficiarioAnonimo: 'Persona mayor',
-      requiereHabilidades: ['Paciencia'],
+      comuna: 'Colina',
+      descripcion: 'Acompañamiento a consulta médica persona que no puede comunicarse verbalmente.',
+      beneficiarioAnonimo: 'Persona con discapacidad auditiva',
+      requiereHabilidades: ['Paciencia, Manejo de lenguaje de señas'],
     },
     {
-      id: 'op018',
-      tipo: 'ir-parque',
+      id: '00018',
+      tipo: 'salidas',
       tipoLabel: 'Ir al parque',
       fecha: '2025-08-14',
       hora: '16:00 PM',
@@ -253,8 +253,8 @@ const VoluntarioOportunidades = () => {
       requiereHabilidades: ['Empatía'],
     },
     {
-      id: 'op019',
-      tipo: 'comprar-medicinas',
+      id: '00019',
+      tipo: 'Apoyo-en-gestiones-medicas',
       tipoLabel: 'Comprar medicinas',
       fecha: '2025-08-15',
       hora: '14:00 PM',
@@ -263,6 +263,18 @@ const VoluntarioOportunidades = () => {
       descripcion: 'Compra y entrega de medicamentos.',
       beneficiarioAnonimo: 'Adulto Mayor',
       requiereHabilidades: ['Organización'],
+    },
+    {
+      id: '00020',
+      tipo: 'tramites',
+      tipoLabel: 'Visita al banco',
+      fecha: '2025-08-15',
+      hora: '14:00 PM',
+      region: 'Metropolitana',
+      comuna: 'La Florida',
+      descripcion: 'Pedir crédito de consumo.',
+      beneficiarioAnonimo: 'Adulto Mayor',
+      requiereHabilidades: ['Paciencia, Conocimiento bancario'],
     },
   ];
 
@@ -315,7 +327,7 @@ const VoluntarioOportunidades = () => {
   };
 
   const handlePostular = (oportunidadId) => {
-    alert(`Te has postulado a la oportunidad ${oportunidadId}. ¡Pronto recibirás noticias!`);
+    alert(`Muchas gracias por postular a la solicitud #${oportunidadId}. ¡Pronto recibirás noticias!`);
     setOportunidades(oportunidades.filter(op => op.id !== oportunidadId));
   };
 
@@ -338,9 +350,9 @@ const VoluntarioOportunidades = () => {
             <label htmlFor="tipo">Tipo de Acompañamiento:</label>
             <select id="tipo" name="tipo" value={filtros.tipo} onChange={handleFiltroChange}>
               <option value="">-- Todos --</option>
-              <option value="acompanar-medico">Acompañar al médico</option>
-              <option value="ir-parque">Ir al parque</option>
-              <option value="comprar-medicinas">Comprar medicinas</option>
+              <option value="tramites">Trámites Bancarios</option>
+              <option value="Apoyo-en-gestiones-medicas">Apoyo en gestiones médicas</option>
+              <option value="salidas">Ir al parque</option>
             </select>
           </div>
 

@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function BenSoliciReact() {
   // Simula la dirección de casa guardada en el perfil (puedes traerla de props, contexto, etc.)
-  const direccionCasa = "Av. Siempre Viva 123, Springfield";
+  const direccionCasa = "Los manantiales 23,Chicureo";
 
   const [form, setForm] = useState({
     'tipo-tramite': '',
@@ -101,30 +101,10 @@ function BenSoliciReact() {
                   onChange={handleChange}
                 >
                   <option value="">Selecciona el tipo de trámite</option>
-                  <option value="cesfam">CESFAM</option>
-                  <option value="pension">Pensión</option>
-                  <option value="pago">Pago de cuentas</option>
-                  <option value="otro">Otro</option>
+                  <option value="tramites">Trámites</option>
+                  <option value="Apoyo-en-gestiones-medicas">Apoyo en gestiones médicas</option>
+                  <option value="salidas">Salidas</option>
                 </select>
-              </div>
-
-              <div
-                className="form-group"
-                id="otro-tramite-container"
-                style={{
-                  display: form['tipo-tramite'] === 'otro' ? 'block' : 'none'
-                }}
-              >
-                <label htmlFor="otro-tramite">Especifica el trámite</label>
-                <input
-                  type="text"
-                  id="otro-tramite"
-                  name="otro-tramite"
-                  placeholder="Describe el tipo de trámite"
-                  value={form['otro-tramite']}
-                  onChange={handleChange}
-                  required={form['tipo-tramite'] === 'otro'}
-                />
               </div>
 
               <div className="form-row">
