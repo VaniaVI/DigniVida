@@ -30,6 +30,8 @@ function RegistroVoluntario() {
   const validateAllFields = () => {
     if (
       !formData.nombre ||
+      !formData.email ||
+      !formData.password ||
       !formData.telefono ||
       !formData.edad ||
       !formData.region ||
@@ -95,6 +97,52 @@ function RegistroVoluntario() {
                   className="form-error"
                 >
                   {getErrorMessage("nombre")}
+                </span>
+              )}
+            </div>
+
+            {/* Correo electrónico */}
+            <div className="form-group">
+              <label htmlFor="email">Correo electrónico</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email || ""}
+                onChange={(e) => updateField("email", e.target.value)}
+                required
+                aria-describedby={hasError("email") ? "email-error" : undefined}
+                autoComplete="email"
+              />
+              {hasError("email") && (
+                <span
+                  id="email-error"
+                  className="form-error"
+                >
+                  {getErrorMessage("email")}
+                </span>
+              )}
+            </div>
+
+            {/* Contraseña */}
+            <div className="form-group">
+              <label htmlFor="password">Contraseña</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password || ""}
+                onChange={(e) => updateField("password", e.target.value)}
+                required
+                aria-describedby={hasError("password") ? "password-error" : undefined}
+                autoComplete="new-password"
+              />
+              {hasError("password") && (
+                <span
+                  id="password-error"
+                  className="form-error"
+                >
+                  {getErrorMessage("password")}
                 </span>
               )}
             </div>
@@ -219,62 +267,64 @@ function RegistroVoluntario() {
               </div>
             )}
 
-            {/* Subir Documento */}
+            {/* Documento con fotico */}
             <div className="form-group">
-              <label htmlFor="documento">Subir Documento (DNI/RUT)</label>
-              <div className="file-upload">
+              <label htmlFor="documento" className="file-upload-label" tabIndex={0}>
+                <span className="file-upload-icon" role="img" aria-label="Cámara">
+                  📷
+                </span>
+                <span>
+                  {fileName}
+                </span>
                 <input
                   type="file"
                   id="documento"
                   name="documento"
-                  accept="image/*"
-                  required
+                  accept=".pdf,.jpg,.jpeg,.png"
                   onChange={handleFileChange}
                   style={{ display: "none" }}
+                  required
+                  aria-describedby={hasError("documento") ? "documento-error" : undefined}
                 />
-                <label htmlFor="documento" className="file-upload-label" tabIndex={0}>
-                  <span className="file-upload-icon" role="img" aria-label="Cámara">
-                    📷
-                  </span>
-                  <span className="file-upload-text">Seleccionar o tomar foto</span>
-                </label>
-                <div className="file-name">{fileName}</div>
-              </div>
-              <small className="form-hint">
-                Sube una foto clara de tu documento de identidad
-              </small>
+              </label>
+              {hasError("documento") && (
+                <span
+                  id="documento-error"
+                  className="form-error"
+                >
+                  {getErrorMessage("documento")}
+                </span>
+              )}
             </div>
 
-            {/* Checkbox de Términos */}
+            {/* Términos */}
             <div className="form-group form-checkbox">
               <input
                 type="checkbox"
                 id="terminos"
                 name="terminos"
+                checked={formData.terminos}
+                onChange={(e) => updateField("terminos", e.target.checked)}
                 required
-                style={{ margin: 0 }}
               />
               <label htmlFor="terminos">
-                Acepto los{" "}
-                <Link to="/terminosYCondiciones">
-                  Términos y Condiciones
-                </Link>{" "}
-                y la{" "}
-                <Link to="/politicasDePrivacidad">
-                  Política de Privacidad
-                </Link>
+                Acepto los <Link to='/terminosYCondiciones'>Términos y Condiciones</Link> y la <Link to='/politicasDePrivacidad'>Política de Privacidad</Link>
               </label>
+              {hasError("terminos") && (
+                <span className="form-error">
+                  {getErrorMessage("terminos")}
+                </span>
+              )}
             </div>
 
-            {/* Botón de envío */}
-              <button type="submit" className="btn btn-primary btn-block" disabled={isLoading}>
-                <Link to="/verificacionsms" style={{color:'white'}}>{isLoading ? "Registrando..." : "Registrarme"}</Link>
-              </button>
+            <button type="submit" className="btn btn-primary btn-block" disabled={isSubmitting || isLoading}>
+              {isSubmitting || isLoading ? "Registrando..." : "Registrarme"}
+            </button>
           </form>
 
           <div className="auth-footer">
             <p>
-              ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
+              ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link>
             </p>
           </div>
         </div>

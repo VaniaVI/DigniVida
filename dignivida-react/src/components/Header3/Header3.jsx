@@ -19,7 +19,7 @@ const Header3 = ({ userName }) => {
     <header>
       <div className="container">
         <div className="logo">
-          <h1>Digni<span>Vida</span></h1>
+          <h1><Link to="/voluntarioDashboard">Digni<span>Vida</span></Link></h1>
         </div>
         <nav>
           <ul>
