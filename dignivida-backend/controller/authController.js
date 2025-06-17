@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import { Voluntario } from '../model';
+import { Voluntario } from '../model.js';
 
 // 🟢 LOGIN
 export const loginVoluntario = async (req, res) => {
