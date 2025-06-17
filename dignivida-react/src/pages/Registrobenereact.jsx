@@ -228,7 +228,8 @@ function RegistroBeneficiarioReact() {
               )}
 
               {/* Términos */}
-              <div className="form-group form-checkbox">
+            <div className="form-group form-checkbox">
+              <label htmlFor="terminos" style={{marginBottom: 0, cursor: "pointer"}}>
                 <input
                   type="checkbox"
                   id="terminos"
@@ -236,14 +237,15 @@ function RegistroBeneficiarioReact() {
                   checked={formData.terminos}
                   onChange={(e) => updateField("terminos", e.target.checked)}
                   required
+                  style={{marginRight: "0.5em"}}
                 />
-                <label htmlFor="terminos">
-                  Acepto los <Link to='/terminosYCondiciones'>Términos y Condiciones</Link> y la <Link to='/politicasDePrivacidad'>Política de Privacidad</Link>
-                </label>
-                {hasError("terminos") && (
-                  <span style={{ color: "red", display: "block" }}>{getErrorMessage("terminos")}</span>
-                )}
-              </div>
+                Acepto los <Link to='/terminosYCondiciones'>Términos y Condiciones</Link> y la <Link to='/politicasDePrivacidad'>Política de Privacidad</Link>
+              </label>
+              {hasError("terminos") && (
+                <span style={{ color: "red", display: "block" }}>{getErrorMessage("terminos")}</span>
+              )}
+            </div>
+
 
               <button type="submit" className="btn btn-primary btn-block" disabled={isLoading}>
                 <Link to="/verificacionSMSbene" style={{color:'white'}}>{isLoading ? "Registrando..." : "Registrarme"}</Link>
@@ -252,7 +254,7 @@ function RegistroBeneficiarioReact() {
 
             <div className="auth-footer">
               <p>
-                ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link>
+                ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
               </p>
             </div>
           </div>

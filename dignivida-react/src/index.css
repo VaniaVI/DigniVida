@@ -237,9 +237,9 @@ a:hover {
 }
 
 .form-checkbox {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display:flex;
+    align-items:center;
+    gap: 0.5em;
 }
 
 .form-checkbox input {
