@@ -62,131 +62,7 @@ function RegistroVoluntario() {
                 />
                 {hasError(id) && <span className="form-error">{getErrorMessage(id)}</span>}
               </div>
-<<<<<<< HEAD
-            )}
-
-            {/* Nombre */}
-            <div className="form-group">
-              <label htmlFor="nombre">Nombre Completo</label>
-              <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                value={formData.nombre}
-                onChange={(e) => updateField("nombre", e.target.value)}
-                required
-                aria-describedby={hasError("nombre") ? "nombre-error" : undefined}
-                autoComplete="name"
-              />
-              {hasError("nombre") && (
-                <span
-                  id="nombre-error"
-                  className="form-error"
-                >
-                  {getErrorMessage("nombre")}
-                </span>
-              )}
-            </div>
-
-            {/* Correo electrónico */}
-            <div className="form-group">
-              <label htmlFor="email">Correo electrónico</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email || ""}
-                onChange={(e) => updateField("email", e.target.value)}
-                required
-                aria-describedby={hasError("email") ? "email-error" : undefined}
-                autoComplete="email"
-              />
-              {hasError("email") && (
-                <span
-                  id="email-error"
-                  className="form-error"
-                >
-                  {getErrorMessage("email")}
-                </span>
-              )}
-            </div>
-
-            {/* Contraseña */}
-            <div className="form-group">
-              <label htmlFor="password">Contraseña</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password || ""}
-                onChange={(e) => updateField("password", e.target.value)}
-                required
-                aria-describedby={hasError("password") ? "password-error" : undefined}
-                autoComplete="new-password"
-              />
-              {hasError("password") && (
-                <span
-                  id="password-error"
-                  className="form-error"
-                >
-                  {getErrorMessage("password")}
-                </span>
-              )}
-            </div>
-
-            {/* Teléfono */}
-            <div className="form-group">
-              <label htmlFor="telefono">Teléfono</label>
-              <input
-                type="tel"
-                id="telefono"
-                name="telefono"
-                placeholder="9 1234 5678"
-                value={formData.telefono}
-                onChange={(e) => updateField("telefono", e.target.value)}
-                pattern="^9\d{8}$"
-                title="Debe tener el formato 9XXXXXXXX"
-                required
-                aria-describedby={hasError("telefono") ? "telefono-error" : undefined}
-                autoComplete="tel"
-              />
-              {hasError("telefono") && (
-                <span
-                  id="telefono-error"
-                  className="form-error"
-                >
-                  {getErrorMessage("telefono")}
-                </span>
-              )}
-            </div>
-
-            {/* Edad */}
-            <div className="form-group">
-              <label htmlFor="edad2">Edad</label>
-              <input
-                type="number"
-                id="edad2"
-                name="edad2"
-                placeholder="Ingresa tu edad"
-                value={formData.edad2}
-                onChange={(e) => updateField("edad2", e.target.value)}
-                required
-                min="18"
-                aria-describedby={hasError("edad2") ? "edad2-error" : undefined}
-                autoComplete="off"
-              />
-              {hasError("edad2") && (
-                <span
-                  id="edad2-error"
-                  className="form-error"
-                >
-                  {getErrorMessage("edad2")}
-                </span>
-              )}
-            </div>
-=======
             ))}
->>>>>>> feature/api
 
             {/* Región */}
             <div className="form-group">
@@ -252,28 +128,6 @@ function RegistroVoluntario() {
 
             {/* Términos */}
             <div className="form-group form-checkbox">
-<<<<<<< HEAD
-              <label htmlFor="terminos" style={{marginBottom: 0, cursor: "pointer"}}>
-                <input
-                  type="checkbox"
-                  id="terminos"
-                  name="terminos"
-                  checked={formData.terminos}
-                  onChange={(e) => updateField("terminos", e.target.checked)}
-                  required
-                  style={{marginRight: "0.5em"}}
-                />
-                Acepto los <Link to='/terminosYCondiciones'>Términos y Condiciones</Link> y la <Link to='/politicasDePrivacidad'>Política de Privacidad</Link>
-              </label>
-              {hasError("terminos") && (
-                <span style={{ color: "red", display: "block" }}>{getErrorMessage("terminos")}</span>
-              )}
-            </div>
-
-
-            <button type="submit" className="btn btn-primary btn-block" disabled={isLoading}>
-              <Link to="/verificacionsms" style={{color:'white'}}>{isLoading ? "Registrando..." : "Registrarme"}</Link>
-=======
               <input
                 type="checkbox"
                 id="terminos"
@@ -293,18 +147,11 @@ function RegistroVoluntario() {
             {/* Botón de envío */}
             <button type="submit" className="btn btn-primary btn-block" disabled={isLoading}>
               {isLoading ? "Registrando..." : "Registrarme"}
->>>>>>> feature/api
             </button>
           </form>
 
           <div className="auth-footer">
-<<<<<<< HEAD
-            <p>
-              ¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link>
-            </p>
-=======
             <p>¿Ya tienes una cuenta? <Link to="/login">Inicia sesión aquí</Link></p>
->>>>>>> feature/api
           </div>
         </div>
       </div>
