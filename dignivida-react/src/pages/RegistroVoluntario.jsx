@@ -71,7 +71,22 @@ function RegistroVoluntario() {
                 required
               >
                 <option value="">Selecciona tu región</option>
-                {["arica-y-parinacota", "tarapaca", "antofagasta", "atacama", "coquimbo", "valparaiso", "ohiggins", "maule", "nuble", "biobio", "araucania", "los-rios", "los-lagos", "aysen", "magallanes", "metropolitana"].map((region) => (
+                {["arica-y-parinacota",
+                 "tarapaca", 
+                 "antofagasta", 
+                 "atacama", 
+                 "coquimbo", 
+                 "valparaiso", 
+                 "ohiggins",
+                 "maule", 
+                 "nuble", 
+                 "biobio", 
+                 "araucania", 
+                 "los-rios", 
+                 "los-lagos", 
+                 "aysen", 
+                 "magallanes", 
+                 "metropolitana"].map((region) => (
                   <option key={region} value={region}>{region.replace(/-/g, " ")}</option>
                 ))}
               </select>
@@ -128,7 +143,7 @@ function RegistroVoluntario() {
 
             {/* Botón */}
             <button type="submit" className="btn btn-primary btn-block" disabled={isLoading}>
-              {isLoading ? "Registrando..." : "Registrarme"}
+              <Link to="/verificacionSMSbene" style={{color:'white'}}>{isLoading ? "Registrando..." : "Registrarme"}</Link>
             </button>
           </form>
 

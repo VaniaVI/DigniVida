@@ -1,7 +1,7 @@
 // hooks/useRegistroVoluntario.js
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { useRegionComuna } from "./useRegionComuna";
-// import { registrarVoluntario } from "../services/voluntarioService";
+import { registrarVoluntario } from "../services/voluntarioservice";
 
 export function useRegistroVoluntario() {
   const [formData, setFormData] = useState({
