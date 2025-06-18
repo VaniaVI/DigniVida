@@ -1,3 +1,4 @@
+// ✅ authController.js (completo)
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { Voluntario, Beneficiario } from '../model.js';
@@ -8,11 +9,9 @@ export const login = async (req, res) => {
     const { email, password } = req.body;
     console.log("👉 Email recibido:", email);
 
-    // Buscar en voluntarios
     let usuario = await Voluntario.findOne({ email });
     let rol = "voluntario";
 
-    // Si no lo encuentra, buscar en beneficiarios
     if (!usuario) {
       usuario = await Beneficiario.findOne({ email });
       rol = "beneficiario";
@@ -39,7 +38,8 @@ export const login = async (req, res) => {
 
     console.log("✅ Login exitoso, token generado");
 
-    res.json({ token, rol });
+    res.json({ token, rol }); // debe retornar correctamente voluntario o beneficiario
+    console.log(`✅ authContoller: ${rol} `);
   } catch (error) {
     console.error("🔥 Error inesperado en login:", error);
     res.status(500).json({ error: 'Error al iniciar sesión' });
@@ -65,9 +65,15 @@ export const authMiddleware = async (req, res, next) => {
 // 🔐 Obtener perfil del usuario
 export const getUserProfile = async (req, res) => {
   try {
-    const user = await Voluntario.findById(req.user.id).select('-password');
-    res.json(user);
+    const Model = req.user.rol === 'voluntario' ? Voluntario : Beneficiario;
+    const user = await Model.findById(req.user.id).select('-password');
+
+    // 🛠️ ¡Esta línea es clave!
+    res.json({ ...user.toObject(), rol: req.user.rol });
   } catch (err) {
     res.status(500).json({ error: 'No se pudo obtener el perfil' });
   }
 };
+
+
+

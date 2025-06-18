@@ -18,6 +18,7 @@ function RegistroBeneficiarioReact() {
     const navigate = useNavigate();
 
   const onSubmit = async (e) => {
+    e.preventDefault(); 
     const success = await handleSubmit(e)
     if (success) {
       // Aquí puedes redirigir o mostrar mensaje de éxito
@@ -41,27 +42,29 @@ function RegistroBeneficiarioReact() {
             {generalError && <div className="form-general-error">{generalError}</div>}
 
             {/* Campos básicos */}
-            {[
-              { id: "nombre", label: "Nombre Completo", type: "text" },
-              { id: "email", label: "Correo Electrónico", type: "email" },
-              { id: "password", label: "Contraseña", type: "password" },
-              { id: "telefono", label: "Teléfono", type: "tel", placeholder: "9 1234 5678" },
-              { id: "edad", label: "Edad", type: "number", placeholder: "Ingresa tu edad" },
-            ].map(({ id, label, type, placeholder }) => (
-              <div className="form-group" key={id}>
-                <label htmlFor={id}>{label}</label>
-                <input
-                  type={type}
-                  id={id}
-                  name={id}
-                  placeholder={placeholder || ""}
-                  value={formData[id] || ""}
-                  onChange={(e) => updateField(id, e.target.value)}
-                  required
-                />
-                {hasError(id) && <span className="form-error">{getErrorMessage(id)}</span>}
-              </div>
-            ))}
+              {[
+                { id: "nombre", label: "Nombre Completo", type: "text" },
+                { id: "email", label: "Correo Electrónico", type: "email" },
+                { id: "password", label: "Contraseña", type: "password" },
+                { id: "telefono", label: "Teléfono", type: "tel", placeholder: "9 1234 5678" },
+                { id: "edad", label: "Edad", type: "number", placeholder: "Ingresa tu edad" },
+              ].map(({ id, label, type, placeholder }) => (
+                <div className="form-group" key={id}>
+                  <label htmlFor={id}>{label}</label>
+                  <input
+                    type={type}
+                    id={id}
+                    name={id}
+                    placeholder={placeholder || ""}
+                    value={formData[id] || ""}
+                    onChange={(e) => updateField(id, e.target.value)}
+                    required
+                  />
+                  {hasError(id) && (
+                    <span className="form-error">⚠️ {getErrorMessage(id)}</span>
+                  )}
+                </div>
+              ))}
 
 
               {/* Género */}
