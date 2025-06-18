@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './PerfilBeneficiario.css';
 
 const comunasPorRegion = {
@@ -22,11 +22,36 @@ const comunasPorRegion = {
 
 const PerfilBeneficiario = () => {
   const [activeTab, setActiveTab] = useState("personal");
+
+  // Estados controlados para campos personales
+  const [nombre, setNombre] = useState("");
+  const [telefono, setTelefono] = useState("");
+  const [genero, setGenero] = useState("");
   const [region, setRegion] = useState("metropolitana");
-  const [comuna, setComuna] = useState("Santiago Centro");
+  const [comuna, setComuna] = useState("");
+
+  useEffect(() => {
+    setNombre(localStorage.getItem("nombreUsuario") );
+    setTelefono(localStorage.getItem("telefono") );
+    setGenero(localStorage.getItem("genero") );
+    setRegion(localStorage.getItem("region") );
+    setComuna(localStorage.getItem("comuna"));
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    localStorage.setItem("nombreCompleto", nombre);
+    localStorage.setItem("telefono", telefono);
+    localStorage.setItem("genero", genero);
+    localStorage.setItem("region", region);
+    localStorage.setItem("comuna", comuna);
+    alert("Datos guardados correctamente.");
+  };
+
+  const handleRegionChange = (e) => {
+    const nuevaRegion = e.target.value;
+    setRegion(nuevaRegion);
+    setComuna(""); // reset comuna al cambiar región
   };
 
   return (
@@ -61,21 +86,22 @@ const PerfilBeneficiario = () => {
                 <div className="form-row">
                   <div className="form-group">
                     <label htmlFor="nombre">Nombre Completo</label>
-                    <input type="text" id="nombre" name="nombre" defaultValue="Vania Rodríguez" required />
+                    <input type="text" id="nombre" name="nombre" value={nombre} onChange={e => setNombre(e.target.value)} required />
                   </div>
                   <div className="form-group">
                     <label htmlFor="telefono">Teléfono</label>
-                    <input type="tel" id="telefono" name="telefono" defaultValue="+56 9 1234 5678" required />
+                    <input type="tel" id="telefono" name="telefono" value={telefono} onChange={e => setTelefono(e.target.value)} required />
                   </div>
                 </div>
                 <div className="form-row">
                   <div className="form-group">
                     <label htmlFor="fecha-nacimiento">Fecha de Nacimiento</label>
-                    <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" defaultValue="1945-05-10" required />
+                    <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" defaultValue="" required />
                   </div>
                   <div className="form-group">
                     <label htmlFor="genero">Género</label>
-                    <select id="genero" name="genero" defaultValue="femenino" required>
+                    <select id="genero" name="genero" value={genero} onChange={e => setGenero(e.target.value)} required>
+                      <option value="vacio"></option>
                       <option value="femenino">Femenino</option>
                       <option value="masculino">Masculino</option>
                       <option value="otro">Otro</option>
@@ -85,21 +111,12 @@ const PerfilBeneficiario = () => {
                 </div>
                 <div className="form-group">
                   <label htmlFor="direccion">Dirección Completa</label>
-                  <input type="text" id="direccion" name="direccion" defaultValue="Av. Principal 123, Depto. 45, Ciudad" required />
+                  <input type="text" id="direccion" name="direccion" defaultValue="" required />
                 </div>
                 <div className="form-row">
                   <div className="form-group">
                     <label htmlFor="zona">Región</label>
-                    <select
-                      id="zona"
-                      name="zona"
-                      value={region}
-                      onChange={(e) => {
-                        setRegion(e.target.value);
-                        setComuna(""); // resetear comuna
-                      }}
-                      required
-                    >
+                    <select id="zona" name="zona" value={region} onChange={handleRegionChange} required>
                       <option value="">Selecciona tu región</option>
                       {Object.keys(comunasPorRegion).map((reg) => (
                         <option key={reg} value={reg}>
@@ -110,13 +127,7 @@ const PerfilBeneficiario = () => {
                   </div>
                   <div className="form-group">
                     <label htmlFor="comuna">Comuna</label>
-                    <select
-                      id="comuna"
-                      name="comuna"
-                      value={comuna}
-                      onChange={(e) => setComuna(e.target.value)}
-                      required
-                    >
+                    <select id="comuna" name="comuna" value={comuna} onChange={e => setComuna(e.target.value)} required>
                       <option value="">Selecciona tu comuna</option>
                       {comunasPorRegion[region]?.map((com) => (
                         <option key={com} value={com}>{com}</option>
@@ -130,7 +141,7 @@ const PerfilBeneficiario = () => {
               </form>
             )}
 
-          {/* Información Médica */}
+            {/* Información Médica */}
             <div className={`tab-content ${activeTab === 'medical' ? 'active' : ''}`} id="medical">
               <form onSubmit={handleSubmit} className="profile-form">
                 <div className="form-row">
@@ -253,7 +264,8 @@ const PerfilBeneficiario = () => {
                   <button type="submit" className="btn btn-primary">Cambiar Contraseña</button>
                 </div>
               </form>
-            </div>          </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
