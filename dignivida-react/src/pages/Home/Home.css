@@ -285,6 +285,38 @@
     outline: none;
     border-color: var(--primary-color);
 }
+.hero-image {
+    flex: 1;
+    border-radius: 10px;
+}
+
+/* Es posible que también tengas esto si ya habías hecho alguna modificación */
+/* .hero-image img {
+    border-radius: 10px;
+} */
+ /* Estilos para el contenedor de la imagen en la sección hero */
+.hero-image {
+    flex: 1; /* Mantiene la flexibilidad existente */
+    border-radius: 10px; /* Redondea las esquinas del contenedor */
+    overflow: hidden; /* **Importante:** Recorta el contenido que exceda los bordes redondeados */
+}
+
+.hero-image img {
+    border-radius: 10px;
+    border: 5px solid rgba(50, 50, 50, 0.7); /* Gris oscuro con 70% de opacidad */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.hero-image img:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border-color: rgba(50, 50, 50, 1); /* Se vuelve completamente oscuro al hacer hover */
+}
+
 .volunteer-image {
     flex: 1;
     border-radius: 20px;
