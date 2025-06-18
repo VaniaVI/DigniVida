@@ -1,8 +1,8 @@
 import api from './api';
 
-export const registrarBeneficiario = async (datos) => {
-  return await api.post("/beneficiarios", datos); // sin FormData
-};
+export async function registrarBeneficiario(data) {
+  return await api.post("/beneficiarios", data); 
+}
 
 
 export const obtenerBeneficiarios = async () => {

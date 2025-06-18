@@ -18,6 +18,8 @@ export const createBeneficiario = async (req, res) => {
       terminos
     } = req.body;
 
+    console.log("📥 Backend recibió:", req.body);
+
     // Validación básica
     if (
       !nombre || !email || !password || !telefono || !edad ||
