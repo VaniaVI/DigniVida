@@ -285,3 +285,28 @@
     outline: none;
     border-color: var(--primary-color);
 }
+.volunteer-image {
+    flex: 1;
+    border-radius: 20px;
+}
+.volunteer-image {
+    flex: 1;
+    border-radius: 20px;
+    /* Asegúrate de que la imagen dentro del contenedor también aplique el border-radius si no lo hace por defecto */
+    overflow: hidden; /* Esto es importante para que el border-radius del contenedor afecte a la imagen si no lo hace directamente */
+}
+
+.volunteer-image img {
+    border-radius: 20px; /* Asegura que la imagen tenga los bordes redondeados */
+    border: 5px solid rgba(255, 255, 255, 0.7); /* Borde blanco semi-transparente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombreado ligero */
+    transition: all 0.3s ease-in-out; /* Transición suave para el efecto hover */
+    display: block; /* Asegura que la imagen ocupe todo el espacio disponible */
+    width: 100%; /* Asegura que la imagen se ajuste al contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+.volunteer-image img:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada al pasar el mouse */
+    border-color: white; /* Borde completamente blanco al pasar el mouse */
+}
