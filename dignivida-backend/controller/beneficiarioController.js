@@ -71,9 +71,12 @@ export const createBeneficiario = async (req, res) => {
     });
 
   } catch (error) {
-    console.error("❌ Error al registrar beneficiario:", error);
-    res.status(500).json({ error: "Error interno del servidor al registrar beneficiario" });
-  }
+  console.error("❌ Error al registrar beneficiario:", error.message);
+  res.status(500).json({
+    error: error.message || "Error interno del servidor al registrar beneficiario"
+  });
+}
+
 };
 
 // 📌 Obtener todos los beneficiarios
@@ -108,11 +111,4 @@ export const deleteBeneficiario = async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: "No se pudo eliminar el beneficiario" });
   }
-};
-
-export default {
-  createBeneficiario,
-  getBeneficiarios,
-  updateBeneficiario,
-  deleteBeneficiario
 };

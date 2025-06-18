@@ -84,67 +84,37 @@ export function useRegistroBeneficiario() {
     }
   }, [formData.discapacidad]);
 
-  // ✅ Envío del formulario
-  const handleSubmit = useCallback(async (e) => {
+// En tu useRegistroBeneficiario
+const handleSubmit = useCallback(
+  async (e) => {
     e.preventDefault();
+
     if (!validateForm()) return false;
 
     setIsLoading(true);
-    setGeneralError("");
-
-   setIsLoading(true);
     try {
-      const {
-        nombre,
-        email,
-        password,
-        telefono,
-        edad,
-        region,
-        comuna,
-        sexo,
-        discapacidad,
-        descripcionDiscapacidad,
-        terminos
-      } = formData;
-
-      console.log("📤 Enviando datos al backend:", {
-        nombre,
-        email,
-        password,
-        telefono,
-        edad,
-        region,
-        comuna,
-        sexo,
-        discapacidad,
-        descripcionDiscapacidad,
-        terminos
-      });
-
-      await registrarBeneficiario({
-        nombre,
-        email,
-        password,
-        telefono,
-        edad,
-        region,
-        comuna,
-        sexo,
-        discapacidad,
-        descripcionDiscapacidad,
-        terminos
-      });
-
+      const response = await registrarBeneficiario(formData);
+      console.log("✅ Respuesta del backend:", response);
       return true;
     } catch (error) {
-      console.error("❌ Error al registrar beneficiario:", error?.response?.data || error.message || error);
-      setGeneralError("Error al registrar. Intenta nuevamente.");
+      console.error("❌ Error detallado:", error);
+
+      // Mostrar el error exacto si lo hay
+      if (error.response && error.response.data && error.response.data.error) {
+        setGeneralError(error.response.data.error); // Esto muestra el mensaje del backend
+      } else {
+        setGeneralError("Error al registrar. Intenta nuevamente.");
+      }
+
       return false;
     } finally {
       setIsLoading(false);
     }
-  }, [formData, validateForm]);
+  },
+  [formData, validateForm]
+);
+
+
 
   return {
     formData,

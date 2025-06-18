@@ -1,9 +1,8 @@
 import api from './api';
 
-export async function registrarBeneficiario(data) {
-  return await api.post("/beneficiarios", data); 
-}
-
+export const registrarBeneficiario = (datos) => {
+  return api.post("/beneficiarios", datos);
+};
 
 export const obtenerBeneficiarios = async () => {
   const response = await api.get('/beneficiarios');
