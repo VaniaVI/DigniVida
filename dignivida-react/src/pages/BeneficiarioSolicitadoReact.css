@@ -1,0 +1,349 @@
+/* === BeneficiarioSolicitadoReact.css === */
+
+/* Encabezado de sección */
+.page-header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.page-header h2 {
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  color: #e0e0e0;
+}
+
+/* Sección principal */
+.select-volunteer-section {
+  padding: 60px 0;
+  background-color: var(--background-alt);
+}
+
+/* Tarjeta de resumen */
+.request-summary {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  margin-bottom: 40px;
+  box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.request-summary h3 {
+  font-size: 1.6rem;
+  margin-bottom: 25px;
+  color: var(--primary-dark);
+}
+
+.summary-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.summary-label {
+  color: var(--text-light);
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+.summary-value {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-color);
+  line-height: 1.4;
+  white-space: pre-wrap; /* Permite saltos como en 'Av. Salud 456' */
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.95rem;
+}
+
+/* Filtros */
+.volunteers-filter {
+  background-color: white;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 40px;
+  box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.volunteers-filter h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--primary-dark);
+}
+
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.filter-group label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 5px;
+  color: var(--text-color);
+}
+
+.filter-group select {
+  padding: 10px 12px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+/* Botones */
+.btn {
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.btn-sm {
+  font-size: 0.85rem;
+  padding: 8px 14px;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #21867a;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.btn-outline:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Grid de voluntarios */
+.volunteers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+/* Tarjeta de voluntario */
+.volunteer-selection-card {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.volunteer-selection-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px var(--shadow-color);
+}
+
+.volunteer-header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.volunteer-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.volunteer-basic-info h4 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: var(--primary-dark);
+}
+
+/* Estrellas de calificación */
+.volunteer-rating {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 1rem;
+}
+
+.star {
+  color: #ccc;
+}
+
+.star.filled {
+  color: #ffb400;
+}
+
+.star.half-filled::before {
+  content: "★";
+  position: absolute;
+  color: #ffb400;
+  width: 50%;
+  overflow: hidden;
+  left: 0;
+}
+
+.rating-text {
+  margin-left: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Cuerpo de voluntario */
+.volunteer-body {
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.volunteer-details p {
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+.volunteer-description p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  margin-top: 10px;
+}
+
+/* Disponibilidad */
+.availability-badge {
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.availability-badge.available {
+  background-color: rgba(46, 139, 87, 0.1);
+  color: var(--primary-dark);
+  border: 1px solid var(--primary-color);
+}
+
+.availability-badge.limited {
+  background-color: rgba(255, 193, 7, 0.1);
+  color: #d39e00;
+  border: 1px solid #ffc107;
+}
+
+/* Pie de tarjeta */
+.volunteer-footer {
+  padding: 15px 20px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Paginación */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 30px 0;
+}
+
+.pagination-btn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pagination-btn:hover {
+  background-color: var(--background-alt);
+}
+
+.pagination-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Acciones finales */
+.selection-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* Modal */
+.modal {
+  display: none; /* Por defecto oculta */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.confirmation-icon {
+  width: 80px;
+  height: 80px;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 2rem;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selected-volunteer-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
