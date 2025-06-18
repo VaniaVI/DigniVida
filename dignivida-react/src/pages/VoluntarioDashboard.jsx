@@ -68,8 +68,9 @@ const VoluntarioDashboard = () => {
             <div className="dashboard-card">
               <div className="card-icon">
                 <img
-                  src="https://cdn-icons-png.flaticon.com/128/992/992451.png"
+                  src="https://cdn-icons-png.flaticon.com/128/942/942748.png"
                   alt="Icono tareas"
+                  
                 />
               </div>
               <h3>Mis Tareas Asignadas</h3>
@@ -82,7 +83,7 @@ const VoluntarioDashboard = () => {
             <div className="dashboard-card">
               <div className="card-icon">
                 <img
-                  src="https://cdn-icons-png.flaticon.com/128/942/942748.png"
+                  src="https://cdn-icons-png.flaticon.com/128/992/992451.png"
                   alt="Icono oportunidades"
                 />
               </div>
