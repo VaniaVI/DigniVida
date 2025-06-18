@@ -1,40 +1,45 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import { Voluntario } from '../model.js';
+import { Voluntario, Beneficiario } from '../model.js';
 
-// 🟢 LOGIN
-export const loginVoluntario = async (req, res) => {
+// 🔐 LOGIN GENERAL (ambos roles)
+export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     console.log("👉 Email recibido:", email);
-    console.log("👉 Password recibido:", password);
 
-    const voluntario = await Voluntario.findOne({ email });
-    if (!voluntario) {
-      console.log("❌ Correo no encontrado");
+    // Buscar en voluntarios
+    let usuario = await Voluntario.findOne({ email });
+    let rol = "voluntario";
+
+    // Si no lo encuentra, buscar en beneficiarios
+    if (!usuario) {
+      usuario = await Beneficiario.findOne({ email });
+      rol = "beneficiario";
+    }
+
+    if (!usuario) {
+      console.log("❌ Usuario no encontrado");
       return res.status(401).json({ error: 'Correo no registrado' });
     }
 
-    console.log("✅ Voluntario encontrado:", voluntario);
+    console.log(`✅ ${rol} encontrado:`, usuario);
 
-    const validPassword = await bcrypt.compare(password, voluntario.password);
+    const validPassword = await bcrypt.compare(password, usuario.password);
     if (!validPassword) {
       console.log("❌ Contraseña incorrecta");
       return res.status(401).json({ error: 'Contraseña incorrecta' });
     }
 
     const token = jwt.sign(
-      { id: voluntario._id, rol: voluntario.rol },
-      process.env.JWT_SECRET,
+      { id: usuario._id, rol },
+      process.env.JWT_SECRET || 'secreto',
       { expiresIn: '1d' }
     );
 
     console.log("✅ Login exitoso, token generado");
 
-    res.json({ token,
-      rol: voluntario.rol 
-     });
-
+    res.json({ token, rol });
   } catch (error) {
     console.error("🔥 Error inesperado en login:", error);
     res.status(500).json({ error: 'Error al iniciar sesión' });

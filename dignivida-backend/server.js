@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 
 import voluntariosRoutes from './rutas/voluntarios.js';
 import beneficiariosRoutes from './rutas/beneficiario.js';
-import authRoutes from './rutas/auth.js'; // si lo tienes
+import authRoutes from './rutas/auth.js'; 
 
 dotenv.config();
 

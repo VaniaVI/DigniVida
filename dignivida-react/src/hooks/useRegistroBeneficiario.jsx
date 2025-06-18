@@ -1,27 +1,26 @@
 import { useState, useEffect, useCallback } from "react";
 import { useRegionComuna } from "./useRegionComuna"; // Hook separado para regiones y comunas
+import { registrarBeneficiario } from "../services/beneficiarioService";
 
 export function useRegistroBeneficiario() {
   const [formData, setFormData] = useState({
     nombre: "",
+    email: "",
+    password: "",
     telefono: "",
     edad: "",
-    edad2: "",
     sexo: "",
     discapacidad: "",
     descripcionDiscapacidad: "",
     region: "",
     comuna: "",
     terminos: false,
-    email: "",
-    password: "",
   });
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [showDescripcion, setShowDescripcion] = useState(false);
-
-  // Hook que maneja comunas y lógica de región
+  const [generalError, setGeneralError] = useState("");
   const { comunas, showComuna } = useRegionComuna(formData.region);
 
   // Actualizar campos del formulario
@@ -67,20 +66,11 @@ export function useRegistroBeneficiario() {
       newErrors.telefono = "El número debe tener exactamente 9 dígitos";
     }
 
-    // Edad principal
     const edad = Number.parseInt(formData.edad, 10);
     if (!formData.edad) {
       newErrors.edad = "La edad es obligatoria";
     } else if (edad < 60) {
       newErrors.edad = "Debes tener al menos 60 años";
-    }
-
-    // Edad2 adicional
-    const edad2 = Number.parseInt(formData.edad2, 10);
-    if (!formData.edad2) {
-      newErrors.edad2 = "La edad es obligatoria";
-    } else if (edad2 < 18) {
-      newErrors.edad2 = "Debes tener al menos 60 años";
     }
 
     if (!formData.sexo) newErrors.sexo = "Selecciona tu género";
@@ -110,32 +100,53 @@ export function useRegistroBeneficiario() {
   }, [formData.discapacidad]);
 
   // Envío del formulario
-  const handleSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
+ const handleSubmit = useCallback(
+  async (e) => {
+    e.preventDefault();
 
-      if (!validateForm()) return false;
+    if (!validateForm()) return false;
 
-      setIsLoading(true);
-      try {
-        // Aquí iría tu lógica de envío, por ejemplo:
-        // await registrarBeneficiario(formData);
-        return true;
-      } catch (error) {
-        console.error("❌ Error al registrar beneficiario:", error);
-        return false;
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [formData, validateForm]
-  );
+    setIsLoading(true);
+    try {
+      const {
+        nombre,
+        email,
+        password,
+        telefono,
+        edad,
+        region,
+        comuna
+      } = formData;
+
+      await registrarBeneficiario({
+        nombre,
+        email,
+        password,
+        telefono,
+        edad,
+        region,
+        comuna
+      });
+
+      return true;
+    } catch (error) {
+      console.error("❌ Error al registrar beneficiario:", error?.response?.data || error.message || error);
+      setGeneralError("Error al registrar. Intenta nuevamente.");
+      return false;
+    } finally {
+      setIsLoading(false);
+    }
+  },
+  [formData, validateForm]
+);
+
 
   return {
     formData,
     errors,
     comunas,
     isLoading,
+    generalError,
     showDescripcion,
     showComuna,
     updateField,

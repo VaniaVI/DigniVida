@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useRegistroBeneficiario } from "../hooks/useRegistroBeneficiario"
 
 function RegistroBeneficiarioReact() {
@@ -6,22 +6,26 @@ function RegistroBeneficiarioReact() {
     formData,
     comunas,
     isLoading,
+    generalError,
     showDescripcion,
     showComuna,
     updateField,
     handleSubmit,
     getErrorMessage,
-    hasError,
+    hasError
   } = useRegistroBeneficiario()
+
+    const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     const success = await handleSubmit(e)
     if (success) {
       // Aquí puedes redirigir o mostrar mensaje de éxito
       console.log("Registro exitoso");
-      // window.location.href = "/verificacionSMSbene"
+      navigate("/verificacionsms");
     } else {
       alert("Error al registrar. Intenta nuevamente.")
+      console.error("❌ Error al registrar beneficiario")
     }
   }
 
@@ -33,87 +37,32 @@ function RegistroBeneficiarioReact() {
             <h2 className="auth-title">Registro de beneficiario</h2>
             <p className="auth-subtitle">Crea tu cuenta para solicitar acompañamiento</p>
 
-            <form className="auth-form" onSubmit={onSubmit}>
-              {/* Nombre */}
-              <div className="form-group">
-                <label htmlFor="nombre">Nombre Completo</label>
-                <input
-                  type="text"
-                  id="nombre"
-                  name="nombre"
-                  value={formData.nombre}
-                  onChange={(e) => updateField("nombre", e.target.value)}
-                  required
-                />
-                {hasError("nombre") && (
-                  <span style={{ color: "red", display: "block" }}>{getErrorMessage("nombre")}</span>
-                )}
-              </div>
+            <form className="auth-form" onSubmit={onSubmit} autoComplete="off">
+            {generalError && <div className="form-general-error">{generalError}</div>}
 
-              {/* Email */}
-              <div className="form-group">
-                <label htmlFor="email">Correo electrónico</label>
+            {/* Campos básicos */}
+            {[
+              { id: "nombre", label: "Nombre Completo", type: "text" },
+              { id: "email", label: "Correo Electrónico", type: "email" },
+              { id: "password", label: "Contraseña", type: "password" },
+              { id: "telefono", label: "Teléfono", type: "tel", placeholder: "9 1234 5678" },
+              { id: "edad", label: "Edad", type: "number", placeholder: "Ingresa tu edad" },
+            ].map(({ id, label, type, placeholder }) => (
+              <div className="form-group" key={id}>
+                <label htmlFor={id}>{label}</label>
                 <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={(e) => updateField("email", e.target.value)}
+                  type={type}
+                  id={id}
+                  name={id}
+                  placeholder={placeholder || ""}
+                  value={formData[id] || ""}
+                  onChange={(e) => updateField(id, e.target.value)}
                   required
                 />
-                {hasError("email") && (
-                  <span style={{ color: "red", display: "block" }}>{getErrorMessage("email")}</span>
-                )}
+                {hasError(id) && <span className="form-error">{getErrorMessage(id)}</span>}
               </div>
+            ))}
 
-              {/* Contraseña */}
-              <div className="form-group">
-                <label htmlFor="password">Contraseña</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={(e) => updateField("password", e.target.value)}
-                  required
-                />
-                {hasError("password") && (
-                  <span style={{ color: "red", display: "block" }}>{getErrorMessage("password")}</span>
-                )}
-              </div>
-
-              {/* Teléfono */}
-              <div className="form-group">
-                <label htmlFor="telefono">Teléfono</label>
-                <input
-                  type="text"
-                  id="telefono"
-                  name="telefono"
-                  placeholder="+56 9 XXXX XXXX"
-                  value={formData.telefono}
-                  onChange={(e) => updateField("telefono", e.target.value)}
-                  required
-                />
-                {hasError("telefono") && (
-                  <span style={{ color: "red", display: "block" }}>{getErrorMessage("telefono")}</span>
-                )}
-              </div>
-
-              {/* Edad */}
-              <div className="form-group">
-                <label htmlFor="edad">Edad</label>
-                <input
-                  type="number"
-                  id="edad"
-                  name="edad"
-                  placeholder="Ingresa tu edad"
-                  value={formData.edad}
-                  onChange={(e) => updateField("edad", e.target.value)}
-                  required
-                  min="60"
-                />
-                {hasError("edad") && <span style={{ color: "red", display: "block" }}>{getErrorMessage("edad")}</span>}
-              </div>
 
               {/* Género */}
               <div className="form-group">
@@ -247,9 +196,10 @@ function RegistroBeneficiarioReact() {
             </div>
 
 
-              <button type="submit" className="btn btn-primary btn-block" disabled={isLoading}>
-                <Link to="/verificacionSMSbene" style={{color:'white'}}>{isLoading ? "Registrando..." : "Registrarme"}</Link>
-              </button>
+            {/* Botón de envío */}
+            <button type="submit" className="btn btn-primary btn-block" disabled={isLoading}>
+              {isLoading ? "Registrando..." : "Registrarme"}
+            </button>
             </form>
 
             <div className="auth-footer">
