@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import voluntarios from '../../assets/voluntarios.jpg';
 import manosAyuda from '../../assets/manosAyuda.jpg';
 import './Home.css';
+import ChatBot from '../ChatBot';
 
 const Home = () => {
     const location = useLocation();
@@ -194,6 +195,9 @@ const Home = () => {
         </section>
     </Element>
     
+    <ChatBot />
+
+
 </div>
     );
 }
