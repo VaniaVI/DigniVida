@@ -92,3 +92,10 @@ export const deleteBeneficiario = async (req, res) => {
     res.status(400).json({ error: "No se pudo eliminar el beneficiario" });
   }
 };
+
+export default {
+  createBeneficiario,
+  getBeneficiarios,
+  updateBeneficiario,
+  deleteBeneficiario
+};

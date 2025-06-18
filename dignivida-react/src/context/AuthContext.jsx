@@ -15,7 +15,11 @@ const AuthProvider = ({ children }) => {
 
     const fetchUser = async () => {
       try {
-        const res = await api.get("/auth/me");
+        const res = await api.get("/auth/me", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         setUser(res.data);
       } catch {
         logout();
@@ -27,34 +31,32 @@ const AuthProvider = ({ children }) => {
     token ? fetchUser() : setLoading(false);
   }, []);
 
-  // Login (sin navigate)
-const login = async (email, password) => {
-  try {
-    console.log("👉 Enviando login con:", { email, password });
+  // Login (retorna el rol, pero no redirige)
+  const login = async (email, password) => {
+    try {
+      console.log("👉 Enviando login con:", { email, password });
 
-    const response = await api.post("/auth/login", { email, password });
-    console.log("✅ Respuesta del backend:", response);
+      const response = await api.post("/auth/login", { email, password });
+      const { token, rol } = response.data;
 
-    const { token } = response.data;
-    localStorage.setItem("token", token);
+      localStorage.setItem("token", token);
 
-    const profile = await api.get("/auth/me", {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+      const profile = await api.get("/auth/me", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
 
-    setUser(profile.data);
-    console.log("🎯 Perfil cargado:", profile.data);
+      setUser(profile.data);
+      console.log("🎯 Perfil cargado:", profile.data);
 
-    // (opcional: redireccionar aquí si no lo haces en otro lado)
-  } catch (error) {
-    console.error("❌ Error en login context:", error);
-    throw new Error("Error en login");
-  }
-};
+      return rol; // 🔥 devolvemos el rol al componente que llame login
+    } catch (error) {
+      console.error("❌ Error en login context:", error);
+      throw new Error("Error en login");
+    }
+  };
 
-  // Logout (sin navigate)
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);

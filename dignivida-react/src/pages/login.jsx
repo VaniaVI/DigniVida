@@ -14,19 +14,25 @@ export default function Login() {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError('');
 
-    try {
-      await login(email, password); // 🔥 llama al login del contexto (usa API real)
-      navigate("/profile"); 
-      // No necesitas navigate aquí, porque el contexto ya redirige
-    } catch (err) {
-        console.error('Error al iniciar sesión:', err);
-        alert('Correo o contraseña incorrectos');
+  try {
+    const rol = await login(email, password); // 🔥 recibimos el rol del contexto
+
+    if (rol === 'voluntario') {
+      navigate('/voluntarioDashboard');
+    } else if (rol === 'beneficiario') {
+      navigate('/beneficiarioDashboard');
+    } else {
+      navigate('/');
     }
-  };
+  } catch (err) {
+    console.error('Error al iniciar sesión:', err);
+    alert('Correo o contraseña incorrectos');
+  }
+};
 
   return (
     <div className="login">

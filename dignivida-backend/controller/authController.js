@@ -6,14 +6,20 @@ import { Voluntario } from '../model.js';
 export const loginVoluntario = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log("👉 Email recibido:", email);
+    console.log("👉 Password recibido:", password);
 
     const voluntario = await Voluntario.findOne({ email });
     if (!voluntario) {
+      console.log("❌ Correo no encontrado");
       return res.status(401).json({ error: 'Correo no registrado' });
     }
 
+    console.log("✅ Voluntario encontrado:", voluntario);
+
     const validPassword = await bcrypt.compare(password, voluntario.password);
     if (!validPassword) {
+      console.log("❌ Contraseña incorrecta");
       return res.status(401).json({ error: 'Contraseña incorrecta' });
     }
 
@@ -23,9 +29,14 @@ export const loginVoluntario = async (req, res) => {
       { expiresIn: '1d' }
     );
 
-    res.json({ token });
+    console.log("✅ Login exitoso, token generado");
+
+    res.json({ token,
+      rol: voluntario.rol 
+     });
+
   } catch (error) {
-    console.error("❌ Error en login:", error);
+    console.error("🔥 Error inesperado en login:", error);
     res.status(500).json({ error: 'Error al iniciar sesión' });
   }
 };
