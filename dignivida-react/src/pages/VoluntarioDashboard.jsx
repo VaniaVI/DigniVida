@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./EstilosBeneficiarioReact.css";
 
 const VoluntarioDashboard = () => {
-  // Aquí podrías añadir lógica para cargar datos del voluntario
-  // como su nombre, próximas tareas, horas de voluntariado, etc.
-  const voluntarioNombre = "Vania"; // Ejemplo
+  // Estado para el nombre del voluntario
+  const [voluntarioNombre, setVoluntarioNombre] = useState("Usuario");
+
+  // Próximas tareas y horas (puedes mantenerlas estáticas o dinámicas)
   const proximasTareas = [
     {
       id: 1,
@@ -28,7 +29,7 @@ const VoluntarioDashboard = () => {
   ];
   const horasVoluntariado = 45;
 
-  // Estados para el modal de detalles
+  // Modal de detalles
   const [modalAbierto, setModalAbierto] = useState(false);
   const [tareaDetalle, setTareaDetalle] = useState(null);
 
@@ -50,6 +51,14 @@ const VoluntarioDashboard = () => {
     }, 200);
   };
 
+  // Leer el nombre desde localStorage al montar el componente
+  useEffect(() => {
+    const nombre = localStorage.getItem("nombreUsuario");
+    if (nombre) {
+      setVoluntarioNombre(nombre);
+    }
+  }, []);
+
   return (
     <div className="VoluntarioDashboard">
       <section className="dashboard-hero">
@@ -70,7 +79,6 @@ const VoluntarioDashboard = () => {
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/942/942748.png"
                   alt="Icono tareas"
-                  
                 />
               </div>
               <h3>Mis Tareas Asignadas</h3>

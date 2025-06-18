@@ -23,9 +23,12 @@ function RegistroVoluntario() {
     e.preventDefault();
     const success = await handleSubmit(e);
     if (success) {
+      // Guardar el nombre completo en localStorage para usarlo luego
+      if (formData.nombre) {
+        localStorage.setItem("nombreUsuario", formData.nombre);
+      }
       navigate("/verificacionsms");
     } else {
-      
       alert("Error al registrar. Intenta nuevamente.");
       console.error("❌ Error al registrar voluntario:");
     }
