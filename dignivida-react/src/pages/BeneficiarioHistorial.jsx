@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const ICONS = {
@@ -203,6 +203,7 @@ const SOLICITUDES = [
   }
 ];
 
+
 const ESTADO_CLASE = {
   Confirmada: "confirmed",
   Completada: "completed",
@@ -211,12 +212,19 @@ const ESTADO_CLASE = {
 
 const ITEMS_PER_PAGE = 4;
 
-const BeneficiarioHistorial = () => {
+function BeneficiarioHistorial() {
   const [activeTab, setActiveTab] = useState("solicitudes");
   const [solicitudesPage, setSolicitudesPage] = useState(1);
   const [voluntariosPage, setVoluntariosPage] = useState(1);
   const [modalViaje, setModalViaje] = useState(null);
   const [modalVoluntario, setModalVoluntario] = useState(null);
+  // const [solicitudesGuardadas, setSolicitudesGuardadas] = useState([]);
+
+  // useEffect(() => {
+  //   // Lee las solicitudes guardadas en localStorage
+  //   const data = JSON.parse(localStorage.getItem("solicitudesHistorial")) || [];
+  //   setSolicitudesGuardadas(data);
+  // }, []);
 
   // Paginación solicitudes
   const totalSolicitudesPages = Math.ceil(SOLICITUDES.length / ITEMS_PER_PAGE);
@@ -242,12 +250,14 @@ const BeneficiarioHistorial = () => {
 
   return (
     <>
+    
       <section className="page-header">
         <div className="container">
           <h2>Mi Historial</h2>
           <p>Revisa tus solicitudes anteriores y los voluntarios que te han ayudado</p>
         </div>
       </section>
+      
       <section className="history-section">
         <div className="container">
           <div className="history-tabs">
@@ -490,6 +500,7 @@ const BeneficiarioHistorial = () => {
       </style>
     </>
   );
+  
 };
 
 export default BeneficiarioHistorial;

@@ -52,7 +52,15 @@ function BenSoliciReact() {
       return;
     }
     setError('');
-    navigate('/beneficiarioSolicitado');
+    navigate('/beneficiarioSolicitado', {
+      state: {
+        tramite: form['tipo-tramite'],
+        origen: form['direccion-origen'],
+        destino: form['direccion-destino'],
+        fecha: form.fecha,
+        hora: form.hora
+      }
+    });
   };
 
   return (
