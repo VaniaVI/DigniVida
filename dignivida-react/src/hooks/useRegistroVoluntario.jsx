@@ -1,8 +1,7 @@
-    // ✅ Actualizar hook useRegistroVoluntario para incluir email y password
-
-    import { useState, useCallback } from "react";
+    import { useState, useCallback,  useContext } from "react";
     import { useRegionComuna } from "./useRegionComuna";
     import { registrarVoluntario } from "../services/voluntarioService";
+    import { AuthContext } from "../context/AuthContext";
 
     export function useRegistroVoluntario() {
     const [formData, setFormData] = useState({
@@ -21,6 +20,7 @@
     const [isLoading, setIsLoading] = useState(false);
     const [generalError, setGeneralError] = useState("");
     const { comunas, showComuna } = useRegionComuna(formData.region);
+    const { login } = useContext(AuthContext);
 
     const updateField = useCallback((field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
@@ -66,31 +66,32 @@
     };
 
     const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("➡️ Entra al handleSubmit");
-    if (!validateForm()) return false;
-
-    setIsLoading(true);
-    try {
+      e.preventDefault();
+      console.log("➡️ Entra al handleSubmit");
+    
+      if (!validateForm()) return false;
+    
+      setIsLoading(true);
+      try {
         const form = new FormData();
         for (const key in formData) {
-            form.append(key, formData[key]);
+          form.append(key, formData[key]);
         }
     
-        for (const pair of form.entries()) {
-            console.log(pair[0], pair[1]);
-        }
-
-
-        await registrarVoluntario(form); // 🔥 Esto debe estar definido en `services/voluntarioService.js`
+        await registrarVoluntario(form); // ✅ Registro exitoso
+    
+        // 🔐 Login automático (con email y password)
+        const rol = await login(formData.email, formData.password);
+        console.log("🔐 Login exitoso, rol:", rol);
+    
         return true;
-    } catch (error) {
+      } catch (error) {
         console.error("❌ Error al registrar voluntario:", error?.response?.data || error.message || error);
         setGeneralError("Error al registrar. Intenta nuevamente.");
         return false;
-    } finally {
+      } finally {
         setIsLoading(false);
-    }
+      }
     };
 
 
