@@ -11,24 +11,38 @@ export const createBeneficiario = async (req, res) => {
       telefono,
       edad,
       region,
-      comuna
+      comuna,
+      sexo,
+      discapacidad,
+      descripcionDiscapacidad,
+      terminos
     } = req.body;
 
-    if (!nombre || !email || !password || !telefono || !edad || !region || !comuna) {
+    console.log("📥 Backend recibió:", req.body);
+
+    // Validación básica
+    if (
+      !nombre || !email || !password || !telefono || !edad ||
+      !region || !comuna || !sexo || !discapacidad || !terminos
+    ) {
       return res.status(400).json({ error: "Todos los campos son obligatorios" });
     }
 
-    if (!req.file) {
-      return res.status(400).json({ error: "Debes subir una imagen del DNI" });
+    // Validación si indicó que tiene discapacidad pero no dio descripción
+    if (discapacidad === "Y" && !descripcionDiscapacidad) {
+      return res.status(400).json({ error: "Debes describir tu condición especial" });
     }
 
+    // Validar si ya existe el beneficiario
     const beneficiarioExistente = await Beneficiario.findOne({ email });
     if (beneficiarioExistente) {
       return res.status(400).json({ error: "Este correo ya está registrado" });
     }
 
+    // Encriptar contraseña
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Crear nuevo beneficiario
     const nuevoBeneficiario = new Beneficiario({
       nombre,
       email,
@@ -37,7 +51,10 @@ export const createBeneficiario = async (req, res) => {
       edad,
       region,
       comuna,
-      imagen_dni: req.file.filename
+      sexo,
+      discapacidad,
+      descripcionDiscapacidad: discapacidad === "Y" ? descripcionDiscapacidad : "",
+      terminos
     });
 
     await nuevoBeneficiario.save();

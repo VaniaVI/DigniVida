@@ -1,12 +1,17 @@
 import express from 'express';
-import beneficiarioController from '../controller/beneficiarioController.js';
+import {
+  getBeneficiarios,
+  createBeneficiario,
+  updateBeneficiario,
+  deleteBeneficiario
+} from '../controller/beneficiarioController.js';
 
 const router = express.Router();
 
 // Rutas CRUD
-router.get('/', beneficiarioController.getBeneficiarios);
-router.post('/', beneficiarioController.createBeneficiario);
-router.put('/:id', beneficiarioController.updateBeneficiario);
-router.delete('/:id', beneficiarioController.deleteBeneficiario);
+router.get('/', getBeneficiarios);
+router.post('/', createBeneficiario);
+router.put('/:id', updateBeneficiario);
+router.delete('/:id', deleteBeneficiario);
 
 export default router;
