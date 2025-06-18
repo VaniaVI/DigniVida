@@ -24,6 +24,14 @@
     transition: all 0.3s ease;
 }
 
+.form-error {
+  color: red;
+  font-size: 0.85em;
+  margin-top: 4px;
+  display: block;
+}
+
+
 .user-info:hover {
     background-color: var(--background-alt);
 }

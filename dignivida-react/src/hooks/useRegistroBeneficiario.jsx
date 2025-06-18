@@ -1,6 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
+// ✅ 1. useRegistroBeneficiario.jsx (hook)
+import { useState, useEffect, useCallback, useContext } from "react";
 import { useRegionComuna } from "./useRegionComuna";
 import { registrarBeneficiario } from "../services/beneficiarioService";
+import { AuthContext } from "../context/AuthContext";
+
 
 export function useRegistroBeneficiario() {
   const [formData, setFormData] = useState({
@@ -22,61 +25,43 @@ export function useRegistroBeneficiario() {
   const [showDescripcion, setShowDescripcion] = useState(false);
   const [generalError, setGeneralError] = useState("");
   const { comunas, showComuna } = useRegionComuna(formData.region);
+  const { login } = useContext(AuthContext);
 
-  // ✅ Actualizar campos
+
   const updateField = useCallback((field, value) => {
+    if (field === "edad") value = value.replace(/\D/g, "");
     setFormData((prev) => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors((prev) => ({ ...prev, [field]: "" }));
-    }
+    if (errors[field]) setErrors((prev) => ({ ...prev, [field]: "" }));
   }, [errors]);
 
-  // ✅ Validaciones
+
   const validateForm = useCallback(() => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/;
-
-    if (!formData.nombre.trim()) newErrors.nombre = "El nombre es obligatorio";
-    if (!formData.email.trim()) {
-      newErrors.email = "El correo electrónico es obligatorio";
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Correo inválido";
-    }
-
-    if (!formData.password) {
-      newErrors.password = "La contraseña es obligatoria";
-    } else if (!passwordRegex.test(formData.password)) {
-      newErrors.password = "Debe tener mayúscula, minúscula, número y carácter especial";
-    }
-
-    if (!formData.telefono.trim()) {
-      newErrors.telefono = "El teléfono es obligatorio";
-    } else if (!/^\d{9}$/.test(formData.telefono.replace(/\s/g, ""))) {
-      newErrors.telefono = "Debe tener 9 dígitos exactos";
-    }
-
+    if (!formData.nombre || formData.nombre.trim().length < 3)
+      newErrors.nombre = "El nombre debe tener al menos 3 letras";
+    if (!formData.email.trim()) newErrors.email = "El correo es obligatorio";
+    else if (!emailRegex.test(formData.email)) newErrors.email = "Correo inválido";
+    if (!formData.password || formData.password.length < 6)
+      newErrors.password = "La contraseña debe tener al menos 6 caracteres";
+    const telefono = formData.telefono.replace(/\s/g, "");
+    if (!telefono) newErrors.telefono = "El teléfono es obligatorio";
+    else if (!/^\d{9}$/.test(telefono)) newErrors.telefono = "Debe tener 9 dígitos";
     const edad = Number(formData.edad);
-    if (!formData.edad) {
-      newErrors.edad = "La edad es obligatoria";
-    } else if (edad < 60) {
-      newErrors.edad = "Debes tener al menos 60 años";
-    }
-
+    if (!formData.edad || isNaN(edad)) newErrors.edad = "La edad es obligatoria";
+    else if (edad < 60) newErrors.edad = "Debes tener al menos 60 años";
     if (!formData.sexo) newErrors.sexo = "Selecciona tu género";
     if (!formData.discapacidad) newErrors.discapacidad = "Este campo es obligatorio";
-    if (formData.discapacidad === "Y" && !formData.descripcionDiscapacidad.trim()) {
+    if (formData.discapacidad === "Y" && !formData.descripcionDiscapacidad.trim())
       newErrors.descripcionDiscapacidad = "Describe tu condición";
-    }
     if (!formData.region) newErrors.region = "Selecciona tu región";
     if (showComuna && !formData.comuna) newErrors.comuna = "Selecciona tu comuna";
     if (!formData.terminos) newErrors.terminos = "Debes aceptar los términos";
-
     setErrors(newErrors);
+    console.log("❗ Errores detectados:", newErrors);
     return Object.keys(newErrors).length === 0;
   }, [formData, showComuna]);
 
-  // ✅ Mostrar campo "¿Cuál?" si tiene discapacidad
   useEffect(() => {
     setShowDescripcion(formData.discapacidad === "Y");
     if (formData.discapacidad !== "Y") {
@@ -84,67 +69,42 @@ export function useRegistroBeneficiario() {
     }
   }, [formData.discapacidad]);
 
-  // ✅ Envío del formulario
-  const handleSubmit = useCallback(async (e) => {
-    e.preventDefault();
-    if (!validateForm()) return false;
 
-    setIsLoading(true);
-    setGeneralError("");
+const handleSubmit = useCallback(async (e) => {
+  e.preventDefault();
+  console.log("🧪 Inicia handleSubmit");
+  console.log("🧾 Datos antes de validar:", formData);
 
-   setIsLoading(true);
-    try {
-      const {
-        nombre,
-        email,
-        password,
-        telefono,
-        edad,
-        region,
-        comuna,
-        sexo,
-        discapacidad,
-        descripcionDiscapacidad,
-        terminos
-      } = formData;
+  if (!validateForm()) {
+    console.log("❌ Validación falló");
+    return false;
+  }
 
-      console.log("📤 Enviando datos al backend:", {
-        nombre,
-        email,
-        password,
-        telefono,
-        edad,
-        region,
-        comuna,
-        sexo,
-        discapacidad,
-        descripcionDiscapacidad,
-        terminos
-      });
+  const cleanFormData = {
+    ...formData,
+    telefono: formData.telefono.replace(/\s/g, ""),
+    edad: parseInt(formData.edad, 10),
+  };
 
-      await registrarBeneficiario({
-        nombre,
-        email,
-        password,
-        telefono,
-        edad,
-        region,
-        comuna,
-        sexo,
-        discapacidad,
-        descripcionDiscapacidad,
-        terminos
-      });
+  setIsLoading(true);
+  try {
+    const response = await registrarBeneficiario(cleanFormData);
+    console.log("✅ Respuesta backend:", response);
 
-      return true;
-    } catch (error) {
-      console.error("❌ Error al registrar beneficiario:", error?.response?.data || error.message || error);
-      setGeneralError("Error al registrar. Intenta nuevamente.");
-      return false;
-    } finally {
-      setIsLoading(false);
-    }
-  }, [formData, validateForm]);
+    const rol = await login(cleanFormData.email, cleanFormData.password);
+    console.log("✅ Logueado como:", rol);
+
+    return true;
+  } catch (error) {
+    console.error("❌ Error al registrar:", error);
+    setGeneralError(error.response?.data?.error || "Error al registrar");
+    return false;
+  } finally {
+    setIsLoading(false);
+  }
+}, [formData, validateForm, login]);
+  
+
 
   return {
     formData,

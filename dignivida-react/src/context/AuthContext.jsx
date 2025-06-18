@@ -12,6 +12,7 @@ const AuthProvider = ({ children }) => {
   // Cargar usuario si hay token
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const rol = localStorage.getItem("rol");
 
     const fetchUser = async () => {
       try {
@@ -20,7 +21,9 @@ const AuthProvider = ({ children }) => {
             Authorization: `Bearer ${token}`
           }
         });
-        setUser(res.data);
+
+        // Añadimos el rol al user si no viene desde el backend
+        setUser({ ...res.data, rol });
       } catch {
         logout();
       } finally {
@@ -40,6 +43,7 @@ const AuthProvider = ({ children }) => {
       const { token, rol } = response.data;
 
       localStorage.setItem("token", token);
+      localStorage.setItem("rol", rol); // 👈 Guardamos el rol también
 
       const profile = await api.get("/auth/me", {
         headers: {
@@ -47,10 +51,11 @@ const AuthProvider = ({ children }) => {
         }
       });
 
-      setUser(profile.data);
+      setUser(profile.data); // ✅ rol viene incluido desde el backend
+
       console.log("🎯 Perfil cargado:", profile.data);
 
-      return rol; // 🔥 devolvemos el rol al componente que llame login
+      return rol; // Devolvemos el rol al componente que hace login
     } catch (error) {
       console.error("❌ Error en login context:", error);
       throw new Error("Error en login");
@@ -59,6 +64,7 @@ const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("rol");
     setUser(null);
   };
 

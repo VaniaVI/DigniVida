@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext"; 
 
 const VerificacionSMS = () => {
   const [timer, setTimer] = useState(60); // 1 minuto en segundos
   const [inputs, setInputs] = useState(["", "", "", "", "", ""]);
   const inputRefs = useRef([]);
-  const [verificando, setVerificando] = useState(false);
+  const [verificando] = useState(false);
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   // Formatea el tiempo en MM:SS
   const formatTime = (secs) => {
@@ -19,10 +21,11 @@ const VerificacionSMS = () => {
 
   // Timer
   useEffect(() => {
+    console.log("🧠 Estado user en contexto:", user);
     if (timer === 0) return;
     const interval = setInterval(() => setTimer((t) => t - 1), 1000);
     return () => clearInterval(interval);
-  }, [timer]);
+  }, [timer], [user]);
 
   // Manejo de inputs individuales
   const handleChange = (i, e) => {
@@ -62,14 +65,36 @@ const VerificacionSMS = () => {
   // Habilita el botón solo si hay 6 dígitos
   const codigoCompleto = inputs.every((v) => v.length === 1);
 
+  console.log("🎯 Usuario en VerificacionSMS:", user);
+
   // Verificación
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (codigoCompleto) {
-      alert("¡Código verificado correctamente! Tu cuenta ha sido creada.");
-      navigate("/voluntarioDashboard"); // Cambia la ruta si tu dashboard tiene otro path
-    }
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  console.log("🎯 Usuario en VerificacionSMS:", user);
+  console.log("📦 Rol guardado en localStorage:", localStorage.getItem("rol"));
+
+  if (!codigoCompleto) return;
+
+  // Esperamos a que `user` esté realmente cargado
+  if (!user) {
+    alert("Cargando información del usuario...");
+    return;
+  }
+
+  console.log("👤 Usuario en VerificacionSMS:", user);
+
+  // Redirigir según el rol correcto
+  if (user.rol === "voluntario") {
+    navigate("/voluntarioDashboard");
+  } else if (user.rol === "beneficiario") {
+    navigate("/beneficiarioDashboard");
+  } else {
+    navigate("/");
+  }
+};
+
+
 
   return (
     <section className="auth-section">

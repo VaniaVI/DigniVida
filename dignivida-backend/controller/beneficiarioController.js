@@ -1,3 +1,4 @@
+// ✅ beneficiarioController.js (completo)
 import { Beneficiario } from '../model.js';
 import bcrypt from 'bcrypt';
 
@@ -18,31 +19,25 @@ export const createBeneficiario = async (req, res) => {
       terminos
     } = req.body;
 
-    console.log("📥 Backend recibió:", req.body);
+    console.log("📥 Backend recibió:", JSON.stringify(req.body, null, 2));
 
-    // Validación básica
-    if (
-      !nombre || !email || !password || !telefono || !edad ||
-      !region || !comuna || !sexo || !discapacidad || !terminos
-    ) {
+
+    if (!nombre || !email || !password || !telefono || !edad ||
+        !region || !comuna || !sexo || !discapacidad || !terminos) {
       return res.status(400).json({ error: "Todos los campos son obligatorios" });
     }
 
-    // Validación si indicó que tiene discapacidad pero no dio descripción
     if (discapacidad === "Y" && !descripcionDiscapacidad) {
       return res.status(400).json({ error: "Debes describir tu condición especial" });
     }
 
-    // Validar si ya existe el beneficiario
     const beneficiarioExistente = await Beneficiario.findOne({ email });
     if (beneficiarioExistente) {
       return res.status(400).json({ error: "Este correo ya está registrado" });
     }
 
-    // Encriptar contraseña
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Crear nuevo beneficiario
     const nuevoBeneficiario = new Beneficiario({
       nombre,
       email,
@@ -53,8 +48,9 @@ export const createBeneficiario = async (req, res) => {
       comuna,
       sexo,
       discapacidad,
-      descripcionDiscapacidad: discapacidad === "Y" ? descripcionDiscapacidad : "",
-      terminos
+      descripcion: discapacidad === "Y" ? descripcionDiscapacidad : "",
+      terminos,
+      rol: "beneficiario"
     });
 
     await nuevoBeneficiario.save();
@@ -69,10 +65,9 @@ export const createBeneficiario = async (req, res) => {
         comuna: nuevoBeneficiario.comuna
       }
     });
-
   } catch (error) {
-    console.error("❌ Error al registrar beneficiario:", error);
-    res.status(500).json({ error: "Error interno del servidor al registrar beneficiario" });
+    console.error("❌ Error al registrar beneficiario:", error.message);
+    res.status(500).json({ error: error.message || "Error interno del servidor al registrar beneficiario" });
   }
 };
 
@@ -108,11 +103,4 @@ export const deleteBeneficiario = async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: "No se pudo eliminar el beneficiario" });
   }
-};
-
-export default {
-  createBeneficiario,
-  getBeneficiarios,
-  updateBeneficiario,
-  deleteBeneficiario
 };
