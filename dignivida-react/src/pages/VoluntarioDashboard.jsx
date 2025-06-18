@@ -126,7 +126,7 @@ const VoluntarioDashboard = () => {
                 <h4>Acompañamientos Realizados</h4>
                 <p className="summary-value">12</p>
                 <img
-                  src="https://cdn-icons-png.flaticon.com/128/2921/2921935.png"
+                  src="https://i.pinimg.com/originals/96/6c/2e/966c2e55cc848f19603762c14e5ec51d.jpg"
                   alt="Icono acompañamientos"
                   className="summary-icon"
                 />

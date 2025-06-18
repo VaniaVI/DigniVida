@@ -20,14 +20,12 @@ const VerificacionSMS = () => {
   };
 
   // Timer
-useEffect(() => {
-  console.log("🧠 Estado user en contexto:", user);
-  if (user) {
-    console.log("🎯 Usuario en VerificacionSMS:", user);
-    console.log("📦 Rol guardado en localStorage:", localStorage.getItem("rol"));
-  }
-}, [user]);
-
+  useEffect(() => {
+    console.log("🧠 Estado user en contexto:", user);
+    if (timer === 0) return;
+    const interval = setInterval(() => setTimer((t) => t - 1), 1000);
+    return () => clearInterval(interval);
+  }, [timer], [user]);
 
   // Manejo de inputs individuales
   const handleChange = (i, e) => {

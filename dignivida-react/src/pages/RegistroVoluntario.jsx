@@ -128,19 +128,20 @@ function RegistroVoluntario() {
 
             {/* Términos */}
             <div className="form-group form-checkbox">
-              <input
-                type="checkbox"
-                id="terminos"
-                name="terminos"
-                checked={formData.terminos}
-                onChange={(e) => updateField("terminos", e.target.checked)}
-                required
-              />
-              <label htmlFor="terminos">
-                Acepto los <Link to="/terminosYCondiciones">Términos y Condiciones</Link> y la <Link to="/politicasDePrivacidad">Política de Privacidad</Link>
+              <label htmlFor="terminos" style={{marginBottom: 0, cursor: "pointer"}}>
+                <input
+                  type="checkbox"
+                  id="terminos"
+                  name="terminos"
+                  checked={formData.terminos}
+                  onChange={(e) => updateField("terminos", e.target.checked)}
+                  required
+                  style={{marginRight: "0.5em"}}
+                />
+                Acepto los <Link to='/terminosYCondiciones'>Términos y Condiciones</Link> y la <Link to='/politicasDePrivacidad'>Política de Privacidad</Link>
               </label>
               {hasError("terminos") && (
-                <span className="form-error">{getErrorMessage("terminos")}</span>
+                <span style={{ color: "red", display: "block" }}>{getErrorMessage("terminos")}</span>
               )}
             </div>
 
