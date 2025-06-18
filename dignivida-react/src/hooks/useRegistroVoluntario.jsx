@@ -35,7 +35,11 @@
         if (!formData.email) newErrors.email = "El correo es obligatorio";
         if (!formData.password) newErrors.password = "La contraseña es obligatoria";
         if (!formData.telefono) newErrors.telefono = "El teléfono es obligatorio";
-        if (!formData.edad) newErrors.edad = "La edad es obligatoria";
+        if (!formData.edad){ newErrors.edad = "La edad es obligatoria";
+            } else if (formData.edad < 18) {
+            newErrors.formData.edad = "Debes tener al menos 18 años";
+            }
+        
         if (!formData.region) newErrors.region = "La región es obligatoria";
         if (showComuna && !formData.comuna) newErrors.comuna = "La comuna es obligatoria";
         if (!formData.documento) newErrors.documento = "Debes subir un documento";
@@ -105,4 +109,5 @@
         getErrorMessage: (field) => errors[field] || "",
         hasError: (field) => !!errors[field],
     };
-    }
+    
+}
