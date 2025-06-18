@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const ChatBot = () => {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { from: "bot", text: "Hola, ¿qué deseas hacer? Escribe:\n\n1. Iniciar Sesión\n2. Login Beneficiario\n3. Login Voluntario\n4. Quiero Contactarme" }
+    { from: "bot", text: "Hola, Bienvenido a DigniVida. ¿Qué deseas hacer? Escribe:\n\n1. Iniciar Sesión\n2. Registrarme como Beneficiario\n3. Registrarme como Voluntario\n4. Quiero Contactarme" }
   ]);
   const [input, setInput] = useState("");
   const navigate = useNavigate();
@@ -30,10 +30,10 @@ const ChatBot = () => {
         setMessages((msgs) => [...msgs, { from: "bot", text: "Perfecto, te llevo a Iniciar Sesión." }]);
         setTimeout(() => navigate("/login"), 1000);
       } else if (trimmed === "2") {
-        setMessages((msgs) => [...msgs, { from: "bot", text: "Bien, te llevo al Login de Beneficiario." }]);
+        setMessages((msgs) => [...msgs, { from: "bot", text: "Bien, te llevo al Registro de Beneficiario." }]);
         setTimeout(() => navigate("/registroBeneficiario"), 1000);
       } else if (trimmed === "3") {
-        setMessages((msgs) => [...msgs, { from: "bot", text: "Ok, te llevo al Login de Voluntario." }]);
+        setMessages((msgs) => [...msgs, { from: "bot", text: "Ok, te llevo al Registro de Voluntario." }]);
         setTimeout(() => navigate("/registroVoluntario"), 1000);
       } else if (trimmed === "4") {
         setMessages((msgs) => [...msgs, { from: "bot", text: "Ok, te llevo a contacto." }]);
