@@ -1,41 +1,94 @@
-const { Beneficiario } = require('../model');
+import { Beneficiario } from '../model.js';
+import bcrypt from 'bcrypt';
 
-// GET - listar todos los beneficiarios
-exports.getBeneficiarios = async (req, res) => {
+// 📌 Crear beneficiario
+export const createBeneficiario = async (req, res) => {
   try {
-    const data = await Beneficiario.find();
-    res.json(data);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    const {
+      nombre,
+      email,
+      password,
+      telefono,
+      edad,
+      region,
+      comuna
+    } = req.body;
+
+    if (!nombre || !email || !password || !telefono || !edad || !region || !comuna) {
+      return res.status(400).json({ error: "Todos los campos son obligatorios" });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({ error: "Debes subir una imagen del DNI" });
+    }
+
+    const beneficiarioExistente = await Beneficiario.findOne({ email });
+    if (beneficiarioExistente) {
+      return res.status(400).json({ error: "Este correo ya está registrado" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const nuevoBeneficiario = new Beneficiario({
+      nombre,
+      email,
+      password: hashedPassword,
+      telefono,
+      edad,
+      region,
+      comuna,
+      imagen_dni: req.file.filename
+    });
+
+    await nuevoBeneficiario.save();
+
+    res.status(201).json({
+      mensaje: "Beneficiario registrado exitosamente",
+      beneficiario: {
+        id: nuevoBeneficiario._id,
+        nombre: nuevoBeneficiario.nombre,
+        email: nuevoBeneficiario.email,
+        region: nuevoBeneficiario.region,
+        comuna: nuevoBeneficiario.comuna
+      }
+    });
+
+  } catch (error) {
+    console.error("❌ Error al registrar beneficiario:", error);
+    res.status(500).json({ error: "Error interno del servidor al registrar beneficiario" });
   }
 };
 
-// POST - crear beneficiario
-exports.createBeneficiario = async (req, res) => {
+// 📌 Obtener todos los beneficiarios
+export const getBeneficiarios = async (req, res) => {
   try {
-    const nuevo = await Beneficiario.create(req.body);
-    res.status(201).json(nuevo);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+    const beneficiarios = await Beneficiario.find();
+    res.json(beneficiarios);
+  } catch (error) {
+    res.status(500).json({ error: "Error al obtener beneficiarios" });
   }
 };
 
-// PUT - actualizar beneficiario
-exports.updateBeneficiario = async (req, res) => {
+// 📌 Actualizar beneficiario
+export const updateBeneficiario = async (req, res) => {
   try {
-    const actualizado = await Beneficiario.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(actualizado);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
+    const beneficiarioActualizado = await Beneficiario.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res.json({ mensaje: "Beneficiario actualizado", beneficiario: beneficiarioActualizado });
+  } catch (error) {
+    res.status(400).json({ error: "No se pudo actualizar el beneficiario" });
   }
 };
 
-// DELETE - eliminar beneficiario
-exports.deleteBeneficiario = async (req, res) => {
+// 📌 Eliminar beneficiario
+export const deleteBeneficiario = async (req, res) => {
   try {
     await Beneficiario.findByIdAndDelete(req.params.id);
-    res.json({ mensaje: 'Beneficiario eliminado' });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.json({ mensaje: "Beneficiario eliminado correctamente" });
+  } catch (error) {
+    res.status(400).json({ error: "No se pudo eliminar el beneficiario" });
   }
 };
